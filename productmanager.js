@@ -123,11 +123,11 @@ Manager.addProduct(Product2)
 
 //Call getProductById method
 
-//Manager.getProductById(3)
+Manager.getProductById(3)
 
 //Call deleteProduct method
 
-//Manager.deleteProduct(2)
+Manager.deleteProduct(2)
 
 //Call getProducts method
 
