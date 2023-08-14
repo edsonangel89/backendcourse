@@ -67,10 +67,11 @@ class ProductManager {
     async deleteProduct(id) {
 
         const prods = JSON.parse(await fs.readFile(this.path, 'utf-8'))
-        const delObj = prods.find(prod => prod.id === id)
+        const producto = prods.find(prod => prod.id === id)
+        const indProd = prods.indexOf(producto) + 1
 
-        if (delObj) {
-            delete prods.indexOf(delObj)
+        if (producto) {
+            delete prods[indProd]
             await fs.writeFile(this.path,JSON.stringify(prods))
         } else {
             console.log("Producto no existe")
@@ -113,26 +114,31 @@ const Manager = new ProductManager()
 
 //Product instance(s)
 
-const Product1 = new Product("Nombre","Caracteristicas",50,[],"AAEECC", 5)
-const Product2 = new Product("Nombre","Caracteristicas",50,[],"AAEECB", 5)
+const Product1 = new Product("Nombre","Caracteristicas",50,[],"AAEECC", 89)
+const Product2 = new Product("Nombre","Caracteristicas",50,[],"AAEECB", 52)
+const Product3 = new Product("Nombre","Caracteristicas",50,[],"AAEECC", 46)
+const Product4 = new Product("Nombre","Caracteristicas",50,[],"AAEECD", 25)
 
 //Call addProduct method
 
-Manager.addProduct(Product1)
-Manager.addProduct(Product2)
+//Manager.addProduct(Product1)
+//Manager.addProduct(Product2)
+//Manager.addProduct(Product3)
+//Manager.addProduct(Product4)
 
 //Call getProductById method
 
-Manager.getProductById(3)
+//Manager.getProductById(2)
 
 //Call deleteProduct method
 
-Manager.deleteProduct(2)
+Manager.deleteProduct(1)
 
 //Call getProducts method
 
-Manager.getProducts()
+//Manager.getProducts()
 
 //Call updateProduct method
 
-Manager.updateProduct(1,'Hey','Yeah',3,{},'EEEEE',1)
+//Manager.updateProduct(1,'Hey','Yeah',3,{},'EEEEE',1)
+console.log()
