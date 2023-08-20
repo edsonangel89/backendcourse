@@ -3,14 +3,21 @@ import fs from 'fs'
 import {ProductManager} from './ProductManager.js'
 
 const app = express()
+const manager = new ProductManager()
 
+app.use(express.urlencoded({extended:true}))
 
 app.get('/products',(req, res) => { 
-    const manager = new ProductManager()
-    res.send(manager.getProducts())
+    const lim = req.query
+    let {limit} = req.query
+
+    if (lim) {
+        
+    }
 })
 
 app.get('/products/:pid',(req, res) => {
+    const productId = req.params.pid
 
 })
 
