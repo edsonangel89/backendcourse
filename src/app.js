@@ -1,12 +1,13 @@
 import express from 'express'
-import productManager from './ProductManager.js'
+import fs from 'fs'
+import {ProductManager} from './ProductManager.js'
 
 const app = express()
 
-app.get('/',(req, res) => {
-    const products = new productManager()
-    
-    res.send(products.getProducts())
+
+app.get('/products',(req, res) => { 
+    const manager = new ProductManager()
+    res.send(manager.getProducts())
 })
 
 app.get('/products/:pid',(req, res) => {
@@ -14,3 +15,4 @@ app.get('/products/:pid',(req, res) => {
 })
 
 app.listen(8080,() => console.log("Server on port 8080"))
+

@@ -1,8 +1,8 @@
-import { promises as fs} from 'fs'
+import fs from 'fs'
 
 //Define ProductManger class
 
-class ProductManager {
+export class ProductManager {
     
     constructor() {
 
@@ -10,35 +10,35 @@ class ProductManager {
 
     }    
 
-    async addProduct(product) {
+    addProduct(product) {
 
-        const prods = JSON.parse(await fs.readFile(this.path, 'utf-8'))
+        const prods = JSON.parse(fs.readFileSync(this.path, 'utf-8'))
         const producto = prods.find(prod => prod.id === product.id)
 
         if (producto) {
-            console.log("Ya agregaste este producto")
+            console.log("Ya agregaste este producto con ID: " + product.id)
         } else {
             prods.push(product)
-            await fs.writeFile(this.path,JSON.stringify(prods))
+            fs.writeFileSync(this.path,JSON.stringify(prods))
         }
         
     }
 
     async getProducts() {
 
-        const prods = JSON.parse(await fs.readFile(this.path, 'utf-8'))
-        console.log(prods)
+        const prods = JSON.parse(await fs.promises.readFile(this.path, 'utf-8'))
+        console.log(typeof(prods))
         return prods
     }
 
     async getProductById(id) {
 
-        const prods = JSON.parse(await fs.readFile(this.path, 'utf-8'))
+        const prods = JSON.parse(await fs.promises.readFile(this.path, 'utf-8'))
         const producto = prods.find(prod => prod.id === id)
 
         if (producto) {
             console.log(producto)
-            return producto
+            //return producto
         } else {
             console.log("Producto no encontrado")
         }
@@ -47,7 +47,7 @@ class ProductManager {
 
     async updateProduct(id,title,description,price,thumbnail,code,stock) {
 
-        const prods = JSON.parse(await fs.readFile(this.path, 'utf-8'))
+        const prods = JSON.parse(await fs.promises.readFile(this.path, 'utf-8'))
         const producto = prods.find(prod => prod.id === id)
 
         if (producto) {
@@ -57,22 +57,26 @@ class ProductManager {
             producto.thumbnail = thumbnail
             producto.code = code
             producto.stock = stock
-            await fs.writeFile(this.path,JSON.stringify(prods))
+            await fs.promises.writeFile(this.path,JSON.stringify(prods))
         } else {
             console.log("Producto no existe")
         }
 
     }
 
-    async deleteProduct(id) {
+    deleteProduct(id) {
 
-        const prods = JSON.parse(await fs.readFile(this.path, 'utf-8'))
+        const prods = JSON.parse(fs.readFileSync(this.path, 'utf-8'))
         const producto = prods.find(prod => prod.id === id)
-        const indProd = prods.indexOf(producto) + 1
 
         if (producto) {
-            delete prods[indProd]
-            await fs.writeFile(this.path,JSON.stringify(prods))
+            producto.title = ' '
+            producto.description = ' '
+            producto.price = ' '
+            producto.thumbnail = ' '
+            producto.code = ' '
+            producto.stock = ' '
+            fs.writeFileSync(this.path,JSON.stringify(prods))
         } else {
             console.log("Producto no existe")
         }
@@ -110,35 +114,38 @@ class Product {
 
 //ProductManager instance
 
-const Manager = new ProductManager()
+//const Manager = new ProductManager()
 
 //Product instance(s)
 
-const Product1 = new Product("Nombre","Caracteristicas",50,[],"AAEECC", 89)
-const Product2 = new Product("Nombre","Caracteristicas",50,[],"AAEECB", 52)
-const Product3 = new Product("Nombre","Caracteristicas",50,[],"AAEECC", 46)
-const Product4 = new Product("Nombre","Caracteristicas",50,[],"AAEECD", 25)
+//const Product1 = new Product("Garrafon 20","Contenedor de 20 litros",15,[],"GAF20", 89)
+//const Product2 = new Product("Garrafon 19","Contenedor de 19 litros",13,[],"AAEECB", 52)
+//const Product3 = new Product("Botella 1 lt","Contenedor de 1 litro",7,[],"AAEECC", 146)
+//const Product4 = new Product("Botella 1/2 lt","Contenedor de 1/2 litro",5,[],"AAEECD", 96)
 
-//Call addProduct method
+////////////////////////////////////////Call addProduct method
 
 //Manager.addProduct(Product1)
 //Manager.addProduct(Product2)
 //Manager.addProduct(Product3)
 //Manager.addProduct(Product4)
 
-//Call getProductById method
+////////////////////////////////////////Call getProductById method
 
-//Manager.getProductById(2)
+//Manager.getProductById(1)
 
-//Call deleteProduct method
+////////////////////////////////////////Call deleteProduct method
 
-Manager.deleteProduct(1)
+//Manager.deleteProduct(1)
+//Manager.deleteProduct(2)
+//Manager.deleteProduct(3)
+//Manager.deleteProduct(4)
 
-//Call getProducts method
+////////////////////////////////////////Call getProducts method
 
 //Manager.getProducts()
 
-//Call updateProduct method
+////////////////////////////////////////Call updateProduct method
 
-//Manager.updateProduct(1,'Hey','Yeah',3,{},'EEEEE',1)
-console.log()
+//Manager.updateProduct(2,'Botella 1','Contenedor de 1 litro',7,{},'BOT1',146)
+
