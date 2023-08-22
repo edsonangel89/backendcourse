@@ -24,11 +24,18 @@ export class ProductManager {
         
     }
 
-    async getProducts() {
+    async getProducts(qty) {
 
+        console.log(qty)
         const prods = JSON.parse(await fs.promises.readFile(this.path, 'utf-8'))
-        console.log(typeof(prods))
-        return prods
+        
+        if (qty != undefined && qty > 0) {
+           
+        } else {
+            const data = prods
+            return data
+        }
+
     }
 
     async getProductById(id) {
@@ -108,13 +115,14 @@ class Product {
             this.increaseId = 1
         }
         return this.increaseId
+
     }
 }
 
 
 //ProductManager instance
 
-//const Manager = new ProductManager()
+const Manager = new ProductManager()
 
 //Product instance(s)
 
@@ -143,7 +151,7 @@ class Product {
 
 ////////////////////////////////////////Call getProducts method
 
-//Manager.getProducts()
+Manager.getProducts()
 
 ////////////////////////////////////////Call updateProduct method
 
