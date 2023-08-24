@@ -8,13 +8,14 @@ const manager = new ProductManager()
 app.use(express.urlencoded({extended:true}))
 
 app.get('/products',async (req, res) => { 
-    const lim = req.query
-    let {limit} = req.query
+    const lim = req.query.limit
+    //let {limit} = req.query
 
     if (lim) {
-        
+        //console.log(lim)
+        res.status(200).send(await manager.getProducts(lim))
     } else {
-        res.send(await manager.getProducts())
+        res.status(200).send(await manager.getProducts())
     }
 
 })

@@ -28,13 +28,22 @@ export class ProductManager {
 
         console.log(qty)
         const prods = JSON.parse(await fs.promises.readFile(this.path, 'utf-8'))
+        const newprods = prods.slice(0,qty)
+
+        return newprods
+
         
-        if (qty != undefined && qty > 0) {
-           
+        /*if (qty) {
+
+            if ( qty != undefined && qty > 0) {
+                const newprods = prods.slice(0,qty)
+                console.log('This is the new array' + newprods)
+                return newprods
+            }
+
         } else {
-            const data = prods
-            return data
-        }
+            return prods
+        }*/
 
     }
 
