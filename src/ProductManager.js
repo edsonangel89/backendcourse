@@ -87,17 +87,19 @@ export class ProductManager {
 
 //Define Product class
 
-class Product {
+export class Product {
     
-    constructor(title, description, price, thumbnail, code, stock) {
+    constructor() {
         
-        this.title = title
-        this.description = description
-        this.price = price
-        this.thumbnail = thumbnail
-        this.code = code
-        this.stock = stock
         this.id = Product.changeId()
+        this.title = ' '
+        this.description = ' '
+        this.code = ' '
+        this.price = 0
+        this.status = true
+        this.stock = 0
+        this.category = ' '
+        this.thumbnail = []
 
     }  
 
