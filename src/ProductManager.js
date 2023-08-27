@@ -26,7 +26,6 @@ export class ProductManager {
 
     async getProducts(qty) {
 
-        console.log(qty)
         const prods = JSON.parse(await fs.promises.readFile(this.path, 'utf-8'))
         const newprods = prods.slice(0,qty)
         return newprods
@@ -65,19 +64,13 @@ export class ProductManager {
 
     }
 
-    deleteProduct(id) {
+    async deleteProduct(id) {
 
-        const prods = JSON.parse(fs.readFileSync(this.path, 'utf-8'))
-        const producto = prods.find(prod => prod.id === id)
+        const prods = JSON.parse(await fs.promises.readFile(this.path, 'utf-8'))
+        const producto = prods.filter(prod => prod.id != id)
 
         if (producto) {
-            producto.title = ' '
-            producto.description = ' '
-            producto.price = ' '
-            producto.thumbnail = ' '
-            producto.code = ' '
-            producto.stock = ' '
-            fs.writeFileSync(this.path,JSON.stringify(prods))
+            await fs.promises.writeFile(this.path,JSON.stringify(producto))
         } else {
             console.log("Producto no existe")
         }
@@ -118,7 +111,7 @@ export class Product {
 
 //ProductManager instance
 
-const Manager = new ProductManager()
+//const Manager = new ProductManager()
 
 //Product instance(s)
 
@@ -147,7 +140,7 @@ const Manager = new ProductManager()
 
 ////////////////////////////////////////Call getProducts method
 
-Manager.getProducts()
+//Manager.getProducts()
 
 ////////////////////////////////////////Call updateProduct method
 
