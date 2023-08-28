@@ -1,10 +1,12 @@
 import {Router} from 'express'
 import {ProductManager,Product} from '../ProductManager.js'
+import {Server} from 'socket.io'
 
 const prodsR = Router()
 const manager = new ProductManager()
 
-prodsR.get('/', async (req, res) => {
+
+/*prodsR.get('/', async (req, res) => {
 
     const lim = req.query.limit
 
@@ -14,7 +16,7 @@ prodsR.get('/', async (req, res) => {
         res.status(200).send(await manager.getProducts())
     }
 
-})
+})*/
 
 prodsR.get('/:pid', async (req, res) => {
 
@@ -25,11 +27,12 @@ prodsR.get('/:pid', async (req, res) => {
 })
 
 prodsR.post('/', (req, res) => {
-
     const {title,description,code,price,status,stock,category,thumbnail} = req.body
     const thumb = []
+    const pric = parseInt(price)
+    const sto = parseInt(stock)
     thumb.push(thumbnail)
-    const prod = new Product(title,description,code,price,status,stock,category,thumb)
+    const prod = new Product(title,description,code,pric,status,sto,category,thumb)
 
     //console.log(prod)
     manager.addProduct(prod)
