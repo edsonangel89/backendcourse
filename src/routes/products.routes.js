@@ -26,8 +26,12 @@ prodsR.get('/:pid', async (req, res) => {
 
 prodsR.post('/', (req, res) => {
 
-    const prod = new Product()
+    const {title,description,code,price,status,stock,category,thumbnail} = req.body
+    const thumb = []
+    thumb.push(thumbnail)
+    const prod = new Product(title,description,code,price,status,stock,category,thumb)
 
+    //console.log(prod)
     manager.addProduct(prod)
     res.status(200).send("Producto agregado")
     

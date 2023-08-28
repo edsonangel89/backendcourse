@@ -82,17 +82,17 @@ export class ProductManager {
 
 export class Product {
     
-    constructor() {
+    constructor(title,description,code,price,status,stock,category,thumbnail) {
         
         this.id = Product.changeId()
-        this.title = ' '
-        this.description = ' '
-        this.code = ' '
-        this.price = 0
-        this.status = true
-        this.stock = 0
-        this.category = ' '
-        this.thumbnail = []
+        this.title = title
+        this.description = description
+        this.code = code
+        this.price = price
+        this.status = status
+        this.stock = stock
+        this.category = category
+        this.thumbnail = thumbnail
 
     }  
 
