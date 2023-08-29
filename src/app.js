@@ -24,34 +24,50 @@ app.use('/',viewsRouter)
 app.use('/api/products',prodsR)
 app.use('/api/carts',cartsR)
 
-
-
-app.get('/api/products', (req, res) => {
-        res.status(200).send()
-    }
-)
-
 const io = new Server(httpS)
 
 io.on('connection',(socket) => { 
-    //console.log('socket connected')
-    socket.on('product', (prod) => {
+
+    socket.on('newProduct', async (prod) => {
         const {title,description,code,price,stock,category,thumbnail} = prod
         const product = new Product(title,description,code,price,stock,category,thumbnail)
-        //const {title,description,code,price,stock,category,thumbnail} = prod
         manager.addProduct(product)
-        //console.log(description)
-        io.emit('products', "ok")
+
+
+        const prods = await manager.getProducts()
+        io.emit('products', prods)
     } )
+
+    socket.on('deleteProduct', async (msg) => {
+        const pid = msg
+        
+        manager.deleteProduct(pid)
+
+        const prods = await manager.getProducts()
+        io.emit('products', prods)
+    })
+
+    socket.on('products', async () => {
+        const prods = await manager.getProducts()
+        io.emit('products', prods)
+    })
+
     }
 )
 
+app.get('/', (req, res) => {
+    manager.getProducts()
+
+    res.render('home',{})
+    //io.emit('get',"Message from get")
+})
+
+
 app.post('/', (req, res) => {
 
-    io.emit('test',"emit from post")
+    io.emit('post',"Message from post")
     console.log('post sended')
-    res.status(200)
-    res.render()
+    res.status(200).send()
 
     }
 )

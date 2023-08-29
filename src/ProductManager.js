@@ -24,11 +24,12 @@ export class ProductManager {
         
     }
 
-    async getProducts(qty) {
+    async getProducts() {
 
         const prods = JSON.parse(await fs.promises.readFile(this.path, 'utf-8'))
-        const newprods = prods.slice(0,qty)
-        return newprods
+        //const newprods = prods.slice(0,qty)
+        //console.log(prods)
+        return prods
 
     }
 
