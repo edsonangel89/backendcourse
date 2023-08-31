@@ -13,10 +13,10 @@ export class ProductManager {
     addProduct(product) {
 
         const prods = JSON.parse(fs.readFileSync(this.path, 'utf-8'))
-        const producto = prods.find(prod => prod.id === product.id)
+        const producto = prods.find(prod => prod.code === product.code)
 
         if (producto) {
-            console.log("Ya agregaste este producto con ID: " + product.id)
+            console.log("Ya agregaste este producto con ID: " + product.code)
         } else {
             prods.push(product)
             fs.writeFileSync(this.path,JSON.stringify(prods))
@@ -83,9 +83,9 @@ export class ProductManager {
 
 export class Product {
     
-    constructor(title,description,code,price,stock,category,thumbnail) {
+    constructor(id,title,description,code,price,stock,category,thumbnail) {
         
-        this.id = Product.changeId()
+        this.id = id + 1
         this.title = title
         this.description = description
         this.code = code
@@ -97,7 +97,7 @@ export class Product {
 
     }  
 
-    static changeId() {
+   /* static changeId() {
 
         if (this.increaseId) {
             this.increaseId++
@@ -106,7 +106,7 @@ export class Product {
         }
         return this.increaseId
 
-    }
+    }*/
 }
 
 

@@ -1,6 +1,6 @@
 import {Router} from 'express'
 import {ProductManager,Product} from '../ProductManager.js'
-import {Server} from 'socket.io'
+import fs from 'fs'
 
 const prodsR = Router()
 const manager = new ProductManager()
@@ -27,12 +27,17 @@ prodsR.get('/:pid', async (req, res) => {
 })
 
 prodsR.post('/', (req, res) => {
+
+    const file = JSON.parse(fs.readFile('../products.json','utf-8'))
+    const currId = file[file.length - 1].id
+
     const {title,description,code,price,status,stock,category,thumbnail} = req.body
     const thumb = []
     const pric = parseInt(price)
     const sto = parseInt(stock)
+
     thumb.push(thumbnail)
-    const prod = new Product(title,description,code,pric,status,sto,category,thumb)
+    const prod = new Product(currId,title,description,code,pric,status,sto,category,thumb)
 
     //console.log(prod)
     manager.addProduct(prod)

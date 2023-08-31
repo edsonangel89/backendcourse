@@ -6,6 +6,7 @@ import handlebars from 'express-handlebars'
 import viewsRouter from './routes/views.router.js'
 import {Server} from 'socket.io'
 import { ProductManager,Product } from './ProductManager.js'
+import fs from 'fs'
 
 const app = express()
 const httpS = app.listen(8080,() => console.log("Server on port 8080"))
@@ -29,13 +30,27 @@ const io = new Server(httpS)
 io.on('connection',(socket) => { 
 
     socket.on('newProduct', async (prod) => {
-        const {title,description,code,price,stock,category,thumbnail} = prod
-        const product = new Product(title,description,code,price,stock,category,thumbnail)
-        manager.addProduct(product)
 
+        const file = JSON.parse(fs.readFileSync('./products.json','utf-8'))
+        
+        if (file.length > 0) {
+            
+            let currId = file[file.length - 1].id
+            const {title,description,code,price,stock,category,thumbnail} = prod
+            const product = new Product(currId,title,description,code,price,stock,category,thumbnail)
+            manager.addProduct(product)
+            io.emit('products', product)
 
-        const prods = await manager.getProducts()
-        io.emit('products', prods)
+        } else {
+
+            let currId = 0
+            const {title,description,code,price,stock,category,thumbnail} = prod
+            const product = new Product(currId,title,description,code,price,stock,category,thumbnail)
+            manager.addProduct(product)
+            io.emit('products', product)
+
+        }
+        
     } )
 
     socket.on('deleteProduct', async (msg) => {
@@ -55,11 +70,14 @@ io.on('connection',(socket) => {
     }
 )
 
-app.get('/', (req, res) => {
-    manager.getProducts()
+app.get('/', async (req, res) => {
+    
+    const prods =await manager.getProducts()
+    console.log(prods)
+    io.emit('get',prods)
 
     res.render('home',{})
-    //io.emit('get',"Message from get")
+    
 })
 
 

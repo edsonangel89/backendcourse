@@ -8,18 +8,24 @@ export class CartManager {
 
     }
 
-    addCart(cart) {
+    /*addCart() {
 
         const cars = JSON.parse(fs.readFileSync(this.path, 'utf-8'))
-        const car = cars.find(carr => carr.id === cart.id)
+        //const car = cars.find(obj => Math.max(obj.id))
+        const cart = new Cart(cars.length)
+        //console.log(car)
+        cars.push(cart)
+        fs.writeFileSync(this.path,JSON.stringify(cars))
 
-        if (car) {
-            console.log("Ya agregaste este carrito con ID: " + cart.id)
-        } else {
-            cars.push(cart)
-            fs.writeFileSync(this.path,JSON.stringify(cars))
-        }
-        
+    }*/
+
+    addCart() {
+        const cars = JSON.parse(fs.readFileSync(this.path, 'utf-8'))
+        const currId = cars[cars.length - 1].id
+        const prod = new Cart(currId)
+
+        cars.push(prod)
+        fs.writeFileSync(this.path,JSON.stringify(cars))
     }
 
     async getCartById(id) {
@@ -73,21 +79,21 @@ export class CartManager {
 
 export class Cart {
 
-    constructor() {
+    constructor(lastId) {
 
-        this.id = Cart.changeId()
+        this.id = Cart.changeId(lastId)
         this.products = []
 
     }
 
-    static changeId() {
+    static changeId(lastId) {
 
-        if (this.increaseId) {
-            this.increaseId++
+        if (lastId) {
+            lastId++
         } else {
-            this.increaseId = 1
+            lastId = 1
         }
-        return this.increaseId
+        return lastId
     
     }
 
