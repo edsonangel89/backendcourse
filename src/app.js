@@ -30,16 +30,28 @@ const io = new Server(httpS)
 io.on('connection',(socket) => { 
 
     socket.on('newProduct', async (prod) => {
-
+        const producto = prod
         const file = JSON.parse(fs.readFileSync('./products.json','utf-8'))
+        
         
         if (file.length > 0) {
             
             let currId = file[file.length - 1].id
-            const {title,description,code,price,stock,category,thumbnail} = prod
-            const product = new Product(currId,title,description,code,price,stock,category,thumbnail)
-            manager.addProduct(product)
-            io.emit('products', product)
+            let prod = file.find(p => p.code === producto.code)
+            if (prod) {
+                console.log('Product already added')
+                const prodList = await manager.getProducts()
+                //console.log(prodList)
+                io.emit('products', prodList)
+            } else {
+                const {title,description,code,price,stock,category,thumbnail} = producto
+                const product = new Product(currId,title,description,code,price,stock,category,thumbnail)
+                manager.addProduct(product)
+                const prodList = await manager.getProducts()
+                console.log('New product added')
+                //console.log(prodList)
+                io.emit('products', prodList)
+            }
 
         } else {
 
@@ -73,11 +85,13 @@ io.on('connection',(socket) => {
 app.get('/', async (req, res) => {
     
     const prods =await manager.getProducts()
-    console.log(prods)
-    io.emit('get',prods)
+    //console.log(prods)
+    if (io.emit('get',prods)) {
+        console.log('Emit sended')
+        const name = 'Edson'
+        res.render('home',{})
+    }
 
-    res.render('home',{})
-    
 })
 
 
