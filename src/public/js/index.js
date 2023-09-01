@@ -138,25 +138,35 @@ socket.on('products',async (prods) => {
 
     })
 
-socket.on('get', async (msg) => {
+socket.on('get', async (prods) => {
 
-    console.log(msg)
+    //console.log(msg)
     const table = document.getElementById('tableHome')
     
-    await msg.forEach(element => {
-        const row = document.createElement('tr')
-        table.appendChild(row)
-        console.log(Object.getOwnPropertyNames(element))
-        console.log(Object.getOwnPropertyDescriptors(element))
+    prods.forEach(element => {
+        //console.log(element)
+        let {id,title,description,code,price,status,stock,category,thumbnail} = element
+
+        const newRow = document.createElement('tr')
+        table.appendChild(newRow)
+        for (const prop in element) {
+            const col = document.createElement('td')
+            newRow.appendChild(col)
+            col.innerHTML = element[prop]
+            //console.log(element[prop])
+        }
+
+        })
+
+        
+        /*console.log(Object.getOwnPropertyNames(element))
+        console.log(Object.getOwnPropertyDescriptors(element))*/
        /*element[Symbol.iterator] = () => {
             const col = document.createElement('td')
             col.innerHTML = x
             row.appendChild(col)
         }*/
-
-        
-    }
-            )
+    
     })
 
     /*for (let x of msg) {

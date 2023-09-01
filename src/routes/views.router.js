@@ -11,7 +11,7 @@ const manager = new ProductManager()
 })*/
 
 router.get('/realtimeproducts', (req, res) => {
-    res.render('realTimeProducts', {})
+    res.render('realTimeProducts')
 })
 
 export default router
