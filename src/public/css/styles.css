@@ -1,0 +1,28 @@
+body {
+    margin: 8px;
+}
+label {
+    font-size: 25px;
+}
+input {
+    padding: 8px;
+    font-size: 20px;
+}
+.socket {
+    display: flex;
+}
+#list {
+    margin: 8px;
+    display: flex;
+    flex-direction: column;
+}
+th {
+    font-size: 35px;
+    padding: 8px;
+    text-align: center;
+}
+td {
+    font-size: 20px;
+    padding: 8px;
+    text-align: center;
+}

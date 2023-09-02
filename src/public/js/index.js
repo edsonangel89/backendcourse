@@ -1,3 +1,20 @@
+const socket = io()
+
+const title = document.getElementById('title')
+const description = document.getElementById('description')
+const code = document.getElementById('code')
+const price = document.getElementById('price')
+const stock = document.getElementById('stock')
+const category = document.getElementById('category')
+const thumbnail = document.getElementById('thumbnail')
+
+socket.on('update',(msg) => {
+
+    
+
+
+})
+
 class Product {
     
     constructor(title,description,code,price,stock,category,thumbnail) {

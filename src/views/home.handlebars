@@ -9,19 +9,28 @@
         <th>Stock</th>
         <th>Category</th>
         <th>Tumbnail</th>
-    </tr>
-    {{#each prods}}
+        <th>V</th>
+    </tr>  
+    {{#each product}}
         <tr>
-            <td>{{id}}</td> 
+            <td>{{_id}}</td> 
             <td>{{title}}</td> 
             <td>{{description}}</td> 
             <td>{{code}}</td> 
             <td>{{price}}</td> 
-            <td>true</td> 
+            <td>{{status}}</td> 
             <td>{{stock}}</td> 
             <td>{{category}}</td> 
             <td>{{thumbnail}}</td> 
-        </tr> 
+            <td>{{__v}}</td> 
+        </tr>
+    {{/each}}
+    {{#each products}}
+    <tr>
+        {{#each _doc}}
+            <td>{{this}}</td> 
+        {{/each}}
+        </tr>
     {{/each}}
 </table>
 <script src="/socket.io/socket.io.js"></script>

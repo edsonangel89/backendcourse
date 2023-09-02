@@ -1,6 +1,7 @@
 <div class="socket">
     <div id="forms">
         <h1>Agrega productos</h1>
+        <form action="http://localhost:8080/realtimeproducts" method="post">
             <label for="title">Title</label><br>
             <input type="text" id="title" name="title" required/><br><br>
             <label for="description">Description</label><br>
@@ -15,11 +16,14 @@
             <input type="text" id="category" name="category" required/><br><br>
             <label for="thumbnail">Thumbnail</label><br>
             <input type="text" id="thumbnail" name="thumbnail" required/><br><br>
-            <input type="button" value="Agregar producto" onclick="formData()"/>
-        <h1>Elimina productos</h1>
+            <input type="submit" value="Agregar producto" />
+        </form>
+        <!--<h1>Elimina productos</h1>
+        <form action="" method="delete">
             <label for="pid">ID</label><br><br>
             <input type="text" id="pid" name="pid" required/><br><br>
             <input type="button" value="Eliminar producto" onclick="deleteProduct()"/>
+        </form>-->
         </div>
     <div id="list">
         <table id="table" >
@@ -33,19 +37,14 @@
                 <th>Stock</th>
                 <th>Category</th>
                 <th>Tumbnail</th>
+                <th>V</th>
             </tr>
-            {{#each prods}}
+            {{#each products}}
                 <tr>
-                    <td>{{id}}</td> 
-                    <td>{{title}}</td> 
-                    <td>{{description}}</td> 
-                    <td>{{code}}</td> 
-                    <td>{{price}}</td> 
-                    <td>true</td> 
-                    <td>{{stock}}</td> 
-                    <td>{{category}}</td> 
-                    <td>{{thumbnail}}</td> 
-                </tr> 
+                    {{#each _doc}}
+                        <td>{{this}}</td> 
+                    {{/each}}
+                </tr>
             {{/each}}
         </table>
     </div>
