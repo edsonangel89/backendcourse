@@ -82,18 +82,6 @@ io.on('connection',(socket) => {
     }
 )
 
-app.get('/', async (req, res) => {
-    
-    const prods = await manager.getProducts()
-    //console.log(prods)
-    
-    if (io.emit('get',prods)) {
-        console.log('Emit sended')
-        res.render('home')
-    }
-})
-
-
 app.post('/', (req, res) => {
 
     io.emit('post',"Message from post")

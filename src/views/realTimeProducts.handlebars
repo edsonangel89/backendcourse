@@ -34,7 +34,19 @@
                 <th>Category</th>
                 <th>Tumbnail</th>
             </tr>
-            <div id="data"></div>
+            {{#each prods}}
+                <tr>
+                    <td>{{id}}</td> 
+                    <td>{{title}}</td> 
+                    <td>{{description}}</td> 
+                    <td>{{code}}</td> 
+                    <td>{{price}}</td> 
+                    <td>true</td> 
+                    <td>{{stock}}</td> 
+                    <td>{{category}}</td> 
+                    <td>{{thumbnail}}</td> 
+                </tr> 
+            {{/each}}
         </table>
     </div>
 </div>
