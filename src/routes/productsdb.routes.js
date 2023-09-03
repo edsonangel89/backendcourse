@@ -54,7 +54,6 @@ productDbRouter.put('/id/:id', async (req, res) => {
 
 productDbRouter.delete('/id/:id', async (req, res) => {
     const {id} = req.params
-    
     try {
         await productModel.findByIdAndDelete(id)
         const products = await productModel.find()

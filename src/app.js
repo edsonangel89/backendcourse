@@ -34,46 +34,17 @@ mongoose.connect('mongodb+srv://edsonangel:Sabiduria89@cluster0.htyzerk.mongodb.
 .catch(() => console.log('Error de conexion'))
 
 io.on('connection',(socket) => { 
-
-    socket.on('newProduct', async (prod) => {
-        const producto = prod
-        const file = JSON.parse(fs.readFileSync('./products.json','utf-8'))
-        
-        
-        if (file.length > 0) {
-            
-            let currId = file[file.length - 1].id
-            let prod = file.find(p => p.code === producto.code)
-            if (prod) {
-                console.log('Product already added')
-            } else {
-                const {title,description,code,price,stock,category,thumbnail} = producto
-                const product = new Product(currId,title,description,code,price,stock,category,thumbnail)
-                manager.addProduct(product)
-                const prodList = await manager.getProducts()
-                console.log('New product added')
-            }
-
-        } else {
-
-            let currId = 0
-            const {title,description,code,price,stock,category,thumbnail} = prod
-            const product = new Product(currId,title,description,code,price,stock,category,thumbnail)
-            manager.addProduct(product)
-            io.emit('products', product)
-
-        }
-        
-    } )
-
     socket.on('deleteProduct', async (msg) => {
         const pid = msg
-        
         manager.deleteProduct(pid)
-
+        io.emit('delete',msg)
     })
-    }
-)
+    socket.on('update',(msg) => {
+        const product = msg
+        const newProduct = manager.addProduct(product)
+        io.emit('update', newProduct)
+    }) 
+})
 
 
     

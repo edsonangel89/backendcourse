@@ -1,5 +1,4 @@
 const socket = io()
-
 const title = document.getElementById('title')
 const description = document.getElementById('description')
 const code = document.getElementById('code')
@@ -7,18 +6,65 @@ const price = document.getElementById('price')
 const stock = document.getElementById('stock')
 const category = document.getElementById('category')
 const thumbnail = document.getElementById('thumbnail')
+const form = document.getElementById('data')
+const table = document.getElementById('table')
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const newProduct = new Product(title.value,description.value,code.value,price.value,stock.value,category.value,thumbnail.value)
+    if (newProduct) {
+        socket.emit('update', newProduct)
+        title.value = ''
+        description.value = ''
+        code.value = ''
+        price.value = ''
+        stock.value = ''
+        category.value = ''
+        thumbnail.value = ''
+    }
+})
 
 socket.on('update',(msg) => {
+    const newRow = document.createElement('tr')
+    newRow.setAttribute('id',msg.id)
+    const id = document.createElement('td')
+    id.innerHTML = msg.id
+    newRow.appendChild(id)
+    const title = document.createElement('td')
+    title.innerHTML = msg.title
+    newRow.appendChild(title)
+    const description = document.createElement('td')
+    description.innerHTML = msg.description
+    newRow.appendChild(description)
+    const code = document.createElement('td')
+    code.innerHTML = msg.code
+    newRow.appendChild(code)
+    const price = document.createElement('td')
+    price.innerHTML = msg.price
+    newRow.appendChild(price)
+    const status = document.createElement('td')
+    status.innerHTML = msg.status
+    newRow.appendChild(status)
+    const stock = document.createElement('td')
+    stock.innerHTML = msg.stock
+    newRow.appendChild(stock)
+    const category = document.createElement('td')
+    category.innerHTML = msg.category
+    newRow.appendChild(category)
+    const thumbnail = document.createElement('td')
+    thumbnail.innerHTML = msg.thumbnail
+    newRow.appendChild(thumbnail)
+    table.appendChild(newRow)
+})
 
-    
-
-
+socket.on('delete',(msg) => {
+    const pid = parseInt(msg)
+    const delElement = document.getElementById(pid)
+    table.removeChild(delElement)
 })
 
 class Product {
-    
     constructor(title,description,code,price,stock,category,thumbnail) {
-        
         this.title = title
         this.description = description
         this.code = code
@@ -26,45 +72,14 @@ class Product {
         this.stock = stock
         this.category = category
         this.thumbnail = []
-
     }  
-
-}
-
-function formData() {
-    let socket = io()
-    
-    let title = document.getElementById('title')
-    let description = document.getElementById('description')
-    let code = document.getElementById('code')
-    let price = document.getElementById('price')
-    let stock = document.getElementById('stock')
-    let category = document.getElementById('category')
-    let thumbnail = document.getElementById('thumbnail')
-
-    const obj = new Product(title.value,description.value,code.value,price.value,stock.value,category.value,thumbnail.value)
-    
-    socket.emit('newProduct', obj)
-
-    title.value = ""
-    description.value = ""
-    code.value = ""
-    price.value = ""
-    stock.value = ""
-    category.value = ""
-    thumbnail.value = ""
-    
 }
 
 function deleteProduct() {
     let socket = io()
-
     const pid = document.getElementById('pid')
-
     socket.emit('deleteProduct',pid.value)
-
     pid.value = ""
-
 }
 
 

@@ -6,23 +6,17 @@ const prodsRouter = Router()
 const manager = new ProductManager()
 
 prodsRouter.get('/', async (req, res) => {
-
     const lim = req.query.limit
-
     if (lim) {
         res.status(200).send(await manager.getProducts(lim))
     } else {
         res.status(200).send(await manager.getProducts())
     }
-
 })
 
 prodsRouter.get('/:pid', async (req, res) => {
-
     const productId = parseInt(req.params.pid)
-    
     res.status(200).send(await manager.getProductById(productId))
-    
 })
 
 prodsRouter.post('/', async (req, res) => {
@@ -41,22 +35,16 @@ prodsRouter.post('/', async (req, res) => {
 })
 
 prodsRouter.put('/:pid', async (req, res) => {
-
     const pid = parseInt(req.params.pid)
     const {title,description,code,price,status,stock,category,thumbnails} = req.body
-
     await manager.updateProduct(pid,title,description,code,price,status,stock,category,thumbnails)
     res.status(200).send("Producto actualizado")
-
 })
 
 prodsRouter.delete('/:pid', async (req, res) => {
-
     const pid = parseInt(req.params.pid)
-
     await manager.deleteProduct(pid)
     res.status(200).send("Producto borrado")
-
 })
 
 export default prodsRouter
