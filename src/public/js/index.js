@@ -25,36 +25,38 @@ form.addEventListener('submit', (e) => {
 })
 
 socket.on('update',(msg) => {
-    const newRow = document.createElement('tr')
-    newRow.setAttribute('id',msg.id)
-    const id = document.createElement('td')
-    id.innerHTML = msg.id
-    newRow.appendChild(id)
-    const title = document.createElement('td')
-    title.innerHTML = msg.title
-    newRow.appendChild(title)
-    const description = document.createElement('td')
-    description.innerHTML = msg.description
-    newRow.appendChild(description)
-    const code = document.createElement('td')
-    code.innerHTML = msg.code
-    newRow.appendChild(code)
-    const price = document.createElement('td')
-    price.innerHTML = msg.price
-    newRow.appendChild(price)
-    const status = document.createElement('td')
-    status.innerHTML = msg.status
-    newRow.appendChild(status)
-    const stock = document.createElement('td')
-    stock.innerHTML = msg.stock
-    newRow.appendChild(stock)
-    const category = document.createElement('td')
-    category.innerHTML = msg.category
-    newRow.appendChild(category)
-    const thumbnail = document.createElement('td')
-    thumbnail.innerHTML = msg.thumbnail
-    newRow.appendChild(thumbnail)
-    table.appendChild(newRow)
+    if (msg.id != undefined) {
+        const newRow = document.createElement('tr')
+        newRow.setAttribute('id',msg.id)
+        const id = document.createElement('td')
+        id.innerHTML = msg.id
+        newRow.appendChild(id)
+        const title = document.createElement('td')
+        title.innerHTML = msg.title
+        newRow.appendChild(title)
+        const description = document.createElement('td')
+        description.innerHTML = msg.description
+        newRow.appendChild(description)
+        const code = document.createElement('td')
+        code.innerHTML = msg.code
+        newRow.appendChild(code)
+        const price = document.createElement('td')
+        price.innerHTML = msg.price
+        newRow.appendChild(price)
+        const status = document.createElement('td')
+        status.innerHTML = msg.status
+        newRow.appendChild(status)
+        const stock = document.createElement('td')
+        stock.innerHTML = msg.stock
+        newRow.appendChild(stock)
+        const category = document.createElement('td')
+        category.innerHTML = msg.category
+        newRow.appendChild(category)
+        const thumbnail = document.createElement('td')
+        thumbnail.innerHTML = msg.thumbnail
+        newRow.appendChild(thumbnail)
+        table.appendChild(newRow)
+    }
 })
 
 socket.on('delete',(msg) => {

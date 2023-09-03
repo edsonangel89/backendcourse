@@ -40,9 +40,14 @@ io.on('connection',(socket) => {
         io.emit('delete',msg)
     })
     socket.on('update',(msg) => {
-        const product = msg
-        const newProduct = manager.addProduct(product)
-        io.emit('update', newProduct)
+
+        if (msg) {
+            const product = msg
+            const newProduct = manager.addProduct(product)
+            io.emit('update', newProduct)
+        } else {
+            console.log('error en el producto')
+        }
     }) 
 })
 
