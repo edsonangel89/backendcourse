@@ -1,6 +1,6 @@
 import express from 'express'
-import prodsR from './routes/products.routes.js'
-import cartsR from './routes/carts.routes.js'
+import prodsRouter from './routes/products.routes.js'
+import cartsRouter from './routes/carts.routes.js'
 import __dirname from './utils.js'
 import handlebars from 'express-handlebars'
 import viewsRouter from './routes/views.router.js'
@@ -22,11 +22,10 @@ app.use(express.static(__dirname + '/public'))
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
-
-app.use('/',productDbRouter)
-app.use('/api/products',prodsR)
-app.use('/api/carts',cartsR)
-//app.use('/api/db/products',productDbRouter)
+app.use('/',viewsRouter)
+app.use('/api/products',prodsRouter)
+app.use('/api/carts',cartsRouter)
+app.use('/api/db/products',productDbRouter)
 
 const io = new Server(httpS)
 
@@ -47,17 +46,12 @@ io.on('connection',(socket) => {
             let prod = file.find(p => p.code === producto.code)
             if (prod) {
                 console.log('Product already added')
-                /*const prodList = await manager.getProducts()
-                //console.log(prodList)
-                io.emit('products', prodList)*/
             } else {
                 const {title,description,code,price,stock,category,thumbnail} = producto
                 const product = new Product(currId,title,description,code,price,stock,category,thumbnail)
                 manager.addProduct(product)
                 const prodList = await manager.getProducts()
                 console.log('New product added')
-                //console.log(prodList)
-                //io.emit('products', prodList)
             }
 
         } else {
@@ -77,31 +71,9 @@ io.on('connection',(socket) => {
         
         manager.deleteProduct(pid)
 
-        const prods = await manager.getProducts()
-        io.emit('products', prods)
     })
-
-    socket.on('products', async () => {
-        const prods = await manager.getProducts()
-        io.emit('products', prods)
-    })
-
     }
 )
-
-app.post('/realtimeproducts', async (req, res) => {
-    //const prods = await manager.getProducts()
-    const {title,description,code,price,stock,category,thumbnail} = req.body
-    const newProd = new Product()
-    
-
-    io.emit('update',{title,description,code,price,stock,category,thumbnail})
-    //console.log('post sended')
-    //res.render('realTimeProducts',{prods})
-
-    }
-)
-
 
 
     

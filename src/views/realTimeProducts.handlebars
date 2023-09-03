@@ -3,7 +3,7 @@
         <h1>Agrega productos</h1>
         <form action="http://localhost:8080/realtimeproducts" method="post">
             <label for="title">Title</label><br>
-            <input type="text" id="title" name="title" required/><br><br>
+            <input type="text" id="title" name="title" required /><br><br>
             <label for="description">Description</label><br>
             <input type="text" id="description" name="description" required/><br><br>
             <label for="code">Code</label><br>
@@ -18,12 +18,12 @@
             <input type="text" id="thumbnail" name="thumbnail" required/><br><br>
             <input type="submit" value="Agregar producto" />
         </form>
-        <!--<h1>Elimina productos</h1>
-        <form action="" method="delete">
+        <h1>Elimina productos</h1>
+        <form>
             <label for="pid">ID</label><br><br>
             <input type="text" id="pid" name="pid" required/><br><br>
             <input type="button" value="Eliminar producto" onclick="deleteProduct()"/>
-        </form>-->
+        </form>
         </div>
     <div id="list">
         <table id="table" >
@@ -44,6 +44,19 @@
                     {{#each _doc}}
                         <td>{{this}}</td> 
                     {{/each}}
+                </tr>
+            {{/each}}
+            {{#each prods}}
+                <tr>
+                    <td>{{id}}</td> 
+                    <td>{{title}}</td> 
+                    <td>{{description}}</td> 
+                    <td>{{code}}</td> 
+                    <td>{{price}}</td> 
+                    <td>{{status}}</td> 
+                    <td>{{stock}}</td> 
+                    <td>{{category}}</td> 
+                    <td>{{thumbnail}}</td> 
                 </tr>
             {{/each}}
         </table>

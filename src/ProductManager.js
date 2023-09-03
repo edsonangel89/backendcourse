@@ -16,7 +16,7 @@ export class ProductManager {
         const producto = prods.find(prod => prod.code === product.code)
 
         if (producto) {
-            console.log("Ya agregaste este producto con ID: " + product.code)
+            return 'ERROR'
         } else {
             prods.push(product)
             fs.writeFileSync(this.path,JSON.stringify(prods))

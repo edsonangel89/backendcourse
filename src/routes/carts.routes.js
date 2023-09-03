@@ -1,10 +1,10 @@
 import {Router} from 'express'
 import {CartManager, Cart} from '../CartManager.js'
 
-const cartsP = Router()
+const cartsRouter = Router()
 const cManager = new CartManager()
 
-cartsP.post('/', async (req, res) => {
+cartsRouter.post('/', async (req, res) => {
 
     const cart = new Cart()
     cManager.addCart(cart)
@@ -12,7 +12,7 @@ cartsP.post('/', async (req, res) => {
 
 })
 
-cartsP.get('/:cid', async (req, res) => {
+cartsRouter.get('/:cid', async (req, res) => {
 
     const cartId = parseInt(req.params.cid)
     
@@ -20,7 +20,7 @@ cartsP.get('/:cid', async (req, res) => {
 
 })
 
-cartsP.post('/:cid/product/:pid', async (req, res) => {
+cartsRouter.post('/:cid/product/:pid', async (req, res) => {
 
     const cid = parseInt(req.params.cid)
     const pid = parseInt(req.params.pid)
@@ -30,4 +30,4 @@ cartsP.post('/:cid/product/:pid', async (req, res) => {
 
 })
 
-export default cartsP
+export default cartsRouter
