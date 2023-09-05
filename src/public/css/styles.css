@@ -1,37 +1,39 @@
 body {
     margin: 1%;
 }
+
+
+/*****************realTimeProducts UI*****************/
 label {
     font-size: 25px;
     font-weight: bold;
+    color: whitesmoke;
+}
+#forms {
+    width: 25%
+}
+#list {
+    width: 60%;
 }
 form {
     background-color: #4361ee;
     padding: 5%;
     border-radius: 8px;
 }
-label {
-    color: whitesmoke;
-}
 input {
-    /*padding: 1%;*/
-    font-size: 1.3rem;
     border-radius: 8px;
     border: none;
-    outline-color: #4CC9F0;
 }
 .socket {
     display: flex;
 }
 #list {
-    /*width: 80%;*/
     margin: 2%;
     display: flex;
     flex-direction: column;
 }
 table {
-    border: solid #3A0CA3 3px;
-    border-radius: 5px;
+    border: solid #3A0CA3 4px;
 }
 th {
     font-size: 1.8rem;
@@ -40,7 +42,15 @@ th {
 }
 td {
     border: solid #4895EF 3px;
-    font-size: 20px;
-    padding: 2%;
+    font-size: 15px;
+    padding: 1%;
     text-align: center;
+    overflow-wrap: break-word;
+}
+
+/*****************home UI*****************/
+
+.homePage {
+    display: flex;
+    flex-direction: column;
 }

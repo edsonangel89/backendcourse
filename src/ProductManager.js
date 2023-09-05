@@ -7,7 +7,6 @@ export class ProductManager {
     addProduct(product) {
         const prods = JSON.parse(fs.readFileSync(this.path, 'utf-8'))
         const producto = prods.find(prod => prod.code === product.code)
-
         if (prods.length == 0) {
             const currId = 0
             const {title,description,code,price,stock,category,thumbnail} = product
