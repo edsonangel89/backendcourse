@@ -1,0 +1,46 @@
+body {
+    margin: 8px;
+}
+label {
+    font-size: 25px;
+    font-weight: bold;
+}
+form {
+    background-color: #4361ee;
+    padding: 5%;
+    border-radius: 8px;
+}
+label {
+    color: whitesmoke;
+}
+input {
+    /*padding: 1%;*/
+    font-size: 1.3rem;
+    border-radius: 8px;
+    border: none;
+    outline-color: #4CC9F0;
+}
+.socket {
+    display: flex;
+}
+#list {
+    /*width: 80%;*/
+    margin: 2%;
+    display: flex;
+    flex-direction: column;
+}
+table {
+    border: solid #3A0CA3 3px;
+    border-radius: 5px;
+}
+th {
+    font-size: 1.8rem;
+    padding: 8px;
+    text-align: center;
+}
+td {
+    border: solid #4895EF 3px;
+    font-size: 20px;
+    padding: 2%;
+    text-align: center;
+}
