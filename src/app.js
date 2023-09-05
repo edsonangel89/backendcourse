@@ -4,9 +4,8 @@ import cartsRouter from './routes/carts.routes.js'
 import __dirname from './utils.js'
 import handlebars from 'express-handlebars'
 import viewsRouter from './routes/views.router.js'
-import {Server} from 'socket.io'
+import { Server } from 'socket.io'
 import { ProductManager } from './ProductManager.js'
-import mongoose from 'mongoose'
 
 const app = express()
 const httpS = app.listen(8080,() => console.log("Server on port 8080"))
@@ -32,13 +31,11 @@ io.on('connection',(socket) => {
         await manager.deleteProduct(pid)
         const prodList = await manager.getProducts()
         io.emit('delete',prodList)
-        
     })
     socket.on('update',async (msg) => {
-
         if (msg) {
             const product = msg
-            const newProduct = manager.addProduct(product)
+            manager.addProduct(product)
             const currList = await manager.getProducts()
             io.emit('update', currList)
         } else {
