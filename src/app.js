@@ -28,9 +28,9 @@ const io = new Server(httpS)
 io.on('connection',(socket) => { 
     socket.on('delete', async (msg) => {
         const pid = msg
-        await manager.deleteProduct(pid)
-        const prodList = await manager.getProducts()
-        io.emit('delete',prodList)
+        const currList = await manager.deleteProduct(pid)
+        io.emit('delete',currList)
+        //const prodList = await manager.getProducts()
     })
     socket.on('update',async (msg) => {
         if (msg) {

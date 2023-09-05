@@ -67,12 +67,19 @@ export class ProductManager {
     }
     async deleteProduct(id) {
         const prods = JSON.parse(await fs.promises.readFile(this.path, 'utf-8'))
+        const nofProduct = prods.find(prod => prod.id === id)
         const producto = prods.filter(prod => prod.id != id)
-        if (producto) {
-            await fs.promises.writeFile(this.path,JSON.stringify(producto))
-        } 
+        if (!nofProduct) {
+            return 'Error'
+        }
         else {
-            console.log("Producto no existe")
+            if (producto) {
+                await fs.promises.writeFile(this.path,JSON.stringify(producto))
+                return producto
+            } 
+            else {
+                return 'Error de escritura'
+            }
         }
     }
 }
