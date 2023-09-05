@@ -5,9 +5,7 @@ import __dirname from './utils.js'
 import handlebars from 'express-handlebars'
 import viewsRouter from './routes/views.router.js'
 import {Server} from 'socket.io'
-import { ProductManager,Product } from './ProductManager.js'
-import fs from 'fs'
-import productDbRouter from './routes/productsdb.routes.js'
+import { ProductManager } from './ProductManager.js'
 import mongoose from 'mongoose'
 
 const app = express()
@@ -25,13 +23,8 @@ app.use(express.urlencoded({extended:true}))
 app.use('/',viewsRouter)
 app.use('/api/products',prodsRouter)
 app.use('/api/carts',cartsRouter)
-app.use('/api/db/products',productDbRouter)
 
 const io = new Server(httpS)
-
-mongoose.connect('mongodb+srv://edsonangel:Sabiduria89@cluster0.htyzerk.mongodb.net/?retryWrites=true&w=majority')
-.then(() => console.log('BDD conectada'))
-.catch(() => console.log('Error de conexion'))
 
 io.on('connection',(socket) => { 
     socket.on('delete', async (msg) => {

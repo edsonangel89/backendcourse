@@ -9,7 +9,7 @@
             <label for="code">Code</label><br>
             <input type="text" id="code" name="code" required/><br><br>
             <label for="price">Price</label><br>
-            <input type="number" id="price" name="price" min="0" placeholder="1.0" step="0.01" required /><br><br>
+            <input type="number" id="price" name="price" min="0" placeholder="1.00" step="0.01" required /><br><br>
             <label for="stock">Stock</label><br>
             <input type="number" id="stock" name="stock" min="0" required/><br><br>
             <label for="category">Category</label><br>
@@ -41,13 +41,6 @@
                 </tr>
             </thead>
             <tbody id="table">
-                {{#each products}}
-                    <tr>
-                        {{#each _doc}}
-                            <td>{{this}}</td> 
-                        {{/each}}
-                    </tr>
-                {{/each}}
                 {{#each prods}}
                     <tr>
                         <td>{{id}}</td> 
