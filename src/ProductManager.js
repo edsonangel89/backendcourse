@@ -16,18 +16,21 @@ export class ProductManager {
             const newProduct = new Product(currId,title,description,code,price,stock,category,thumbnail)
             if (producto) {
                 return 'ERROR'
-            } else {
+            } 
+            else {
                 prods.push(newProduct)
                 fs.writeFileSync(this.path,JSON.stringify(prods))
                 return newProduct
             }
-        } else {
+        } 
+        else {
             const currId = prods[prods.length - 1].id
             const {title,description,code,price,stock,category,thumbnail} = product
             const newProduct = new Product(currId,title,description,code,price,stock,category,thumbnail)
             if (producto) {
                 return 'ERROR'
-            } else {
+            } 
+            else {
                 prods.push(newProduct)
                 fs.writeFileSync(this.path,JSON.stringify(prods))
                 return newProduct
@@ -43,7 +46,8 @@ export class ProductManager {
         const producto = prods.find(prod => prod.id === id)
         if (producto) {
             return producto
-        } else {
+        } 
+        else {
             return 'Producto no encontrado'
         }
     }
@@ -58,7 +62,8 @@ export class ProductManager {
             producto.code = code
             producto.stock = stock
             await fs.promises.writeFile(this.path,JSON.stringify(prods))
-        } else {
+        } 
+        else {
             console.log("Producto no existe")
         }
     }
@@ -67,7 +72,8 @@ export class ProductManager {
         const producto = prods.filter(prod => prod.id != id)
         if (producto) {
             await fs.promises.writeFile(this.path,JSON.stringify(producto))
-        } else {
+        } 
+        else {
             console.log("Producto no existe")
         }
     }

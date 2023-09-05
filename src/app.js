@@ -34,17 +34,20 @@ mongoose.connect('mongodb+srv://edsonangel:Sabiduria89@cluster0.htyzerk.mongodb.
 .catch(() => console.log('Error de conexion'))
 
 io.on('connection',(socket) => { 
-    socket.on('deleteProduct', async (msg) => {
+    socket.on('delete', async (msg) => {
         const pid = msg
-        manager.deleteProduct(pid)
-        io.emit('delete',msg)
+        await manager.deleteProduct(pid)
+        const prodList = await manager.getProducts()
+        io.emit('delete',prodList)
+        
     })
-    socket.on('update',(msg) => {
+    socket.on('update',async (msg) => {
 
         if (msg) {
             const product = msg
             const newProduct = manager.addProduct(product)
-            io.emit('update', newProduct)
+            const currList = await manager.getProducts()
+            io.emit('update', currList)
         } else {
             console.log('error en el producto')
         }

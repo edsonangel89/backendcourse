@@ -7,12 +7,19 @@ const manager = new ProductManager()
 
 router.get('/', async (req, res) => {
     const prods = await manager.getProducts()
-    res.status(200).render('home',{prods})
+    res.status(200).render('home',{
+        prods,
+        script: 'index.js'
+    })
 })
 
 router.get('/realtimeproducts', async (req, res) => {
     const prods = await manager.getProducts()
-    res.status(200).render('realTimeProducts',{prods})
+    res.status(200).render('realTimeProducts',{
+        prods,
+        script: 'realtimeproducts.js',
+        cdn: '"https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"'
+    })
 })
 
 router.post('/realtimeproducts', async (req, res) => {
