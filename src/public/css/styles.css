@@ -9,16 +9,14 @@ label {
     font-weight: bold;
     color: whitesmoke;
 }
-#forms {
-    width: 25%
-}
-#list {
-    width: 60%;
+#forms h1{
+    text-align: center;
 }
 form {
     background-color: #4361ee;
-    padding: 5%;
+    padding: 4%;
     border-radius: 8px;
+    width: 20rem;
 }
 input {
     border-radius: 8px;
@@ -32,20 +30,11 @@ input {
     display: flex;
     flex-direction: column;
 }
-table {
-    border: solid #3A0CA3 4px;
-}
 th {
-    font-size: 1.8rem;
-    padding: 8px;
     text-align: center;
 }
 td {
-    border: solid #4895EF 3px;
-    font-size: 15px;
-    padding: 1%;
     text-align: center;
-    overflow-wrap: break-word;
 }
 
 /*****************home UI*****************/
