@@ -16,7 +16,8 @@ export class CartManager {
         const cid = cars.find(car => car.id === id)
         if (cid) {
             return cid.products
-        } else {
+        } 
+        else {
             return "No existe este carrito"
         }
     }
@@ -27,14 +28,16 @@ export class CartManager {
             const id = cartId.products.find(prod => prod.id === pid)
             if (id) {   
                 id.quantity++
-            } else {  
+            } 
+            else {  
                 const prod = {
                     "id": pid,
                     "quantity": 1
                 }  
                 cartId.products.push(prod)
             }
-        } else {
+        } 
+        else {
             return "No existe el carrito"
         }
         await fs.promises.writeFile(this.path,JSON.stringify(cars))

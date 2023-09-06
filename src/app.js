@@ -30,7 +30,6 @@ io.on('connection',(socket) => {
         const pid = msg
         const currList = await manager.deleteProduct(pid)
         io.emit('delete',currList)
-        //const prodList = await manager.getProducts()
     })
     socket.on('update',async (msg) => {
         if (msg) {
