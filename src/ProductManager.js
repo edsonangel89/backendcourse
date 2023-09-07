@@ -1,11 +1,9 @@
-import fs from 'fs'
-
 export class ProductManager {
     constructor() {
         this.path = "./products.json"
     }    
     addProduct(product) {
-        const prods = JSON.parse(fs.readFileSync(this.path, 'utf-8'))
+        const prods = JSON.parse()  //fs.readFileSync(this.path, 'utf-8')
         const producto = prods.find(prod => prod.code === product.code)
         if (prods.length == 0) {
             const currId = 0
@@ -16,7 +14,7 @@ export class ProductManager {
             } 
             else {
                 prods.push(newProduct)
-                fs.writeFileSync(this.path,JSON.stringify(prods))
+                //  //fs.writeFileSync(this.path,JSON.stringify(prods))
                 return newProduct
             }
         } 
@@ -29,17 +27,17 @@ export class ProductManager {
             } 
             else {
                 prods.push(newProduct)
-                fs.writeFileSync(this.path,JSON.stringify(prods))
+                //  //fs.writeFileSync(this.path,JSON.stringify(prods))
                 return newProduct
             }
         }
     }
     async getProducts() {
-        const prods = JSON.parse(await fs.promises.readFile(this.path, 'utf-8'))
+        const prods = JSON.parse()  //await fs.promises.readFile(this.path, 'utf-8')
         return prods
     }
     async getProductById(id) {
-        const prods = JSON.parse(await fs.promises.readFile(this.path, 'utf-8'))
+        const prods = JSON.parse()  //await fs.promises.readFile(this.path, 'utf-8')
         const producto = prods.find(prod => prod.id === id)
         if (producto) {
             return producto
@@ -49,7 +47,7 @@ export class ProductManager {
         }
     }
     async updateProduct(id,title,description,price,thumbnail,code,stock) {
-        const prods = JSON.parse(await fs.promises.readFile(this.path, 'utf-8'))
+        const prods = JSON.parse()  //await fs.promises.readFile(this.path, 'utf-8')
         const producto = prods.find(prod => prod.id === id)
         if (producto) {
             producto.title = title
@@ -58,14 +56,14 @@ export class ProductManager {
             producto.thumbnail = thumbnail
             producto.code = code
             producto.stock = stock
-            await fs.promises.writeFile(this.path,JSON.stringify(prods))
+            //  //await fs.promises.writeFile(this.path,JSON.stringify(prods))
         } 
         else {
             console.log("Producto no existe")
         }
     }
     async deleteProduct(id) {
-        const prods = JSON.parse(await fs.promises.readFile(this.path, 'utf-8'))
+        const prods = JSON.parse()  //await fs.promises.readFile(this.path, 'utf-8')
         const nofProduct = prods.find(prod => prod.id === id)
         const producto = prods.filter(prod => prod.id != id)
         if (!nofProduct) {
@@ -73,7 +71,7 @@ export class ProductManager {
         }
         else {
             if (producto) {
-                await fs.promises.writeFile(this.path,JSON.stringify(producto))
+                //  //await fs.promises.writeFile(this.path,JSON.stringify(producto))
                 return producto
             } 
             else {

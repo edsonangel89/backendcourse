@@ -42,7 +42,8 @@ io.on('connection',(socket) => {
             manager.addProduct(product)
             const currList = await manager.getProducts()
             io.emit('update', currList)
-        } else {
+        } 
+        else {
             console.log('error en el producto')
         }
     }) 
