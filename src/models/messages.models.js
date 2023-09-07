@@ -1,14 +1,18 @@
 import { Schema, model } from 'mongoose'
-const messageCollection = 'Messages'
+const messagesCollection = 'Messages'
 const messageSchema = new Schema({
     user: {
         type: String,
         require: true
     },
-    message: {
+    body: {
         type: String,
         require: true
+    },
+    meta: {
+        type: Date,
+        default: Date.now
     }
 })
 
-const messageModel = model(messageCollection, messageSchema)
+const messageModel = model(messagesCollection, messageSchema)

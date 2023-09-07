@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose'
-
+const cartsCollection = 'Carts'
 const cartSchema = new Schema({
     id: {
         type: Number,
@@ -11,4 +11,4 @@ const cartSchema = new Schema({
     }
 })
 
-const cartModel = model('Carts',cartSchema)
+const cartModel = model(cartsCollection, cartSchema)

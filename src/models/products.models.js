@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose"
-
+const productsCollection = 'Products'
 const productSchema = new Schema({
     title: {
         type: String,
@@ -36,4 +36,4 @@ const productSchema = new Schema({
     }    
 })
 
-const productModel = model('Products',productSchema)
+const productModel = model(productsCollection, productSchema)

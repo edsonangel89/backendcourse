@@ -14,7 +14,7 @@ const manager = new ProductManager()
 
 mongoose.connect('mongodb+srv://edsonangel:Sabiduria89@cluster0.htyzerk.mongodb.net/?retryWrites=true&w=majority)')
 .then(console.log('BDD conectada'))
-.catch(console.log('Error de conexion'))
+.catch()
 
 app.engine('handlebars',handlebars.engine())
 app.set('views',__dirname + '/views')
