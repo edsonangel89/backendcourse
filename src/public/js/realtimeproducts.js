@@ -1,3 +1,4 @@
+/*
 const socketR = io()
 
 const title = document.getElementById('title')
@@ -11,6 +12,7 @@ const form = document.getElementById('data')
 const table = document.getElementById('table')
 const delForm = document.getElementById('delForm')
 const pid = document.getElementById('pid')
+
 
 form.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -119,4 +121,4 @@ socketR.on('delete', (currList) => {
             table.appendChild(row)
         }
     }
-})
+})*/

@@ -1,7 +1,7 @@
 <div class="socket">
     <div id="forms">
         <h4>Agrega productos</h4>
-        <form id="data">
+        <form id="data" action="http://localhost:8080/realtimeproducts" method="post">
             <div class="mb-1">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" id="title" name="title" required class="form-control"/>
@@ -26,17 +26,13 @@
                 <label for="category" class="form-label">Category</label>
                 <input type="text" id="category" name="category" required class="form-control"/>
             </div>
-            <div class="mb-1">
-                <label for="thumbnail" class="form-label">Thumbnail</label>
-                <input type="text" id="thumbnail" name="thumbnail" required class="form-control"/><br>
-            </div> 
                 <button type="submit" class="btn btn-success">Agregar producto</button>
         </form>
         <h4>Elimina productos</h4>
-        <form id="delForm">
+        <form id="delForm" action="http://localhost:8080/realtimeproducts/id" method="post">
             <div class="mb-1">
                 <label for="pid" class="form-label">ID</label>
-                <input type="number" id="pid" name="pid" required min="1" class="form-control"/><br>
+                <input type="text" id="pid" name="pid" required min="1" class="form-control"/><br>
             </div>
             <button type="submit" class="btn btn-danger">Eliminar producto</button>
         </form>
@@ -54,21 +50,16 @@
                     <th>Stock</th>
                     <th>Category</th>
                     <th>Tumbnail</th>
+                    <th>__v</th>
                 </tr>
             </thead>
             <tbody id="table">
-                {{#each prods}}
-                    <tr>
-                        <td>{{id}}</td> 
-                        <td>{{title}}</td> 
-                        <td>{{description}}</td> 
-                        <td>{{code}}</td> 
-                        <td>{{price}}</td> 
-                        <td>{{status}}</td> 
-                        <td>{{stock}}</td> 
-                        <td>{{category}}</td> 
-                        <td>{{thumbnail}}</td> 
-                    </tr>
+                {{#each productsList}}
+                <tr>
+                    {{#each _doc}}
+                        <td>{{this}}</td>
+                    {{/each}}
+                </tr>
                 {{/each}}
             </tbody>
         </table>

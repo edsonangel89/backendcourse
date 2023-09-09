@@ -3,20 +3,20 @@ const productsCollection = 'Products'
 const productSchema = new Schema({
     title: {
         type: String,
-        require: true
+        required: true
     },
     description: {
         type: String,
-        require: true
+        required: true
     },
     code: {
         type: String,
         unique: true,
-        require: true
+        required: true
     },
     price: {
         type: Number,
-        require: true
+        required: true
     },
     status: {
         type: Boolean,
@@ -24,11 +24,11 @@ const productSchema = new Schema({
     },
     stock: {
         type: Number,
-        require: true
+        required: true
     },
     category: {
         type: String,
-        require: true
+        required: true
     },
     thumbnail: {
         type: Array,
@@ -36,4 +36,4 @@ const productSchema = new Schema({
     }    
 })
 
-const productModel = model(productsCollection, productSchema)
+export const productModel = model(productsCollection, productSchema)

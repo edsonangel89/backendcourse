@@ -5,14 +5,14 @@ import __dirname from './utils.js'
 import handlebars from 'express-handlebars'
 import viewsRouter from './routes/views.router.js'
 import { Server } from 'socket.io'
-import { ProductManager } from './ProductManager.js'
+//import { ProductManager } from './ProductManager.js'
 import mongoose from 'mongoose'
 
 const app = express()
 const httpS = app.listen(8080,() => console.log("Server on port 8080"))
-const manager = new ProductManager()
+//const manager = new ProductManager()
 
-mongoose.connect('mongodb+srv://edsonangel:Sabiduria89@cluster0.htyzerk.mongodb.net/?retryWrites=true&w=majority)')
+mongoose.connect('mongodb+srv://edsonangel:Sabiduria89@cluster0.htyzerk.mongodb.net/?retryWrites=true&w=majority')
 .then(console.log('BDD conectada'))
 .catch()
 
@@ -30,7 +30,7 @@ app.use('/api/carts',cartsRouter)
 
 const io = new Server(httpS)
 
-io.on('connection',(socket) => { 
+/*io.on('connection',(socket) => { 
     socket.on('delete', async (msg) => {
         const pid = msg
         const currList = await manager.deleteProduct(pid)
@@ -47,7 +47,7 @@ io.on('connection',(socket) => {
             console.log('error en el producto')
         }
     }) 
-})
+})*/
 
 
     

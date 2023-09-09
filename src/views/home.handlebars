@@ -11,20 +11,15 @@
                 <th>Stock</th>
                 <th>Category</th>
                 <th>Tumbnail</th>
+                <th>__v</th>
             </tr>  
         </thead>
         <tbody>
-            {{#each prods}}
+            {{#each productsList}}
                 <tr>
-                    <td>{{id}}</td> 
-                    <td>{{title}}</td> 
-                    <td>{{description}}</td> 
-                    <td>{{code}}</td> 
-                    <td>{{price}}</td> 
-                    <td>{{status}}</td> 
-                    <td>{{stock}}</td> 
-                    <td>{{category}}</td> 
-                    <td>{{thumbnail}}</td> 
+                    {{#each _doc}}
+                        <td>{{this}}</td>
+                    {{/each}}
                 </tr>
             {{/each}}
         </tbody>

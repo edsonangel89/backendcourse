@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { productModel } from '../models/products.models'
+import { productModel } from '../models/products.models.js'
 
 const productsRouter = Router()
 
@@ -8,7 +8,7 @@ productsRouter.get('/', async (req, res) => {
 
     if (limit) {
         try {
-            const productsList = await productModel.find() //limit
+            const productsList = await productModel.find().limit(limit)
             res.status(200).render('realtimeproducts', { productsList })
         }
         catch {
