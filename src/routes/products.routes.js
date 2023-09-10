@@ -9,7 +9,7 @@ productsRouter.get('/', async (req, res) => {
     if (limit) {
         try {
             const productsList = await productModel.find().limit(limit)
-            res.status(200).render('realtimeproducts', { productsList })
+            res.status(200).send( productsList )
         }
         catch {
             res.status(400).send('No se puede mostrar la lista de productos')
@@ -18,7 +18,7 @@ productsRouter.get('/', async (req, res) => {
     else {
         try {
             const productsList = await productModel.find()
-            res.render('realtimeproducts', { productsList })
+            res.status(200).send( productsList )
         }
         catch (error) {
             res.status(400).send('Error de consulta de productos ' + error)
@@ -27,7 +27,7 @@ productsRouter.get('/', async (req, res) => {
 })
 
 productsRouter.get('/:pid', async (req, res) => {
-    const { pid } = parseInt(req.params)
+    const { pid } = req.params
     try {
         const productById = await productModel.findById(pid)
         res.status(200).send(productById)

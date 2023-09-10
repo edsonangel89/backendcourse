@@ -6,7 +6,7 @@ const cartsRouter = Router()
 cartsRouter.post('/', async (req, res) => {
     try {
         const newCart = cartModel.create({ })
-        res.status(200).send('Carrito creado ' + newCart)
+        res.status(200).send('Carrito creado')
     }
     catch (error) {
         res.status(400).send('Error al crear carrito ' + error)
