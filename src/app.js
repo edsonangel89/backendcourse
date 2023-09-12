@@ -1,16 +1,14 @@
-import express from 'express'
+import express, { application } from 'express'
 import prodsRouter from './routes/products.routes.js'
 import cartsRouter from './routes/carts.routes.js'
 import __dirname from './utils.js'
 import handlebars from 'express-handlebars'
-import viewsRouter from './routes/views.router.js'
+import viewsRouter from './routes/views.routes.js'
 import { Server } from 'socket.io'
-//import { ProductManager } from './ProductManager.js'
 import mongoose from 'mongoose'
 
 const app = express()
 const httpS = app.listen(8080,() => console.log("Server on port 8080"))
-//const manager = new ProductManager()
 
 mongoose.connect('mongodb+srv://edsonangel:Sabiduria89@cluster0.htyzerk.mongodb.net/?retryWrites=true&w=majority')
 .then(console.log('BDD conectada'))
@@ -27,6 +25,8 @@ app.use(express.urlencoded({extended:true}))
 app.use('/',viewsRouter)
 app.use('/api/products',prodsRouter)
 app.use('/api/carts',cartsRouter)
+//app.use('/api/messages')
+//app.use('/api/users')
 
 const io = new Server(httpS)
 

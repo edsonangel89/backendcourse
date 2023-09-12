@@ -20,17 +20,26 @@ cartsRouter.get('/:cid', async (req, res) => {
         res.status(200).send(cartById)
     }
     catch (error) {
-        res.status(400).send('Error al consultar carrito \n' + error)
+        res.status(400).send('Error en la consulta del carrito \n' + error)
     }
 })
 cartsRouter.post('/:cid/product/:pid', async (req, res) => {
     const { cid, pid } = req.params
+    const { quantity } = req.body
     try {
         const cart = await cartModel.findById(cid) 
         if (cart) {
             const product = await productModel.findById(pid)
             if (product) {
-                cart.products.push(product)
+                const prod = cart.products.find(prod => prod.id_product == pid)
+                if (prod) {
+                    prod.quantity = quantity
+                    await cartModel.findByIdAndUpdate(cid, cart)
+                }
+                else {
+                    cart.products.push({id_product: product._id, quantity: quantity})
+                    await cartModel.findByIdAndUpdate(cid, cart)
+                }
                 res.status(200).send('Producto agregado \n' + product)
             }
             else {
@@ -42,7 +51,7 @@ cartsRouter.post('/:cid/product/:pid', async (req, res) => {
         }
     }
     catch (error) {
-        res.status(400).send('Error al agregar producto al carrito ' + error)
+        res.status(400).send('Error al agregar producto al carrito \n' + error)
     }
 })
 
