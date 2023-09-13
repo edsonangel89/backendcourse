@@ -23,7 +23,6 @@ usersRouter.get('/:uid', async (req, res) => {
         else {
             res.status(404).send('Usuario no encontrado')
         }
-        
     }
     catch(error) {
         res.status(400).send('Error de consulata de usuario\n' + error)
