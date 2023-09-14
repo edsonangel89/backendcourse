@@ -4,11 +4,17 @@ import { productModel } from '../models/products.models.js'
 const productsRouter = Router()
 
 productsRouter.get('/', async (req, res) => {
-    const { limit } = req.body
-
+    const { limit, page, sort, query } = req.query
+    //const result = await productModel.paginate()
+    //console.log(result)
+    console.log(limit)
+    console.log(page)
+    console.log(sort)
+    console.log(query)
     if (limit) {
         try {
-            const productsList = await productModel.find().limit(limit)
+            //const productsList = await productModel.find().limit(limit)
+            const productsList = await productModel.paginate({},{limit: 1})
             res.status(200).send( productsList )
         }
         catch {
@@ -17,7 +23,8 @@ productsRouter.get('/', async (req, res) => {
     }
     else {
         try {
-            const productsList = await productModel.find()
+            //const productsList = await productModel.find()
+            const productsList = await productModel.paginate()
             res.status(200).send( productsList )
         }
         catch (error) {
