@@ -12,7 +12,7 @@ import messageRouter from './routes/messages.routes.js'
 const app = express()
 const httpS = app.listen(8080,() => console.log("Server on port 8080"))
 
-mongoose.connect('mongodb+srv://edsonangel:Sabiduria89@cluster0.htyzerk.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://edsonangel:{password}@cluster0.htyzerk.mongodb.net/?retryWrites=true&w=majority')
 .then(console.log('BDD conectada'))
 .catch()
 
