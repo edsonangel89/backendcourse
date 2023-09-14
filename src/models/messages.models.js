@@ -3,32 +3,21 @@ const messagesCollection = 'Messages'
 const messageSchema = new Schema({
     message: {
         type: [
-            {
-                usremail: {
-                    type: String,
-                    required: true
-                },
-                body: {
-                    type: String,
-                    required: true
-                },
-                meta: {
-                    type: [
-                        {
-                            date: {
-                                type: Date,
-                                required: true,
-                                default: Date.now
-                            },
-                            fav: {
-                                type: Number,
-                                default: 0
-                            }
-                        }
-                    ]
+                {
+                    usremail: {
+                        type: String,
+                        required: true
+                    },
+                    body: {
+                        type: String,
+                        required: true
+                    },
+                    date: {
+                        type: Date,
+                        default: Date.now
+                    }
                 }
-            }
-        ]
+            ]
     }
 })
 

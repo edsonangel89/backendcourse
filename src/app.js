@@ -7,6 +7,7 @@ import viewsRouter from './routes/views.routes.js'
 import { Server } from 'socket.io'
 import mongoose from 'mongoose'
 import usersRouter from './routes/users.routes.js'
+import messageRouter from './routes/messages.routes.js'
 
 const app = express()
 const httpS = app.listen(8080,() => console.log("Server on port 8080"))
@@ -26,7 +27,7 @@ app.use(express.urlencoded({extended:true}))
 app.use('/',viewsRouter)
 app.use('/api/products',prodsRouter)
 app.use('/api/carts',cartsRouter)
-//app.use('/api/messages')
+app.use('/api/messages',messageRouter)
 app.use('/api/users', usersRouter)
 
 const io = new Server(httpS)
