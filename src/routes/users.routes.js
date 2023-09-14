@@ -4,9 +4,16 @@ import { userModel } from "../models/users.models.js";
 const usersRouter = Router()
 
 usersRouter.get('/', async (req, res) => {
+    const { limit } = req.query
     try {
-        const users = await userModel.find()
-        res.status(200).send(users)
+        if (limit) {
+            const users = await userModel.find().limit(limit)
+            res.status(200).send(users)
+        }
+        else {
+            const users = await userModel.find()
+            res.status(200).send(users)
+        }
     }
     catch(error) {
         res.status(400).send('Error al consultar usuarios\n' + error)

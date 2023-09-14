@@ -4,9 +4,16 @@ import { messageModel } from "../models/messages.models.js"
 const messageRouter = Router()
 
 messageRouter.get('/', async (req, res) => {
+    const { limit } = req.query
     try {
-        const messages = await messageModel.find()
-        res.status(200).send(messages)
+        if (limit) {
+            const messages = await messageModel.find().limit(limit)
+            res.status(200).send(messages)
+        }
+        else {
+            const messages = await messageModel.find()
+            res.status(200).send(messages)
+        }
     }
     catch (error) {
         res.status(400).send('Error al consultar mensajes\n' + error)
