@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 router.get('/realtimeproducts', async (req, res) => {
     try {
         const productsList = await productModel.find()
-        res.status(200).render('realtimeproducts', {
+        res.status(200).render('realTimeProducts', {
             productsList,
             title: 'Real Time'
         })
@@ -34,7 +34,7 @@ router.post('/realtimeproducts', async (req, res) => {
     try {
         const newProduct = await productModel.create({ title, description, code, price, stock, category })
         const productsList = await productModel.find()
-        res.status(200).render('realtimeproducts', {
+        res.status(200).render('realTimeProducts', {
         productsList,
         title: 'Real Time',
         })
@@ -50,7 +50,7 @@ router.post('/realtimeproducts/id', async (req, res) => {
         try {
             const deletedProduct = await productModel.findByIdAndDelete(pid)
             const productsList = await productModel.find()
-            res.status(200).render('realtimeproducts', {
+            res.status(200).render('realTimeProducts', {
                 productsList,
                 title: 'Real Time'
             })
