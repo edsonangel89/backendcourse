@@ -88,7 +88,7 @@ productsRouter.post('/', async (req, res) => {
     try {
         const productAdded = await productModel.create({ title, description, code, price, stock, category })
         console.log('Producto agregado')
-        res.status(200).send('Producto agregado ' + productAdded)
+        res.status(200).send('Producto agregado\n' + productAdded)
     }
     catch (error) {
         console.log('Error al agregar producto')
@@ -101,7 +101,7 @@ productsRouter.put('/:pid', async (req, res) => {
     const  { title, description, code, price, status, stock, category } = req.body
     try {
         const productUpdated = await productModel.findByIdAndUpdate(pid, { title, description, code, price, status, stock, category })
-        res.status(200).send('Producto actualizado ' + productUpdated)
+        res.status(200).send('Producto actualizado\n' + productUpdated)
     }
     catch (error) {
         res.status(400).send('Error al actualizar el producto\n' + error)
