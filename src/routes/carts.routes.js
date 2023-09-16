@@ -115,13 +115,25 @@ cartsRouter.put('/:cid/product/:pid', async (req, res) => {
 })
 cartsRouter.put('/:cid', async (req, res) => {
     const { cid } = req.params
+    const productsArray = req.body
     try {
         const cart = await cartModel.findById(cid)
-        const products = await cartModel.paginate({'docs.products': ''})
-        //const paginatedCart = await cartModel.paginate({_id: cid},{products: products})
-        //const paginatedProducts = products.paginate()
-        console.log(products)
-        res.status(200).send(products)
+        if (cart) {
+            productsArray.forEach(element => {
+                const addedProduct = cart.products.find(prod => prod.id_product == element.id_product) 
+                if (addedProduct) {
+                    addedProduct.quantity = element.quantity
+                }
+                else {
+                    cart.products.push(element)
+                }
+            })
+            await cartModel.findByIdAndUpdate(cid, cart)
+            res.status(200).send(cart)
+        }
+        else {
+            res.status(404).send('Carrito no encontrado')
+        }
     }
     catch(error) {
         res.status(400).send('Error de actualizacion de carrito\n' + error)
