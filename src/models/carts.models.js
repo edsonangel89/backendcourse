@@ -1,5 +1,4 @@
 import { Schema, model } from 'mongoose'
-import paginate from 'mongoose-paginate-v2'
 
 const cartsCollection = 'Carts'
 const cartSchema = new Schema({
@@ -22,7 +21,5 @@ const cartSchema = new Schema({
         }
     }
 })
-
-cartSchema.plugin(paginate)
 
 export const cartModel = model(cartsCollection, cartSchema)
