@@ -16,8 +16,9 @@ cartsRouter.post('/', async (req, res) => {
 cartsRouter.get('/:cid', async (req, res) => {
     const { cid } = req.params
     try {
-        const cartById = await cartModel.findById(cid)
-        res.status(200).send(cartById)
+        const cartById = await cartModel.findById(cid).populate({path: 'products.id_product'})
+        //console.log(cartById)
+        res.status(200).send(JSON.stringify(cartById))
     }
     catch (error) {
         res.status(400).send('Error en la consulta del carrito \n' + error)
@@ -33,11 +34,11 @@ cartsRouter.post('/:cid/product/:pid', async (req, res) => {
             if (product) {
                 const prod = cart.products.find(prod => prod.id_product == pid)
                 if (prod) {
-                    prod.quantity = quantity
+                    cart.products.quantity = quantity
                     await cartModel.findByIdAndUpdate(cid, cart)
                 }
                 else {
-                    cart.products.push({id_product: product._id, quantity: quantity})
+                    cart.products.push({id_product: pid, quantity: quantity})
                     await cartModel.findByIdAndUpdate(cid, cart)
                 }
                 res.status(200).send('Producto agregado \n' + product)

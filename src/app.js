@@ -14,7 +14,11 @@ const app = express()
 const httpS = app.listen(8080,() => console.log("Server on port 8080"))
 
 mongoose.connect('mongodb+srv://edsonangel:Sabiduria89@cluster0.htyzerk.mongodb.net/?retryWrites=true&w=majority')
-.then(console.log('BDD Conectada'))
+.then(async () => {
+    const results = await cartModel.findOne({_id: '6507545f45b29c619d696ab7'}).populate('products.id_product')
+    console.log(results)
+    console.log('BDD Conectada')
+})
 .catch()
 
 app.engine('handlebars',handlebars.engine())
