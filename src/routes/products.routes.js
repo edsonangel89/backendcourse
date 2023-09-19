@@ -75,7 +75,7 @@ productsRouter.get('/', async (req, res) => {
 productsRouter.get('/:pid', async (req, res) => {
     const { pid } = req.params
     try {
-        const productById = await productModel.findById(pid)
+        const productById = await productModel.findById(pid)  //READ DOCUMENT BY ID
         res.status(200).send(productById)
     }
     catch (error) {
@@ -86,7 +86,7 @@ productsRouter.get('/:pid', async (req, res) => {
 productsRouter.post('/', async (req, res) => {
     const { title, description, code, price, stock, category } = req.body
     try {
-        const productAdded = await productModel.create({ title, description, code, price, stock, category })
+        const productAdded = await productModel.create({ title, description, code, price, stock, category })  //BUILD A NEW DOCUMMENT
         console.log('Producto agregado')
         res.status(200).send('Producto agregado\n' + productAdded)
     }
@@ -100,7 +100,7 @@ productsRouter.put('/:pid', async (req, res) => {
     const { pid } = req.params
     const  { title, description, code, price, status, stock, category } = req.body
     try {
-        const productUpdated = await productModel.findByIdAndUpdate(pid, { title, description, code, price, status, stock, category })
+        const productUpdated = await productModel.findByIdAndUpdate(pid, { title, description, code, price, status, stock, category })  //READ AND UPDATE AN EXISTING DOCUMENT
         res.status(200).send('Producto actualizado\n' + productUpdated)
     }
     catch (error) {
@@ -111,7 +111,7 @@ productsRouter.put('/:pid', async (req, res) => {
 productsRouter.delete('/:pid', async (req, res) => {
     const { pid } = req.params
     try {
-        const productDeleted = await productModel.findByIdAndDelete(pid)
+        const productDeleted = await productModel.findByIdAndDelete(pid)    //READ AND DELETE AN EXISTING DOCUMENT
         res.status(200).send('Producto borrado')
     }
     catch (error) {

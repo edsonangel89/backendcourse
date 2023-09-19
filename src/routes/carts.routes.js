@@ -16,7 +16,7 @@ cartsRouter.post('/', async (req, res) => {
 cartsRouter.get('/:cid', async (req, res) => {
     const { cid } = req.params
     try {
-        const cartById = await cartModel.findById(cid).populate({path: 'products.id_product'})
+        const cartById = await cartModel.findById(cid)
         //console.log(cartById)
         res.status(200).send(JSON.stringify(cartById))
     }
@@ -61,9 +61,15 @@ cartsRouter.delete('/:cid/product/:pid', async (req, res) => {
         const cart = await cartModel.findById(cid)
         if (cart) {
             const products = cart.products
-            const newProducts = products.filter(prod => prod.id_product != pid)
-            await cartModel.findByIdAndUpdate(cid, {products: newProducts})
-            res.status(200).send('Producto eliminado')
+            const product = await productModel.findById(pid)
+            if (product) {
+                const newProducts = products.filter(prod => prod.id_product._id != pid)
+                await cartModel.findByIdAndUpdate(cid, {products: newProducts})
+                res.status(200).send(newProducts)
+            }
+            else {
+                res.status(404).send('El producto no esta en el carrito')
+            }
         }
         else {
             res.status(404).send('Carrito no encontrado')
@@ -96,7 +102,7 @@ cartsRouter.put('/:cid/product/:pid', async (req, res) => {
     try {
         const cart = await cartModel.findById(cid)
         if (cart) {
-            const product = cart.products.find(prod => prod.id_product == pid)
+            const product = cart.products.find(prod => prod.id_product._id == pid)
             if (product) {
                 product.quantity = quantity
                 await cartModel.findByIdAndUpdate(cid, cart)
@@ -121,7 +127,7 @@ cartsRouter.put('/:cid', async (req, res) => {
         const cart = await cartModel.findById(cid)
         if (cart) {
             productsArray.forEach(element => {
-                const addedProduct = cart.products.find(prod => prod.id_product == element.id_product) 
+                const addedProduct = cart.products.find(prod => prod.id_product._id == element.id_product) 
                 if (addedProduct) {
                     addedProduct.quantity = element.quantity
                 }
