@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose'
+
 const messagesCollection = 'Messages'
 const messageSchema = new Schema({
     message: {

@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 import { Schema, model } from 'mongoose'
+=======
+import { Schema, model } from "mongoose"
+import paginate from 'mongoose-paginate-v2'
+
+>>>>>>> paginate
 const productsCollection = 'Products'
 const productSchema = new Schema({
     title: {
@@ -35,5 +41,7 @@ const productSchema = new Schema({
         default: [] 
     }    
 })
+
+productSchema.plugin(paginate)
 
 export const productModel = model(productsCollection, productSchema)

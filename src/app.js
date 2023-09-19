@@ -8,12 +8,13 @@ import { Server } from 'socket.io'
 import mongoose from 'mongoose'
 import usersRouter from './routes/users.routes.js'
 import messageRouter from './routes/messages.routes.js'
+import { cartModel } from './models/carts.models.js'
 
 const app = express()
 const httpS = app.listen(8080,() => console.log("Server on port 8080"))
 
 mongoose.connect('mongodb+srv://edsonangel:Sabiduria89@cluster0.htyzerk.mongodb.net/?retryWrites=true&w=majority')
-.then(console.log('BDD conectada'))
+.then(console.log('BDD Conectada'))
 .catch()
 
 app.engine('handlebars',handlebars.engine())
