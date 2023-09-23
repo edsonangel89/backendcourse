@@ -1,4 +1,5 @@
-import express, { application } from 'express'
+import 'dotenv/config'
+import express from 'express'
 import prodsRouter from './routes/products.routes.js'
 import cartsRouter from './routes/carts.routes.js'
 import __dirname from './utils.js'
@@ -9,12 +10,16 @@ import mongoose from 'mongoose'
 import usersRouter from './routes/users.routes.js'
 import messageRouter from './routes/messages.routes.js'
 import { cartModel } from './models/carts.models.js'
+import session from 'express-session'
+import cookieParser from 'cookie-parser'
+import MongoStore from 'connect-mongo'
+import sessionRouter from './routes/sessions.routes.js'
 
 const app = express()
 const httpS = app.listen(8080,() => console.log("Server on port 8080"))
 
-mongoose.connect('mongodb+srv://edsonangel:Sabiduria89@cluster0.htyzerk.mongodb.net/?retryWrites=true&w=majority')
-.then(console.log('BDD Conectada'))
+mongoose.connect(process.env.MONGO_URL)
+.then(async () => {console.log('BDD Conectada')})
 .catch()
 
 app.engine('handlebars',handlebars.engine())
@@ -24,16 +29,31 @@ app.set('view engine','handlebars')
 app.use(express.static(__dirname + '/public'))
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+app.use(cookieParser(process.env.SIGNED_COOKIE))
+app.use(session({
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_URL,
+        mongoOptions: {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        },
+        ttl: 60000
+    }),
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true
+}))
 
 app.use('/',viewsRouter)
 app.use('/api/products',prodsRouter)
 app.use('/api/carts',cartsRouter)
 app.use('/api/messages',messageRouter)
 app.use('/api/users', usersRouter)
+app.use('/api/sessions', sessionRouter)
 
-const io = new Server(httpS)
+/*const io = new Server(httpS)
 
-/*io.on('connection',(socket) => { 
+io.on('connection',(socket) => { 
     socket.on('delete', async (msg) => {
         const pid = msg
         const currList = await manager.deleteProduct(pid)

@@ -3,26 +3,57 @@ import { productModel } from '../models/products.models.js'
 
 const router = Router()
 
+const login = (req, res, next) => {
+    if (req.session.login) {
+        next()
+    }
+    else {
+        res.status(400).send('Usuario deslogueado')
+    }
+}
+
 router.get('/', async (req, res) => {
     try {
-        const productsList = await productModel.find()
-        res.status(200).render('home', { 
-            productsList,
-            title: 'Products',
-        })
+        if (req.session.login) {
+            res.status(200).render('login', { 
+            title: 'Login',
+            
+            })
+        }
+        else {
+            res.status(200).render('login', { 
+            title: 'Login'
+            })
+        }
+        
     }
     catch (error) {
         res.status(400).send('Error en la consulta de los productos')
     }
 })
 
-router.get('/realtimeproducts', async (req, res) => {
+const auth = (req, res, next) => {
+    if (req.session.role == 'admin') {
+        next()
+    }
+    else {
+        res.status(403).send('No tienes acceso a este recurso')
+    }
+}
+
+router.get('/realtimeproducts', auth, async (req, res) => {
     try {
-        const productsList = await productModel.find()
-        res.status(200).render('realTimeProducts', {
-            productsList,
-            title: 'Real Time'
-        })
+        if (req.session.role == 'admin') {
+            console.log(req.session.email)
+            const productsList = await productModel.find()
+            res.status(200).render('realTimeProducts', {
+                productsList,
+                title: 'Real Time'
+            })
+        }
+        else {
+            res.status(403).send('No tienes acceso a este recurso')
+        }
     }
     catch (error) {
         res.status(400).send('Error en la consulta de los productos')
