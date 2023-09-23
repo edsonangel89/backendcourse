@@ -14,18 +14,26 @@ const login = (req, res, next) => {
 
 router.get('/', async (req, res) => {
     try {
+        const products = await productModel.find()
         if (req.session.login) {
-            res.status(200).render('login', { 
-            title: 'Login',
-            
-            })
+            if (req.session.role == 'admin') {
+                res.status(200).render('realTimeProducts', { 
+                    title: 'Real Time',
+                    productsList: products
+                })
+            }
+            else {
+                res.status(200).render('home', {
+                    title: 'Home',
+                    productsList: products
+                })
+            }
         }
         else {
             res.status(200).render('login', { 
             title: 'Login'
             })
-        }
-        
+        }  
     }
     catch (error) {
         res.status(400).send('Error en la consulta de los productos')
