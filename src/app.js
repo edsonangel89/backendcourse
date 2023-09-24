@@ -37,7 +37,7 @@ app.use(session({
             useNewUrlParser: true,
             useUnifiedTopology: true
         },
-        ttl: 120
+        ttl: 6000000
     }),
     secret: process.env.SESSION_SECRET,
     resave: true,

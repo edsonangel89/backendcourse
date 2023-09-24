@@ -18,6 +18,15 @@ form {
     border-radius: 8px;
     width: 20rem;
 }
+#close {
+    padding: 0.5%;
+}
+#login {
+    padding: 3%;
+}
+#adminform {
+    padding: 1%;
+}
 input {
     border-radius: 8px;
     border: none;

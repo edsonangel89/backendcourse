@@ -3,7 +3,17 @@ import { userModel } from "../models/users.models.js";
 
 const usersRouter = Router()
 
-usersRouter.get('/', async (req, res) => {
+const auth = (req, res, next) => {
+    if (req.session.role == 'admin') {
+        next()
+    }
+    else {
+        console.log(req.session.role)
+        res.status(403).send('No tienes acceso a este recurso')
+    }
+}
+
+usersRouter.get('/', auth, async (req, res) => {
     const { limit } = req.query
     try {
         if (limit) {
@@ -20,7 +30,7 @@ usersRouter.get('/', async (req, res) => {
     }
 })
 
-usersRouter.get('/:uid', async (req, res) => {
+usersRouter.get('/:uid', auth, async (req, res) => {
     const { uid } = req.params
     try {
         const user = await userModel.findById(uid)
@@ -36,7 +46,7 @@ usersRouter.get('/:uid', async (req, res) => {
     }
 })
 
-usersRouter.post('/', async (req, res) => {
+usersRouter.post('/', auth, async (req, res) => {
     const { fname, lname, age, email, password } = req.body
     try {
         const addUser = await userModel.create({ fname, lname, age, email, password })
@@ -47,7 +57,7 @@ usersRouter.post('/', async (req, res) => {
     }
 })
 
-usersRouter.put('/:uid', async (req, res) => {
+usersRouter.put('/:uid', auth, async (req, res) => {
     const { uid } = req.params
     const { fname, lname, age, email, password } = req.body
     try {
@@ -59,7 +69,7 @@ usersRouter.put('/:uid', async (req, res) => {
     }
 })
 
-usersRouter.delete('/:uid', async (req, res) => {
+usersRouter.delete('/:uid', auth, async (req, res) => {
     const { uid } = req.params
     try {
         const deleteUser = await userModel.findByIdAndDelete(uid)

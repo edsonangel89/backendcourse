@@ -15,6 +15,8 @@ sessionRouter.post('/login', async (req, res) => {
         if (user) {
             if (user.password == password) {
                 req.session.login = true
+                req.session.role = user.role
+                console.log(req.session.role)
                 res.status(200).send('Usuario logueado')
             }
             else {
