@@ -8,7 +8,6 @@ const auth = (req, res, next) => {
         next()
     }
     else {
-        console.log(req.session.role)
         res.status(403).send('Acceso denegado')
     }
 }

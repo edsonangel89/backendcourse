@@ -9,7 +9,6 @@ const auth = (req, res, next) => {
         next()
     }
     else {
-        console.log(req.session.role)
         res.status(403).send('Acceso denegado')
     }
 }
@@ -18,7 +17,6 @@ router.get('/', async (req, res) => {
     try {
         const products = await productModel.find()
         const user = await userModel.findOne({email: req.session.email})
-        console.log(req.session.role)
         if (req.session.login) {
             if (req.session.role == 'admin') {
                 res.status(200).render('realTimeProducts', { 
