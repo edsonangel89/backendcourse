@@ -16,8 +16,7 @@ sessionRouter.post('/login', async (req, res) => {
             if (user.password == password) {
                 req.session.login = true
                 req.session.role = user.role
-                console.log(req.session.role)
-                res.status(200).redirect('/',{name: user.fname})
+                res.redirect('/',200,{name: user.fname})
             }
             else {
                 res.status(401).send('Contrasena invalida')
@@ -38,8 +37,7 @@ sessionRouter.get('/logout', (req, res) => {
     if (req.session.login) {
         req.session.destroy()
     }
-
-    res.status(200).redirect('/')
+    res.redirect('/',200,{})
 })
 
 export default sessionRouter

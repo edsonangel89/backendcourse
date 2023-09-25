@@ -9,7 +9,7 @@ const auth = (req, res, next) => {
     }
     else {
         console.log(req.session.role)
-        res.status(403).send('No tienes acceso a este recurso')
+        res.status(403).send('Acceso denegado')
     }
 }
 
@@ -54,7 +54,7 @@ usersRouter.post('/', async (req, res) => {
         req.session.password = password
         req.session.role = 'user'
         req.session.login = true
-        res.status(200).redirect('/',{name: fname})
+        res.redirect('/',200,{name: fname})
     }
     catch(error) {  
         res.status(400).send('Error al agregar usuario')

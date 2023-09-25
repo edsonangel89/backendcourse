@@ -10,11 +10,11 @@ const auth = (req, res, next) => {
     }
     else {
         console.log(req.session.role)
-        res.status(403).send('No tienes acceso a este recurso')
+        res.status(403).send('Acceso denegado')
     }
 }
 
-productsRouter.get('/', async (req, res) => {
+productsRouter.get('/', auth, async (req, res) => {
     const { limit, page, sort, category } = req.query
     try {
         if (limit && page && sort && category) {
@@ -83,7 +83,7 @@ productsRouter.get('/', async (req, res) => {
     }
 })
 
-productsRouter.get('/:pid', async (req, res) => {
+productsRouter.get('/:pid', auth, async (req, res) => {
     const { pid } = req.params
     try {
         const productById = await productModel.findById(pid)  //READ DOCUMENT BY ID
