@@ -4,12 +4,13 @@ import { userModel } from '../models/users.models.js'
 
 const router = Router()
 
-const login = (req, res, next) => {
-    if (req.session.login) {
+const auth = (req, res, next) => {
+    if (req.session.role == 'admin') {
         next()
     }
     else {
-        res.status(400).send('Usuario deslogueado')
+        console.log(req.session.role)
+        res.status(403).send('No tienes acceso a este recurso')
     }
 }
 
@@ -42,17 +43,6 @@ router.get('/', async (req, res) => {
         res.status(400).send('Error en la consulta de los productos')
     }
 })
-
-const auth = (req, res, next) => {
-    if (req.session.role == 'admin') {
-        next()
-    }
-    else {
-        console.log(req.session.role)
-        res.status(403).send('No tienes acceso a este recurso')
-    }
-}
-
 router.get('/realtimeproducts', auth, async (req, res) => {
     try {
         const productsList = await productModel.find()

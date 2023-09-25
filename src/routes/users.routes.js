@@ -46,11 +46,15 @@ usersRouter.get('/:uid', auth, async (req, res) => {
     }
 })
 
-usersRouter.post('/', auth, async (req, res) => {
+usersRouter.post('/', async (req, res) => {
     const { fname, lname, age, email, password } = req.body
     try {
         const addUser = await userModel.create({ fname, lname, age, email, password })
-        res.status(200).send('Usuario agregado')
+        req.session.email = email
+        req.session.password = password
+        req.session.role = 'user'
+        req.session.login = true
+        res.status(200).redirect('/',{name: fname})
     }
     catch(error) {  
         res.status(400).send('Error al agregar usuario')

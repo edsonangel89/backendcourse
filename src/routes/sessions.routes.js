@@ -17,7 +17,7 @@ sessionRouter.post('/login', async (req, res) => {
                 req.session.login = true
                 req.session.role = user.role
                 console.log(req.session.role)
-                res.status(200).send('Usuario logueado')
+                res.status(200).redirect('/',{name: user.fname})
             }
             else {
                 res.status(401).send('Contrasena invalida')
@@ -31,13 +31,15 @@ sessionRouter.post('/login', async (req, res) => {
         res.status(400).send('Error en login\n' + error)
     }
 })
-
+sessionRouter.get('/sign', (req, res) => {
+    res.status(200).render('sign')
+})
 sessionRouter.get('/logout', (req, res) => {
     if (req.session.login) {
         req.session.destroy()
     }
 
-    res.status(200).send('Usuario deslogueado')
+    res.status(200).redirect('/')
 })
 
 export default sessionRouter
