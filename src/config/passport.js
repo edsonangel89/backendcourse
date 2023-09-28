@@ -7,13 +7,13 @@ const LocalStrategy = local.Strategy
 
 const initialize = () => {
 
-    passport.use('sign', new Strategy(
+    passport.use('sign', new LocalStrategy(
         {passReqToCallback: true, usernameField: 'email'},
         async (req, username, password, done) => {
-            const { fname, lname, age } = req.body
+            const { fname, lname, email, age } = req.body
 
             try {
-                const user = await userModel.findOne({email: username})
+                const user = await userModel.findOne({email: email})
                 if (user) {
                     return done(null, false)
                 }
@@ -36,7 +36,7 @@ const initialize = () => {
         }
     ))
 
-    passport.use('login', new Strategy(
+    passport.use('login', new LocalStrategy(
         {usernameField: 'email'},
         async (username, password, done) => {
             try {
@@ -57,4 +57,16 @@ const initialize = () => {
             }
         }
         ))
+
+        passport.serializeUser((user, done) => {
+            done(null, user._id)
+        })
+
+        passport.deserializeUser(async (id, done) => {
+            const user = await userModel.findById(id)
+            done(null, user)
+        })
+
 }
+
+export default initialize

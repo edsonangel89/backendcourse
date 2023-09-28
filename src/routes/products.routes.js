@@ -3,7 +3,7 @@ import { productModel } from '../models/products.models.js'
 
 const productsRouter = Router()
 
-const auth = (req, res, next) => {
+/*const auth = (req, res, next) => {
     if (req.session.role == 'admin') {
         console.log(req.session.role)
         next()
@@ -12,9 +12,9 @@ const auth = (req, res, next) => {
         console.log(req.session.role)
         res.status(403).send('Acceso denegado')
     }
-}
+}*/
 
-productsRouter.get('/', auth, async (req, res) => {
+productsRouter.get('/', async (req, res) => {
     const { limit, page, sort, category } = req.query
     try {
         if (limit && page && sort && category) {
@@ -83,7 +83,7 @@ productsRouter.get('/', auth, async (req, res) => {
     }
 })
 
-productsRouter.get('/:pid', auth, async (req, res) => {
+productsRouter.get('/:pid', async (req, res) => {
     const { pid } = req.params
     try {
         const productById = await productModel.findById(pid)  //READ DOCUMENT BY ID
@@ -94,7 +94,7 @@ productsRouter.get('/:pid', auth, async (req, res) => {
     }
 })
 
-productsRouter.post('/', auth, async (req, res) => {
+productsRouter.post('/', async (req, res) => {
     const { title, description, code, price, stock, category } = req.body
     try {
         const productAdded = await productModel.create({ title, description, code, price, stock, category })  //BUILD A NEW DOCUMMENT
@@ -107,7 +107,7 @@ productsRouter.post('/', auth, async (req, res) => {
     }
 })
 
-productsRouter.put('/:pid', auth, async (req, res) => {
+productsRouter.put('/:pid', async (req, res) => {
     const { pid } = req.params
     const  { title, description, code, price, status, stock, category } = req.body
     try {
@@ -119,7 +119,7 @@ productsRouter.put('/:pid', auth, async (req, res) => {
     }
 })
 
-productsRouter.delete('/:pid', auth, async (req, res) => {
+productsRouter.delete('/:pid', async (req, res) => {
     const { pid } = req.params
     try {
         const productDeleted = await productModel.findByIdAndDelete(pid)    //READ AND DELETE AN EXISTING DOCUMENT

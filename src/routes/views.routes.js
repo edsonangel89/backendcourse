@@ -4,14 +4,14 @@ import { userModel } from '../models/users.models.js'
 
 const router = Router()
 
-const auth = (req, res, next) => {
+/*const auth = (req, res, next) => {
     if (req.session.role == 'admin') {
         next()
     }
     else {
         res.status(403).send('Acceso denegado')
     }
-}
+}*/
 
 router.get('/', async (req, res) => {
     try {
@@ -43,7 +43,7 @@ router.get('/', async (req, res) => {
         res.status(400).send('Error en la consulta de los productos')
     }
 })
-router.get('/realtimeproducts', auth, async (req, res) => {
+router.get('/realtimeproducts', async (req, res) => {
     try {
         const user = await userModel.findOne({email: req.session.email})
         const productsList = await productModel.find()
@@ -58,7 +58,7 @@ router.get('/realtimeproducts', auth, async (req, res) => {
     }
 })
 
-router.post('/realtimeproducts', auth, async (req, res) => {
+router.post('/realtimeproducts', async (req, res) => {
     const { title, description, code, price, stock, category } = req.body
     try {
         const user = await userModel.findOne({email: req.session.email})
@@ -76,7 +76,7 @@ router.post('/realtimeproducts', auth, async (req, res) => {
     }
 })
 
-router.post('/realtimeproducts/id',auth, async (req, res) => {
+router.post('/realtimeproducts/id', async (req, res) => {
     const { pid } = req.body
     if (pid) {
         try {

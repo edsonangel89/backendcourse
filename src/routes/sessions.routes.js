@@ -1,9 +1,15 @@
 import { Router } from "express"
 import { userModel } from "../models/users.models.js"
+import passport from "passport"
 
 const sessionRouter = Router()
 
 sessionRouter.post('/login', async (req, res) => {
+    res.status(200).render('home')
+}
+)
+
+/*sessionRouter.post('/login', passport.authenticate('login'), async (req, res) => {
     const { email, password } = req.body
     req.session.email = email
     req.session.password = password
@@ -29,15 +35,18 @@ sessionRouter.post('/login', async (req, res) => {
     catch(error) {
         res.status(400).send('Error en login\n' + error)
     }
+})*/
+sessionRouter.post('/sign', passport.authenticate('sign'), async (req, res) => {
+    res.status(200).send('Usuario registrado')
 })
-sessionRouter.get('/sign', (req, res) => {
+sessionRouter.get('/sign', async (req, res) => {
     res.status(200).render('sign')
 })
-sessionRouter.get('/logout', (req, res) => {
+/*sessionRouter.get('/logout', (req, res) => {
     if (req.session.login) {
         req.session.destroy()
     }
     res.redirect('/',200,{})
-})
+})*/
 
 export default sessionRouter
