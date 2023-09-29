@@ -4,8 +4,13 @@ import passport from "passport"
 
 const sessionRouter = Router()
 
-sessionRouter.post('/login', async (req, res) => {
-    res.status(200).render('home')
+sessionRouter.post('/login', passport.authenticate('login'),async (req, res) => {
+   try {
+    res.send('try')
+   }
+   catch(error) {
+    res.send('catch')
+   }
 }
 )
 
@@ -37,7 +42,7 @@ sessionRouter.post('/login', async (req, res) => {
     }
 })*/
 sessionRouter.post('/sign', passport.authenticate('sign'), async (req, res) => {
-    res.status(200).send('Usuario registrado')
+    res.redirect('/',200,{})
 })
 sessionRouter.get('/sign', async (req, res) => {
     res.status(200).render('sign')
