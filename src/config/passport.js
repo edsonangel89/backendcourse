@@ -42,26 +42,19 @@ const initialize = () => {
             try {
                 const user = await userModel.findOne({email: username})
                 if (!user) {
-                    console.log('Where')
                     return done(null, false)
                 }
 
                 if (validatePass(password, user.password)) {
-                    console.log('Are')
                     return done(null, user)
                 }
-
-                console.log('Error')
                 return done(null, false)
-
             }
             catch(error) {
-                console.log('You')
                 return done(error)
             }
         }
         ))
-
         passport.serializeUser((user, done) => {
             done(null, user._id)
         })

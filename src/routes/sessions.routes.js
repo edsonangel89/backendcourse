@@ -6,52 +6,29 @@ const sessionRouter = Router()
 
 sessionRouter.post('/login', passport.authenticate('login'),async (req, res) => {
    try {
-    res.send('try')
+    if (req.user.role == 'user') {
+        res.redirect('/home',200,{})
+    }
+    else {
+        res.redirect('/realtimeproducts', 200 ,{})
+    }
    }
    catch(error) {
-    res.send('catch')
+    res.status(400).send('Error de logueo\n' + error)
    }
 }
 )
-
-/*sessionRouter.post('/login', passport.authenticate('login'), async (req, res) => {
-    const { email, password } = req.body
-    req.session.email = email
-    req.session.password = password
-    try {
-        if (req.session.login) {
-            res.send('OK')
-        }
-        const user = await userModel.findOne({email: email})
-        if (user) {
-            if (user.password == password) {
-                req.session.login = true
-                req.session.role = user.role
-                res.redirect('/',200,{name: user.fname})
-            }
-            else {
-                res.status(401).send('Contrasena invalida')
-            }
-        }
-        else {
-            res.status(404).send('Usuario no encontrado')
-        }
-    }
-    catch(error) {
-        res.status(400).send('Error en login\n' + error)
-    }
-})*/
 sessionRouter.post('/sign', passport.authenticate('sign'), async (req, res) => {
     res.redirect('/',200,{})
 })
 sessionRouter.get('/sign', async (req, res) => {
     res.status(200).render('sign')
 })
-/*sessionRouter.get('/logout', (req, res) => {
-    if (req.session.login) {
+sessionRouter.get('/logout', (req, res) => {
+    if (req.session) {
         req.session.destroy()
     }
     res.redirect('/',200,{})
-})*/
+})
 
 export default sessionRouter

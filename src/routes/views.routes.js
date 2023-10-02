@@ -4,28 +4,18 @@ import { userModel } from '../models/users.models.js'
 
 const router = Router()
 
-/*const auth = (req, res, next) => {
-    if (req.session.role == 'admin') {
-        next()
-    }
-    else {
-        res.status(403).send('Acceso denegado')
-    }
-}*/
-
 router.get('/', async (req, res) => {
+        res.status(200).render('loginlogout', { 
+        title: 'Login'
+        })
+    }    
+)
+router.get('/home', async (req, res) => {
     try {
         const products = await productModel.find()
-        const user = await userModel.findOne({email: req.session.email})
-        if (req.session.login) {
-            if (req.session.role == 'admin') {
-                res.status(200).render('realTimeProducts', { 
-                    title: 'Real Time',
-                    productsList: products,
-                    name: user.fname
-                })
-            }
-            else {
+        const user = await userModel.findOne({_id: req.session.passport.user})
+        if (user) {
+            if (user.role == 'user') {
                 res.status(200).render('home', {
                     title: 'Home',
                     productsList: products,
@@ -33,19 +23,17 @@ router.get('/', async (req, res) => {
                 })
             }
         }
-        else {
-            res.status(200).render('loginlogout', { 
-            title: 'Login'
-            })
-        }  
+    else {
+        res.status(404).send('Usuario no encontrado')
     }
-    catch (error) {
-        res.status(400).send('Error en la consulta de los productos')
+    }
+    catch(error) {
+        res.status(400).send('Error en vista home\n' + error)
     }
 })
 router.get('/realtimeproducts', async (req, res) => {
     try {
-        const user = await userModel.findOne({email: req.session.email})
+        const user = await userModel.findOne({_id: req.session.passport.user})
         const productsList = await productModel.find()
         res.status(200).render('realTimeProducts', {
             productsList,
