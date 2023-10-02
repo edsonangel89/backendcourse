@@ -11,24 +11,20 @@ const initialize = () => {
         {passReqToCallback: true, usernameField: 'email'},
         async (req, username, password, done) => {
             const { fname, lname, email, age } = req.body
-
             try {
                 const user = await userModel.findOne({email: username})
                 if (user) {
                     return done(null, false)
                 }
-
                 const criptPassword = createHash(password)
                 const addedUser = await userModel.create({
-                    lname: fname,
-                    fname: lname,
+                    fname: fname,
+                    lname: lname,
                     age: age,
                     email: email,
                     password: criptPassword
                 })
-                console.log('Here')
                 return done(null, addedUser)
-
             }
             catch(error) {
                 return done(error)

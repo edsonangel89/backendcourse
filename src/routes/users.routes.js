@@ -44,22 +44,6 @@ usersRouter.get('/:uid', async (req, res) => {
         res.status(400).send('Error de consulata de usuario\n' + error)
     }
 })
-
-/*usersRouter.post('/', async (req, res) => {
-    const { fname, lname, age, email, password } = req.body
-    try {
-        const addUser = await userModel.create({ fname, lname, age, email, password })
-        req.session.email = email
-        req.session.password = password
-        req.session.role = 'user'
-        req.session.login = true
-        res.redirect('/',200,{name: fname})
-    }
-    catch(error) {  
-        res.status(400).send('Error al agregar usuario')
-    }
-})*/
-
 usersRouter.put('/:uid', async (req, res) => {
     const { uid } = req.params
     const { fname, lname, age, email, password } = req.body
