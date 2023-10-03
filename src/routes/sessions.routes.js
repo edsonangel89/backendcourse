@@ -31,11 +31,17 @@ sessionRouter.get('/logout', (req, res) => {
     res.redirect('/',200,{})
 })
 sessionRouter.get('/github', passport.authenticate('github', {scope: ['user:email']}), async (req, res) => {
-    res.status(200).send('Usuario registrado por Github')
+
 })
 sessionRouter.get('/githubCallback', passport.authenticate('github'), async (req, res) => {
     req.session.user = req.user
-    res.status(200).send('Usuario logueado')
+    //console.log(req.session.user)
+    if (req.session.user) {
+        res.redirect('/home',200,{})
+    }
+    else {
+        res.status(400).send('Error de logueo')
+    }
 })
 
 export default sessionRouter

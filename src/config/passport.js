@@ -61,10 +61,9 @@ const initialize = () => {
             try {
                 const user = await userModel.findOne({email: profile._json.email})
                 if (user) {
-                    done(null,false)
+                    done(null, user)
                 }
                 else {
-                    
                     const addedUser = await userModel.create({
                         fname: profile._json.login,
                         lname: ' ',

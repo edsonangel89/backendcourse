@@ -15,6 +15,7 @@ import cookieParser from 'cookie-parser'
 import MongoStore from 'connect-mongo'
 import sessionRouter from './routes/sessions.routes.js'
 import initialize from './config/passport.js'
+import passport from 'passport'
 
 const app = express()
 const httpS = app.listen(8080,() => console.log("Server on port 8080"))
@@ -45,6 +46,8 @@ app.use(session({
     saveUninitialized: true
 }))
 initialize()
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use('/',viewsRouter)
 app.use('/api/products',prodsRouter)
