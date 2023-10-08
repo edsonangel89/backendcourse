@@ -1,10 +1,14 @@
 import local from 'passport-local'
 import GithubStrategy from 'passport-github2'
 import passport from 'passport'
+import jwt from 'passport-jwt'
 import { createHash, validatePass } from '../utils/bcrypt.js'
 import { userModel } from '../models/users.models.js'
+import { makeToken } from '../utils/jwt.js'
 
 const LocalStrategy = local.Strategy
+const JWTStrategy = jwt.Strategy
+const ExtractJWT =jwt.ExtractJwt
 
 const initialize = () => {
 
@@ -23,7 +27,7 @@ const initialize = () => {
                     lname: lname,
                     age: age,
                     email: email,
-                    password: criptPassword
+                    password: criptPassword,
                 })
                 return done(null, addedUser)
             }
@@ -78,6 +82,24 @@ const initialize = () => {
                 done(error)
             }
         }))
+
+        const cookieExtractor = req => {
+            const token = req.cookie.jwtCookie ? req.cookie.jwtCookie : {}
+            return token
+        }
+
+        passport.use('jwt', new JWTStrategy({
+            jwtFromRequest: ExtractJWT.fromExtractors([cookieExtractor]),
+            secretOrKey: process.env.JWT_SECRET
+        }, async (jwt_payload, done) => {
+            try {
+                return done(null, jwt_payload)
+            }
+            catch (error) {
+                return done(error)
+            }
+        }
+        ))
         passport.serializeUser((user, done) => {
             done(null, user._id)
         })

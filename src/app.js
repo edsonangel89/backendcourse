@@ -56,6 +56,11 @@ app.use('/api/messages',messageRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/sessions', sessionRouter)
 
+app.post('/test', (req, res) => {
+    console.log(req.body)
+    res.status(200).send('Hello')
+})
+
 /*const io = new Server(httpS)
 
 io.on('connection',(socket) => { 
