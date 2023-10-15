@@ -9,7 +9,6 @@ export const passportErr = (strat) => {
             if (!user) {
                 return res.status(401).send(error)
             }
-
             req.user = user
             next()
         })(req, res, next)

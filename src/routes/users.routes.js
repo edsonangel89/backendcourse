@@ -3,15 +3,6 @@ import { userModel } from "../models/users.models.js";
 
 const usersRouter = Router()
 
-/*const auth = (req, res, next) => {
-    if (req.session.role == 'admin') {
-        next()
-    }
-    else {
-        res.status(403).send('Acceso denegado')
-    }
-}*/
-
 usersRouter.get('/', async (req, res) => {
     const { limit } = req.query
     try {

@@ -84,7 +84,7 @@ const initialize = () => {
         }))
 
         const cookieExtractor = req => {
-            const token = req.cookie.jwtCookie ? req.cookie.jwtCookie : {}
+            const token = req.cookies.jwtCookie ? req.cookies.jwtCookie : {}
             return token
         }
 
