@@ -2,15 +2,15 @@ import { Router } from 'express'
 import { productModel } from '../models/products.models.js'
 import { userModel } from '../models/users.models.js'
 
-const router = Router()
+const viewsRouter = Router()
 
-router.get('/', async (req, res) => {
+viewsRouter.get('/', async (req, res) => {
         res.status(200).render('loginlogout', { 
         title: 'Login'
         })
     }    
 )
-router.get('/home', async (req, res) => {
+viewsRouter.get('/home', async (req, res) => {
     try {
         const products = await productModel.find()
         const user = await userModel.findOne({_id: req.session.passport.user})
@@ -31,7 +31,7 @@ router.get('/home', async (req, res) => {
         res.status(400).send('Error en vista home\n' + error)
     }
 })
-router.get('/realtimeproducts', async (req, res) => {
+viewsRouter.get('/realtimeproducts', async (req, res) => {
     try {
         const user = await userModel.findOne({_id: req.session.passport.user})
         const productsList = await productModel.find()
@@ -46,7 +46,7 @@ router.get('/realtimeproducts', async (req, res) => {
     }
 })
 
-router.post('/realtimeproducts', async (req, res) => {
+viewsRouter.post('/realtimeproducts', async (req, res) => {
     const { title, description, code, price, stock, category } = req.body
     try {
         const user = await userModel.findOne({email: req.session.email})
@@ -64,7 +64,7 @@ router.post('/realtimeproducts', async (req, res) => {
     }
 })
 
-router.post('/realtimeproducts/id', async (req, res) => {
+viewsRouter.post('/realtimeproducts/id', async (req, res) => {
     const { pid } = req.body
     if (pid) {
         try {
@@ -84,4 +84,4 @@ router.post('/realtimeproducts/id', async (req, res) => {
     }
 })
 
-export default router
+export default viewsRouter

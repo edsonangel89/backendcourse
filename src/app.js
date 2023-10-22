@@ -1,5 +1,6 @@
 import 'dotenv/config'
 import express from 'express'
+import router from './routes/app.routes.js'
 import prodsRouter from './routes/products.routes.js'
 import cartsRouter from './routes/carts.routes.js'
 import __dirname from './utils.js'
@@ -49,17 +50,14 @@ initialize()
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use('/',viewsRouter)
+app.use('/', router)
+
+/*app.use('/',viewsRouter)
 app.use('/api/products',prodsRouter)
 app.use('/api/carts',cartsRouter)
 app.use('/api/messages',messageRouter)
 app.use('/api/users', usersRouter)
-app.use('/api/sessions', sessionRouter)
-
-app.post('/test', (req, res) => {
-    console.log(req.body)
-    res.status(200).send('Hello')
-})
+app.use('/api/sessions', sessionRouter)*/
 
 /*const io = new Server(httpS)
 
