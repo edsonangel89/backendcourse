@@ -3,9 +3,9 @@ import { getUsers, getUserById, updateUser, deleteUser } from "../controllers/us
 
 const usersRouter = Router()
 
-usersRouter('/', getUsers)
-usersRouter('/:uid', getUserById)
-usersRouter('/:uid', updateUser)
-usersRouter('/:uid', deleteUser)
+usersRouter.get('/', getUsers)
+usersRouter.get('/:uid', getUserById)
+usersRouter.put('/:uid', updateUser)
+usersRouter.delete('/:uid', deleteUser)
 
 export default usersRouter
