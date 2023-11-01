@@ -1,6 +1,6 @@
 import { makeToken, authToken } from "../utils/jwt.js"
 
-export const sessionLogin = async () => {
+export const sessionLogin = async (user) => {
     try {
         const token = makeToken(req.user)
         res.cookie('jwtCookie', token, {
@@ -20,9 +20,9 @@ export const sessionLogin = async () => {
     }
 }
 
-export const sessionSign = () => {
-    console.log('New user added: ')
-    console.log(req.user)
+export const sessionSign = async () => {
+    console.log('New user added')
+    //console.log(req.user)
     return res.redirect('/',200,{})
 }
 
