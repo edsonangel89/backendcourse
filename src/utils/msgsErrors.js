@@ -20,7 +20,7 @@ export const authorize = (role) => {
         if (!req.user) {
             return res.status(401).send('Usuario no autorizado')
         }
-        if (req.user.user.role != role) {
+        if (req.user.role != role) {
             return res.status(403).send('Usuario no tiene acceso')
         }
         next()

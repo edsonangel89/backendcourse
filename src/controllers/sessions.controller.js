@@ -1,4 +1,5 @@
 import { makeToken, authToken } from "../utils/jwt.js"
+import { userModel } from "../models/users.models.js"
 
 export const sessionLogin = async (req, res) => {
     const token = makeToken(req.user)
@@ -6,11 +7,11 @@ export const sessionLogin = async (req, res) => {
         maxAge: 40000000
     })
     if (req.user.role == 'user') {
-        console.log('User logged in')
+        console.log('User ' + req.user._id + ' logged in')
         return res.redirect('/home',200,{})
     }
     else {
-        console.log('Admin logged in')
+        console.log('User ' + req.user._id + ' logged in')
         return res.redirect('/realtimeproducts',200,{})
     }
 }
@@ -30,12 +31,12 @@ export const getSessionSign = async (req, res) => {
     res.status(200).render('sign')
 }
 
-export const sessionLogout = (req, res) => {
+export const sessionLogout = async (req, res) => {
     if (req.session) {
+        console.log('User ' + req.session.passport.user + ' logged out')
         req.session.destroy()
     }
     res.clearCookie('jwtCookie')
-    console.log('User logged out')
     return res.redirect('/',200,{})
 }
 

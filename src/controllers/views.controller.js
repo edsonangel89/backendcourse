@@ -50,7 +50,7 @@ export const getRtp = async (req, res) => {
 export const postRtp = async (req, res) => {
     const { title, description, code, price, stock, category } = req.body
     try {
-        const user = await userModel.findOne({email: req.session.email})
+        const user = await userModel.findOne({email: req.user.email})
         await productModel.create({ title, description, code, price, stock, category })
         const productsList = await productModel.find()
         res.status(200).render('realTimeProducts', {
@@ -60,18 +60,18 @@ export const postRtp = async (req, res) => {
         })
     }
     catch (error) {
-        res.status(400).send('Error al agreagar articulos\n' + error)
+        res.status(400).send('Error al agregar articulos\n' + error)
     }
 }
 
 export const delRtp = async (req, res) => {
-    const { pid } = req.params
+    const { pid } = req.body
     try {
-        const user = await userModel.findOne({email: req.session.email})
+        const user = await userModel.findOne({email: req.user.email})
         await productModel.findByIdAndDelete(pid)
-        const producstList = await productModel.find()
+        const productsList = await productModel.find()
         res.status(200).render('realTimeProducts', {
-            producstList,
+            productsList,
             title: 'Real Time',
             name: user.fname
         })

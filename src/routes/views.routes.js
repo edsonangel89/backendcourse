@@ -8,6 +8,6 @@ viewsRouter.get('/', getRoot)
 viewsRouter.get('/home', getHome)
 viewsRouter.get('/realtimeproducts', getRtp)
 viewsRouter.post('/realtimeproducts', authorize('admin'), postRtp)
-viewsRouter.post('/realtimeproducts/id', authorize('admin'), delRtp)
+viewsRouter.post('/realtimeproducts/:pid', authorize('admin'), delRtp)
 
 export default viewsRouter
