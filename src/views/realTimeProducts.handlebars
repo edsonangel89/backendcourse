@@ -1,13 +1,13 @@
 <h1>Hola {{name}}</h1>
 <nav class="navbar bg-body-tertiary">
-  <form id="adminform" class="container-fluid justify-content-end" action="http://192.168.100.24:8080/api/sessions/logout" method="get">
+  <form id="adminform" class="container-fluid justify-content-end" action="http://localhost:8080/api/sessions/logout" method="get">
     <button class="btn btn-outline-light me-2" type="submit">Cerrar sesion</button>
   </form>
 </nav>
 <div class="socket">
     <div id="forms">
         <h4>Agrega productos</h4>
-        <form id="data" action="http://192.168.100.24:8080/realtimeproducts" method="post">
+        <form id="data" action="http://localhost:8080/realtimeproducts" method="post">
             <div class="mb-1">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" id="title" name="title" required class="form-control"/>
@@ -35,7 +35,7 @@
                 <button type="submit" class="btn btn-success">Agregar producto</button>
         </form>
         <h4>Elimina productos</h4>
-        <form id="delForm" action="http://192.168.100.24:8080/realtimeproducts/pid" method="post">
+        <form id="delForm" action="http://localhost:8080:8080/realtimeproducts/pid" method="post">
             <div class="mb-1">
                 <label for="pid" class="form-label">ID</label>
                 <input type="text" id="pid" name="pid" required min="1" class="form-control"/><br>
