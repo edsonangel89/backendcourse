@@ -1,6 +1,6 @@
 import { messageModel } from "../models/messages.models.js"
 
-export const getMessages = async () => {
+export const getMessages = async (req, res) => {
     const { limit } = req.query
     try {
         if (limit) {
@@ -17,7 +17,7 @@ export const getMessages = async () => {
     }
 }
 
-export const getMessageById = async () => {
+export const getMessageById = async (req, res) => {
     const { mid } = req.params
     try {
         const message = await messageModel.findById(mid)
@@ -33,7 +33,7 @@ export const getMessageById = async () => {
     }
 }
 
-export const postMessage = async () => {
+export const postMessage = async (req, res) => {
     const { usremail, body } = req.body
     try {
         const postedMessage = await messageModel.create({
@@ -51,7 +51,7 @@ export const postMessage = async () => {
     }
 }
 
-export const updateMessage = async () => {
+export const updateMessage = async (req, res) => {
     const { mid } = req.params
     const { usremail, body } = req.body
     try {
@@ -70,7 +70,7 @@ export const updateMessage = async () => {
     }
 }
 
-export const deleteMessage = async () => {
+export const deleteMessage = async (req, res) => {
     const { mid } = req.params
     try {
         await messageModel.findByIdAndDelete(mid)

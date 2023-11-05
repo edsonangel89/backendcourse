@@ -1,7 +1,7 @@
 import { cartModel } from "../models/carts.models.js"
 import { productModel } from "../models/products.models.js"
 
-export const createCart = async () => {
+export const createCart = async (req, res) => {
     try {
         const createdCart = await cartModel.create({})
         console.log('Cart created')
@@ -12,7 +12,7 @@ export const createCart = async () => {
     }
 }
 
-export const getCartById = async () => {
+export const getCartById = async (req, res) => {
     const { cid } = req.params
     try {
         const cart = await cartModel.findById(cid)
@@ -23,7 +23,7 @@ export const getCartById = async () => {
     }
 }
 
-export const addProduct = async () => {
+export const addProduct = async (req, res) => {
     const { cid, pid } = req.params
     const { quantity } = req.body
     try {
@@ -55,7 +55,7 @@ export const addProduct = async () => {
     }
 }
 
-export const deleteProduct = async () => {
+export const deleteProduct = async (req, res) => {
     const { cid, pid } = req.params
     try {
         const cart = await cartModel.findById(cid)
@@ -86,7 +86,7 @@ export const deleteProduct = async () => {
     }
 }
 
-export const deleteCart = async () => {
+export const deleteCart = async (req, res) => {
     const { cid } = req.params
     try {
         const cart = await cartModel.findById(cid)
@@ -104,7 +104,7 @@ export const deleteCart = async () => {
     }
 }
 
-export const updateProductInCart = async () => {
+export const updateProductInCart = async (req, res) => {
     const { cid, pid } = req.params
     const { quantity } = req.body
     try {
@@ -139,7 +139,7 @@ export const updateProductInCart = async () => {
     }
 }
 
-export const updateCart = async () => {
+export const updateCart = async (req, res) => {
     const { cid } = req.params
     const productsArray = req.body
     try {

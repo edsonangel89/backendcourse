@@ -1,6 +1,6 @@
 import { userModel } from "../models/users.models.js"
 
-export const getUsers = async () => {
+export const getUsers = async (req, res) => {
     const { limit } = req.query
     try {
         if (limit) {
@@ -17,7 +17,7 @@ export const getUsers = async () => {
     }
 }
 
-export const getUserById = async () => {
+export const getUserById = async (req, res) => {
     const { uid } = req.params
     try {
         const user = await userModel.findById(uid)
@@ -33,7 +33,7 @@ export const getUserById = async () => {
     }
 }
 
-export const updateUser = async () => {
+export const updateUser = async (req, res) => {
     const { uid } = req.params
     const { fname, lname, age, email, password } = req.body
     try {
@@ -45,7 +45,7 @@ export const updateUser = async () => {
     }
 }
 
-export const deleteUser = async () => {
+export const deleteUser = async (req, res) => {
     const { uid } = req.params 
     try {
         const user = await userModel.findByIdAndDelete(uid)
