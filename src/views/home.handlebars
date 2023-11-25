@@ -1,18 +1,10 @@
-<<<<<<< HEAD
-<h1>HOLA {{name}}</h1>
-<nav class="navbar bg-body-tertiary">
-  <form id="close" action="http://localhost:8080/api/sessions/logout" method="get" class="container-fluid justify-content-end">
-    <button class="btn btn-outline-light me-2" type="submit">Cerrar sesion</button>
-  </form>
-=======
 <nav class="navbar navbar-expand container-fluid shadow position-fixed z-1">
     <h5 class="mx-3 h5-nav">Hola <strong>{{name}}</strong></h5>
     <div class="form-container">
-        <form class="form-close" action="http://192.168.100.24:8080/api/sessions/logout" method="get">
+        <form class="form-close" action="http://localhost:8080/api/sessions/logout" method="get">
             <button class="btn button-close" type="submit">Cerrar sesión</button>
         </form>
     </div>
->>>>>>> lan
 </nav>
 <div class="z-0 cards" >  
     {{#each productsList}}
