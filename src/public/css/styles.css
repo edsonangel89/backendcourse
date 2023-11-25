@@ -133,9 +133,12 @@ button {
         font-size: 0.8rem;
     }
 
-    /*************************  Sig */
+    /*************************  Sign */
     .form-sign {
         width: 40%;
+    }
+    .button-sign {
+        width: 70%;
     }
 }
 
@@ -186,6 +189,9 @@ button {
         width: 45%;
         position: fixed;
     }
+    .button-sign {
+        width: 65%;
+    }
 }
 
 /********************  BETWEEN 768PX AND 992PX   ************************/
@@ -200,7 +206,7 @@ button {
     .form-container {
         width: 60%;
     }
-    .form-login {
+    .form-login  {
         width: 75%;
     }
     .form-sign {
@@ -218,6 +224,9 @@ button {
     .cards {
         margin-top: 4.2rem;
         grid-template-columns: auto auto;
+    }
+    .button-sign {
+        width: 65%;
     }
 }
 
@@ -250,6 +259,9 @@ button {
     }
     .cards {
         margin-top: 4.6rem;
+    }
+    .button-sign {
+        width: 60%;
     }
 }
 
@@ -306,11 +318,12 @@ button {
     button {
         height: 3rem;
     }
+    .button-sign {
+        width: 95%;
+    }
     
     
     .admin-container {
         margin-top: 6rem;
     }
-    
-    
 }
