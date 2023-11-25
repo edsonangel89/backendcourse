@@ -1,54 +1,316 @@
+:root {
+    --aqua: #72ffff;
+    --lightBlue: #00d7ff;
+    --darkBlue: #0096ff;
+    --purple: #5800ff
+}
 body {
-    margin: 1%;
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-
-/*****************realTimeProducts UI*****************/
-
-label {
-    font-size: 25px;
-    font-weight: bold;
-    color: whitesmoke;
-}
-#forms h1{
-    text-align: center;
+nav {
+    background-color: white;
+    color: var(--darkBlue);
 }
 form {
-    background-color: #4361ee;
-    padding: 4%;
-    border-radius: 8px;
-    width: 20rem;
+    background-color: var(--darkBlue);
+    color: white;
+    border-radius: 0.5rem;
 }
-#close {
-    padding: 0.5%;
+.form-login, .form-sign {
+    margin: 4rem auto;
 }
-#login {
-    padding: 3%;
+.form-input {
+    width: 98%;
+    margin: 2rem auto;
 }
-#adminform {
-    padding: 1%;
+.form-buttons {
+    width: 98%;
+    margin: 2rem auto;
 }
-input {
-    border-radius: 8px;
-    border: none;
-}
-.socket {
-    display: flex;
-}
-#list {
-    margin: 2%;
+.form-body {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
-th {
-    text-align: center;
-}
-td {
-    text-align: center;
-}
-
-/*****************home UI*****************/
-
-.homePage {
+.form-close {
+    background-color: white;    
+    width: 95%;
     display: flex;
     flex-direction: column;
+    align-items: end;   
+}
+.form-sign {
+    height: 100%;
+}
+.register-link {
+    width: 98%;
+    margin: auto auto;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    margin-top: 0;
+    font-size: 1rem;
+}
+#register {
+    margin-bottom: 0;
+}
+.register-link span {
+    color: black;
+}
+.register-link a {
+    color: white;
+}
+.register-link a:hover {
+    color: var(--purple);
+}
+label {
+    font-weight: bold;
+}
+button {
+    background-color: white;
+}
+/*.btn:hover {
+    background-color: white;
+    color: var(--purple);
+    outline: solid var(--purple) 1px;
+}*/
+.btn {
+    background-color: var(--purple);
+    color: white;
+    font-weight: bold;
+}
+.btn:hover {
+    background-color: white;
+    color: var(--purple);
+}
+.cards {
+    display: grid;
+}
+.admin-container {
+    display: flex;
+}
+
+/******************DESKTOP*****************************/
+
+@media (min-width: 1400px) {
+
+    nav {
+        height: 4rem;
+    }
+    h5 {
+        margin: 0;
+    }
+    form {
+        width: 20%;
+    }  
+    .form-input {
+        margin: 3rem auto; 
+    }
+    .form-login {
+        width: 60%
+    }
+    label {
+        font-size: 1rem;
+        font-weight: bold;
+        color: var(--darkBlue);
+    }
+    .btn-logout-desktop {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1400px){
+    
+    /*************************  Login */
+    .form-login {
+        width: 40%;
+    }
+    .register-link {
+        font-size: 0.8rem;
+    }
+
+    /*************************  Sig */
+    .form-sign {
+        width: 40%;
+    }
+}
+
+/********************  BETWEEN 992PX AND 1200PX   ************************/
+
+@media (min-width: 992px) and (max-width: 1200px){
+    nav {
+        height: 3.8rem;
+    }
+    .h5-nav {
+        width: 40%;
+    }
+    .form-container {
+        width: 65%;
+    }
+    .form-login {
+        width: 60%;
+    }
+    .form-sign {
+        width: 60%;
+    }
+    input {
+        height: 2.8rem;
+    }
+    button {
+        height: 2.3rem;
+    }
+    .form-input {
+        margin: 1.3rem auto;
+    }
+    .register-link {
+        font-size: 0.8rem;
+    }
+    .admin-container {
+        width: 100%;
+        margin-top: 4.5rem;
+    }
+    .cards {
+        margin-top: 3.8rem;
+        grid-template-columns: auto auto;
+    }
+    .cards-container {
+        width: 55%;
+        margin-left: 25rem;
+        border: solid black 2px;
+    }
+    .admin-forms {
+        width: 45%;
+        position: fixed;
+    }
+}
+
+/********************  BETWEEN 768PX AND 992PX   ************************/
+
+@media (min-width: 768px) and (max-width: 992px) {
+    nav {
+        height: 4rem;
+    }
+    .h5-nav {
+        width: 40%;
+    }
+    .form-container {
+        width: 60%;
+    }
+    .form-login {
+        width: 75%;
+    }
+    .form-sign {
+        width: 75%;
+    }
+    input {
+        height: 3.2rem;
+    }
+    button {
+        height: 2.5rem;
+    }
+    .form-input {
+        margin: 1.5rem auto;
+    }
+    .cards {
+        margin-top: 4.2rem;
+        grid-template-columns: auto auto;
+    }
+}
+
+/********************  BETWEEN 576PX AND 768PX    ************************/
+
+@media (min-width: 576px) and (max-width: 768px) {
+    nav {
+        height: 4.5rem;
+    }
+    .h5-nav {
+        width: 40%;
+    }
+    .form-container {
+        width: 60%;
+    }
+    .form-login {
+        width: 85%;
+    }
+    .form-sign {
+        width: 85%;
+    }
+    input {
+        height: 3.2rem;
+    }
+    button {
+        height: 2.8rem;
+    }
+    .form-input {
+        margin: 1rem auto;
+    }
+    .cards {
+        margin-top: 4.6rem;
+    }
+}
+
+/********************  LOWER THAN 576PX    ************************/
+
+@media (max-width: 576px) {
+
+    /********************** General */
+    
+    /********************** Home */
+    nav {
+        height: 4.8rem;
+    }
+    .h5-nav {
+        width: 40%;
+    }
+    .cards {
+        width: 98%;
+        margin-top: 5rem;
+    }
+    .form-container {
+        width: 60%;
+    }
+    
+    /********************** Login */
+
+    .form-login {
+        width: 95%;
+    }
+    .form-input {
+        margin: 0.8rem auto;
+        font-size: 1.5rem;
+    }
+    .register-link {
+        font-size: 1rem;
+    }
+    .cards-container {
+        width: 100%;
+        border: solid black 1px;
+    }
+    
+    /********************  Sign */
+
+    .form-sign {
+        width: 95%;
+    }
+
+    .admin-form {
+        width: 100%;
+    }
+    input {
+        height: 3.5rem;
+    }
+    button {
+        height: 3rem;
+    }
+    
+    
+    .admin-container {
+        margin-top: 6rem;
+    }
+    
+    
 }

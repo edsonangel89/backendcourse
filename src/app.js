@@ -17,6 +17,7 @@ import MongoStore from 'connect-mongo'
 import sessionRouter from './routes/sessions.routes.js'
 import initialize from './config/passport.js'
 import passport from 'passport'
+import errorHandler from './middleware/errors/index.js'
 
 const app = express()
 const httpS = app.listen(8080,() => console.log("Server on port 8080"))
@@ -51,34 +52,4 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use('/', router)
-
-/*app.use('/',viewsRouter)
-app.use('/api/products',prodsRouter)
-app.use('/api/carts',cartsRouter)
-app.use('/api/messages',messageRouter)
-app.use('/api/users', usersRouter)
-app.use('/api/sessions', sessionRouter)*/
-
-/*const io = new Server(httpS)
-
-io.on('connection',(socket) => { 
-    socket.on('delete', async (msg) => {
-        const pid = msg
-        const currList = await manager.deleteProduct(pid)
-        io.emit('delete',currList)
-    })
-    socket.on('update',async (msg) => {
-        if (msg) {
-            const product = msg
-            manager.addProduct(product)
-            const currList = await manager.getProducts()
-            io.emit('update', currList)
-        } 
-        else {
-            console.log('error en el producto')
-        }
-    }) 
-})*/
-
-
-    
+app.use(errorHandler)    

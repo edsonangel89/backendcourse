@@ -1,12 +1,17 @@
-<form id="login" action="http://192.168.100.24:8080/api/sessions/login" method="post">
-    <div class="mb-1">
-        <label for="email" class="form-label">Correo electronico</label>
-        <input type="email" id="email" name="email" required class="form-control"/>
+<form class="form-login p-4" id="login" action="http://192.168.100.24:8080/api/sessions/login" method="post">
+    <div class="h-100 form-body">
+        <div class="form-input">
+            <input type="email" id="email" name="email" class="form-control rounded-3 shadow-sm" placeholder="Correo electrónico" required />
+        </div>
+        <div id="register" class="form-input">
+            <input type="password" id="password" name="password" class="form-control rounded-3 shadow-sm" placeholder="Contraseña" required/>
+        </div>
+        <div class="register-link">
+            <span style="margin-right: 0.5rem;">No tienes cuenta?</span>
+            <a href="http://192.168.100.24:8080/api/sessions/sign">Regístrate</a>
+        </div>
+        <div class="form-buttons d-flex flex-center justify-content-center">
+            <button type="submit" class="btn w-100 rounded-3">Iniciar sesión</button>
+        </div>
     </div>
-    <div class="mb-1">
-        <label for="password" class="form-label">Contrasena</label>
-        <input type="password" id="password" name="password" required class="form-control" />
-    </div><br>
-    <button type="submit" class="btn btn-success">Iniciar sesion</button>
-    <a type="button" class="btn btn-success" href="http://192.168.100.24:8080/api/sessions/sign">Resgistrar</a>
 </form>

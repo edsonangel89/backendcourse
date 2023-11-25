@@ -1,4 +1,7 @@
 import { productModel } from "../models/products.models.js"
+import CustomError from "../services/errors/customError.js"
+import EErrors from "../services/errors/enumErrors.js"
+import { generateUserErrorInfo } from "../services/errors/info.js"
 
 export const getProducts = async (req, res) => {
     const { limit, page, sort, category } = req.query
@@ -38,6 +41,16 @@ export const getProductId = async (req, res) => {
 
 export const addProduct = async (req, res) => {
     const { title, description, code, price, stock, category} = req.body
+
+    if ( !title || !code || !price || !stock ) {
+        CustomError.createError({
+            name: 'Add product error',
+            cause: generateUserErrorInfo({title, description, code, price, stock, category}),
+            message: 'Error trying to add a new product',
+            code: EErrors.INVALID_TYPES_ERROR
+        })
+    }
+
     try {
         const addedProduct = await productModel.create({ title, description, code, price, stock, category})
         console.log('Product added:')
