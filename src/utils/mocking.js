@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker"
 
-export const generateUsers = (req, res) => {
+export const generateProducts = (req, res) => {
 
     const matProducts = []
     for (let i = 0; i < 100; i++) {

@@ -3,6 +3,6 @@ import { generateUsers } from "../utils/mocking.js"
 
 const mockRouter = Router()
 
-mockRouter.get('/', generateUsers)
+mockRouter.get('/', generateProducts)
 
 export default mockRouter
