@@ -40,19 +40,19 @@ export const getProductId = async (req, res) => {
 }
 
 export const addProduct = async (req, res) => {
-    const { title, description, code, price, stock, category} = req.body
+    const { title, description, code, price, stock, category, thumbnail} = req.body
 
     if ( !title || !code || !price || !stock ) {
         CustomError.createError({
             name: 'Add product error',
-            cause: generateUserErrorInfo({title, description, code, price, stock, category}),
+            cause: generateUserErrorInfo({title, description, code, price, stock, category, thumbnail}),
             message: 'Error trying to add a new product',
             code: EErrors.INVALID_TYPES_ERROR
         })
     }
 
     try {
-        const addedProduct = await productModel.create({ title, description, code, price, stock, category})
+        const addedProduct = await productModel.create({ title, description, code, price, stock, category, thumbnail})
         console.log('Product added:')
         console.log(addedProduct)
         return res.status(201).send('Producto agregado')       
@@ -64,9 +64,9 @@ export const addProduct = async (req, res) => {
 
 export const updateProduct = async (req, res) => {
     const { pid } = req.params
-    const { title, description, code, price, stock, category } = req.body
+    const { title, description, code, price, stock, category, thumbnail } = req.body
     try {
-        const updatedProduct = await productModel.findByIdAndUpdate( pid, { title, description, code, price, stock, category })
+        const updatedProduct = await productModel.findByIdAndUpdate( pid, { title, description, code, price, stock, category, thumbnail })
         console.log('Product updated:')
         console.log(updatedProduct)
         return res.status(200).send(updatedProduct)

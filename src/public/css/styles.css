@@ -37,8 +37,9 @@ form {
     justify-content: center;
 }
 .form-close {
+    padding: 0 0.5rem;
     background-color: white;    
-    width: 95%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: end;   
@@ -84,14 +85,20 @@ button {
     font-weight: bold;
 }
 .btn:hover {
-    background-color: white;
-    color: var(--purple);
+    background-color: var(--darkBlue);
+    color: white;
 }
 .cards {
     display: grid;
 }
 .admin-container {
     display: flex;
+}
+.button-account {
+    color: var(--purple);
+}
+.button-account:hover {
+    color: var(--darkBlue);
 }
 
 /******************DESKTOP*****************************/
@@ -100,9 +107,6 @@ button {
 
     nav {
         height: 4rem;
-    }
-    h5 {
-        margin: 0;
     }
     form {
         width: 20%;
@@ -124,6 +128,41 @@ button {
 }
 
 @media (min-width: 1200px) and (max-width: 1400px){
+    
+    /*************************  Home */
+
+    /*nav {
+        border: solid black 1px;
+    }*/
+    .logo-container {
+        width: 40%;
+        /*border: solid black 1px;*/
+    }
+    .brand-logo {
+        margin-left: 1rem;
+        width: 10rem;
+    }
+    .h6-nav {
+        /*width: 40%;*/
+        margin: auto;
+        color: var(--purple);
+        /*border: solid black 1px;*/
+    }
+    .form-container {
+        width: 65%;
+        /*border: solid black 1px;*/
+    }
+    .form-close {
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        align-items: center;
+        /*border: solid black 1px;*/
+    }
+    .cards {
+        margin-top: 3.8rem;
+        grid-template-columns: auto auto auto auto;
+    }
     
     /*************************  Login */
     .form-login {
