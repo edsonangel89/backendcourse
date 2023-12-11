@@ -1,23 +1,23 @@
 <nav class="navbar navbar-expand container-fluid shadow position-fixed z-2">
     <div class="logo-container">
-        <img class="brand-logo" src="http://192.168.100.24:8080/assets/logo__svg.svg"/>
+        <img class="brand-logo" src="http://localhost:8080/assets/logo__svg.svg"/>
     </div>
     <div class="form-container">
-        <form class="form-close" action="http://192.168.100.24:8080/api/sessions/logout" method="get">
-            <a href="http://192.168.100.24:8080/cart/{{cid}}" class="material-symbols-outlined">shopping_cart</a>
+        <form class="form-close" action="http://localhost:8080/api/sessions/logout" method="get">
+            <a href="http://localhost:8080/cart/{{cid}}" class="material-symbols-outlined">shopping_cart</a>
             <a href="#" class="material-symbols-outlined">notifications</a>
             <img class="user-default-image" src="http://localhost:8080/assets/images/user_def.png" role="button" data-bs-toggle="collapse" data-bs-target="#collapse_demo" />
             <div id="collapse_demo" class="collapse menu-collapse" >
-                <a href="http://192.168.100.24:8080/products">Productos</a>
+                <a href="http://localhost:8080/products">Productos</a>
                 <a href="#">Soporte</a>
-                <a href="http://192.168.100.24:8080/api/sessions/logout">Cerrar sesion</a>
+                <a href="http://localhost:8080/api/sessions/logout">Cerrar sesion</a>
             </div>
         </form>
     </div>
 </nav>
 <div class="detail-container" style="margin-top: 5rem;">
     <div class="prod-img-detail-container">
-        <img src="http://192.168.100.24:8080/assets/images/termo.jpg" style="width: 100%;"/>
+        <img src="http://localhost:8080/assets/images/termo.jpg" style="width: 100%;"/>
     </div>
     <div class="prod-description-detail-container">
         <h3 class="product-title">{{product._doc.title}}</h3>
@@ -25,7 +25,7 @@
         <p class="product-price">$ {{product._doc.price}}</p>
         <span style="color: red;">Descuento Premium</span>
         <p style="font-weight:500; color: green">-10 %</p>
-        <form class="product-detail-form" action="http://192.168.100.24:8080/api/carts/{{cin}}/product/{{product._doc._id}}" method="post">
+        <form class="product-detail-form" action="http://localhost:8080/api/carts/{{cin}}/product/{{product._doc._id}}" method="post">
             <button type="submit" class="btn" style="border-radius: 5rem;">Agregar al carrito</button>
         </form>
     </div>

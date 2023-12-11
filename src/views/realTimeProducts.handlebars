@@ -1,14 +1,14 @@
 <nav class="navbar navbar-expand container-fluid shadow position-fixed z-1">
     <h5 class="mx-3 h5-nav">Hola <strong>{{name}}</strong></h5>
     <div class="form-container">
-        <form class="form-close" action="http://192.168.100.24:8080/api/sessions/logout" method="get">
+        <form class="form-close" action="http://localhost:8080/api/sessions/logout" method="get">
             <button class="btn button-close" type="submit">Cerrar sesión</button>
         </form>
     </div>
 </nav>
 <div class="admin-container">
     <div class="admin-forms">
-        <form class="p-3 m-2 rounded-1 admin-form" id="data" action="http://192.168.100.24:8080/realtimeproducts" method="post">
+        <form class="p-3 m-2 rounded-1 admin-form" id="data" action="http://localhost:8080/realtimeproducts" method="post">
             <div class="mb-1">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" id="title" name="title" required class="form-control shadow-sm rounded-1"/>
@@ -37,7 +37,7 @@
                 <button type="submit" class="btn m-2 container-fluid">Agregar producto</button>
             </div>
         </form>
-        <form class="p-3 m-2 rounded admin-form" id="delForm" action="http://192.168.100.24:8080/realtimeproducts/pid" method="post">
+        <form class="p-3 m-2 rounded admin-form" id="delForm" action="http://localhost:8080/realtimeproducts/pid" method="post">
             <div class="mb-1">
                 <label for="pid" class="form-label">ID producto</label>
                 <input type="text" id="pid" name="pid" required min="1" class="form-control shadow-sm"/><br>
