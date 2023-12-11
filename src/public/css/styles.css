@@ -74,11 +74,6 @@ label {
 button {
     background-color: white;
 }
-/*.btn:hover {
-    background-color: white;
-    color: var(--purple);
-    outline: solid var(--purple) 1px;
-}*/
 .btn {
     background-color: var(--purple);
     color: white;
@@ -131,38 +126,161 @@ button {
     
     /*************************  Home */
 
-    /*nav {
-        border: solid black 1px;
-    }*/
+    nav {
+        height: 3rem;
+    }
     .logo-container {
-        width: 40%;
-        /*border: solid black 1px;*/
+        width: 70%;
     }
     .brand-logo {
         margin-left: 1rem;
         width: 10rem;
     }
     .h6-nav {
-        /*width: 40%;*/
         margin: auto;
-        color: var(--purple);
-        /*border: solid black 1px;*/
+        color: var(--darkBlue);
+    }
+    .search-container {
+        width: 50%;
+    }
+    .search-form {
+        background-color: white;
     }
     .form-container {
-        width: 65%;
-        /*border: solid black 1px;*/
+        width: 30%;
+        display: flex;
     }
     .form-close {
         display: flex;
         flex-direction: row;
         justify-content: end;
         align-items: center;
-        /*border: solid black 1px;*/
     }
+    .form-close a {
+        margin: auto 0.5rem;
+        color: var(--darkBlue);
+        text-decoration: none;
+    }
+    .menu-collapse {
+        width: 200px;
+        padding: 0.2rem;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 2.3rem;
+        right: 0;
+        background-color: white;
+        z-index: 3;
+    }
+    .menu-collapse a {
+        color: var(--darkBlue);
+        padding: 0.5rem;
+        text-decoration: none;
+    }
+    .menu-collapse a:hover {
+        color: var(--purple);
+    }
+    .slide__image {
+        width: 100%;
+    }
+    .user-default-image {
+        width: 1.5rem;
+        border-radius: 50%;
+    }
+    .articles {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 2rem auto;
+         }
+      
+      .articles h2 {
+        text-align: center; }
+      
+      .text__description {
+        display: flex;
+        flex-direction: column;
+        align-items: center; }
+      
+      .text__description p {
+        margin-top: 16px;
+        text-align: center;
+        width: 50%; }
+      
     .cards {
         margin-top: 3.8rem;
         grid-template-columns: auto auto auto auto;
     }
+    footer {
+        background-color: #5800ff; 
+    }
+    footer {
+        width: 100%;
+        height: 282px;
+        display: flex;
+        flex-direction: column;
+        color: white; }
+      
+      footer h2 {
+        margin-top: 16px;
+        font-size: 1.5rem; }
+      
+      footer a {
+        text-decoration: none;
+        color: white; }
+      
+      footer a:hover {
+        color: #D9D9D9; }
+      
+      .footer__info {
+        height: 50%;
+        display: flex;
+        margin-left: 16px;
+        margin-right: 16px; }
+      
+      .footer__info a {
+        margin-top: 8px; }
+      
+      .footer__about {
+        display: flex;
+        flex-direction: column; }
+      
+      .footer__sites {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10%; }
+      
+      .footer__links {
+        width: 100%;
+        display: flex;
+        margin: auto 0 0 0; }
+      
+      .social__media {
+        width: 30%;
+        margin-left: 8px;
+        display: flex;
+        align-items: end; }
+      
+      .social__media a {
+        margin: 16px 8px; }
+      
+      .footer__copyright {
+        width: 70%;
+        height: 100%;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        margin: auto 3% auto 3%;
+     }
+      
+      .footer__copyright a {
+        text-decoration: underline;
+        margin-bottom: 8px; }
+      
+      footer p {
+        margin-bottom: 8px; }
+      
+      
     
     /*************************  Login */
     .form-login {
@@ -178,6 +296,79 @@ button {
     }
     .button-sign {
         width: 70%;
+    }
+
+    /**************************  prodDetail */
+
+    .detail-container {
+        width: 90%;
+        padding: 1rem;
+        display: flex;
+        background-color: var(--darkBlue);
+        border-radius: 1rem;
+        border: none;
+    }
+    .prod-img-detail-container {
+        width: 50%;
+    }
+    .prod-description-detail-container {
+        width: 50%;
+        padding: 2rem;
+        background-color: white;
+    }
+    .product-title {
+        font-size: 3rem;
+    }
+    .product-description {
+        font-size: 1.5rem;
+    }
+    .product-price {
+        font-size: 1.8rem;
+    }
+    .product-detail-form {
+        background-color: white;
+    }
+
+    /**********************************  cart */
+    .cart-section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .cart-container {
+        width: 80%;
+        border-radius: 1rem;
+        border: solid darkgray 1px;
+    }
+    .product-container {
+        padding: 1.5rem;
+        display: flex;
+    }
+    .product-image-container {
+        width: 25%;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .product-info-container {
+        width: 50%;
+        padding: 2rem;
+    }
+    .delete-button-container {
+        width: 25%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .emptycart-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 }
 

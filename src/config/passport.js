@@ -4,7 +4,6 @@ import passport from 'passport'
 import jwt from 'passport-jwt'
 import { createHash, validatePass } from '../utils/bcrypt.js'
 import { userModel } from '../models/users.models.js'
-import { makeToken } from '../utils/jwt.js'
 
 const LocalStrategy = local.Strategy
 const JWTStrategy = jwt.Strategy

@@ -4,12 +4,14 @@
     </div>
     <div class="form-container">
         <form class="form-close" action="http://192.168.100.24:8080/api/sessions/logout" method="get">
-            <h6 class="mx-3 h6-nav">Bienvenid@</strong></h6>
+            <h6 class="mx-3 h6-nav">Hola <strong>{{name}}</strong></h6>
+            <a href="http://192.168.100.24:8080/cart" class="material-symbols-outlined">shopping_cart</a>
+            <a href="#" class="material-symbols-outlined">notifications</a>
             <img class="user-default-image" src="http://localhost:8080/assets/images/user_def.png" role="button" data-bs-toggle="collapse" data-bs-target="#collapse_demo" />
             <div id="collapse_demo" class="collapse menu-collapse" >
-                <a href="http://192.168.100.24:8080/login">Iniciar sesion</a>
                 <a href="http://192.168.100.24:8080/products">Productos</a>
                 <a href="#">Soporte</a>
+                <a href="http://192.168.100.24:8080/api/sessions/logout">Cerrar sesion</a>
             </div>
         </form>
     </div>
@@ -53,23 +55,6 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-</section>
-<section class="articles">
-    <article class="ltr" data-aos="fade-up" data-aos-duration="500">
-        <h2>Quiénes somos</h2>
-        <div class="text__description">
-            <p>Una empresa dedicada a la purificación, embotellamiento y distribución de agua purificada baja en sales minerales.</p>
-            <p>Estamos en favor de la preservación y cuidado del medio ambiente, mejorando nuestros procesos con el fin de minimizar el impacto al entorno.</p>
-            <p>Empresa de reciente creación enfocada en la mejora continua y trabajando bajo principios éticos y morales.</p>
-        </div>
-    </article>
-    <article class="ltr" data-aos="fade-up" data-aos-duration="500">
-        <h2>Nuestros productos y servicios</h2>
-        <div class="text__description">
-            <p>Contamos con amplia gama de productos  y servicios enfocados en satisfacer una de las necesidades mas grandes de la humanidad como lo es el acceso a un agua de calidad y libre de contaminantes que sean perjudiciales para la salud.</p>
-            <p>En punto aqua nos enforzamos por llevar hasta la comodidad de tu hogar esta gama de productos esenciales no pueden faltar en casa.</p>
-        </div>
-    </article>
 </section>
 <footer>
     <div class="footer__info">

@@ -1,5 +1,4 @@
-import { makeToken, authToken } from "../utils/jwt.js"
-import { userModel } from "../models/users.models.js"
+import { makeToken } from "../utils/jwt.js"
 
 export const sessionLogin = async (req, res) => {
     const token = makeToken(req.user)
@@ -8,7 +7,11 @@ export const sessionLogin = async (req, res) => {
     })
     if (req.user.role == 'user') {
         console.log('User ' + req.user._id + ' logged in')
-        return res.redirect('/home',200,{})
+        return res.redirect('/',200,{})
+    }
+    else if (req.user.role == 'userPremium') {
+        console.log('User ' + req.user._id + ' logged in')
+        return res.redirect('/',200,{})
     }
     else {
         console.log('User ' + req.user._id + ' logged in')
@@ -20,7 +23,8 @@ export const sessionSign = async (req, res) => {
     try {
         console.log('New user added:\n')
         console.log(req.user)
-        res.redirect('/',200,{})
+        req.session.destroy()
+        res.redirect('/login',200,{})
     }
     catch (error) {
         res.status(400).send('Error al iniciar sesion\n' + error)

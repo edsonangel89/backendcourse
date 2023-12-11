@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand container-fluid shadow position-fixed z-2">
+    <div class="logo-container">
+        <a href="http://192.168.100.24:8080/"><img class="brand-logo" src="http://192.168.100.24:8080/assets/logo__svg.svg"/></a>
+    </div>
+    <div class="search-container">
+        <form class="d-flex search-form" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+    <div class="form-container">
+        <form class="form-close" action="http://192.168.100.24:8080/api/sessions/logout" method="get">
+            <img class="user-default-image" src="http://localhost:8080/assets/images/user_def.png" role="button" data-bs-toggle="collapse" data-bs-target="#collapse_demo" />
+            <div id="collapse_demo" class="collapse menu-collapse" >
+                <a href="http://192.168.100.24:8080/login">Iniciar sesion</a>
+                <a href="#">Soporte</a>
+            </div>
+        </form>
+    </div>
+</nav>
+<div class="z-0 cards" >  
+    {{#each productsList}}
+        <div class="card m-3" style="width: auto;">
+            <a href="http://192.168.100.24:8080/details/{{_doc._id}}"><img src='http://192.168.100.24:8080/assets/images/termo.jpg' class="card-img-top" alt="Item image"></a>
+            <div class="card-body">
+                <div class="row">
+                    <h4 class="card-title col">{{_doc.title}}</h4>
+                </div>
+                 <div class="row" style="height: 3.5rem;">
+                    <p class="card-text col h-100">{{_doc.description}}</p>
+                </div>
+                <div class="row" style="height: 3.5rem;">
+                    <p class="col h-100">{{_doc.price}}</p>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>

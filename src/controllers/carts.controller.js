@@ -35,10 +35,12 @@ export const addProduct = async (req, res) => {
                 if (prod) {
                     cart.products.quantity = quantity
                     await cartModel.findByIdAndUpdate(cid, cart)
+                    return res.redirect('/',200,{})
                 } 
                 else {
                     cart.products.push({id_product: pid, quantity: quantity})
                     await cartModel.findByIdAndUpdate(cid, cart)
+                    return res.redirect('/',200,{})
                 }
             }
             else {  

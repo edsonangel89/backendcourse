@@ -40,7 +40,7 @@ export const getProductId = async (req, res) => {
 }
 
 export const addProduct = async (req, res) => {
-    const { title, description, code, price, stock, category, thumbnail} = req.body
+    const { title, description, code, price, stock, category, thumbnail } = req.body
 
     if ( !title || !code || !price || !stock ) {
         CustomError.createError({
@@ -52,7 +52,8 @@ export const addProduct = async (req, res) => {
     }
 
     try {
-        const addedProduct = await productModel.create({ title, description, code, price, stock, category, thumbnail})
+        const pricePrecision = float(price).toPrecision(3)
+        const addedProduct = await productModel.create({ title, description, code, pricePrecision, stock, category, thumbnail})
         console.log('Product added:')
         console.log(addedProduct)
         return res.status(201).send('Producto agregado')       
