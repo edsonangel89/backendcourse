@@ -35,6 +35,7 @@ const logger = winston.createLogger({
         new winston.transports.File( {
             filename: './info.log',
             level: 'info',
+            method: 'post',
             format: winston.format.combine(
                 winston.format.colorize({ colors: loggerOptions.colors }),
                 winston.format.simple()
@@ -45,6 +46,6 @@ const logger = winston.createLogger({
 
 export const addInfoLogger = (req,res,next) => {
     req.logger = logger
-    req.logger.info(`${req.method} en ${req.url} - ${new Date().toLocaleTimeString()}`)
+    req.logger.info(`${req.method} en ${req.url} - ${ new Date().toLocaleTimeString() }`)
     next()
 }

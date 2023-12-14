@@ -11,11 +11,31 @@ export const getProducts = async (req, res) => {
         const sor = sort ? sort : 'asc'
         if (category) {
             const products = await productModel.paginate({category: category},{limit: lim, page: pag, sort:{price: sor}})
-            return res.status(200).send(products)
+            if (req.user) {
+                if (req.user.role == 'userPremium') {
+                    products.docs.forEach(element => {
+                        element.price = element.price - (element.price * 0.1)
+                    })
+                }
+                return res.status(200).send(products)
+            }
+            else {
+                return res.status(200).send(products)
+            }
         } 
         else {
             const products = await productModel.paginate({},{limit: lim, page: pag, sort:{price: sor}})
-            return res.status(200).send(products)
+            if (req.user) {
+                if (req.user.role == 'userPremium') {
+                    products.docs.forEach(element => {
+                        element.price = element.price - (element.price * 0.1)
+                    })
+                }
+                return res.status(200).send(products)
+            }
+            else {
+                return res.status(200).send(products)
+            }
         }
     }
     catch(error) {
@@ -28,7 +48,17 @@ export const getProductId = async (req, res) => {
     try {
         const product = await productModel.paginate({_id: pid})
         if (product) {
-            return res.status(200).send(product)
+            if (req.user) {
+                if (req.user.role == 'userPremium') {
+                    product.docs.forEach(element => {
+                        element.price = element.price - (element.price * 0.1)
+                    })
+                }
+                return res.status(200).send(product)
+            }
+            else {
+                return res.status(200).send(product)
+            }
         }
         else {
             return res.status(404).send('Producto no encontrado')
