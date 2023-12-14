@@ -54,11 +54,14 @@ export const addProduct = async (req, res) => {
     try {
         const pricePrecision = float(price).toPrecision(3)
         const addedProduct = await productModel.create({ title, description, code, pricePrecision, stock, category, thumbnail})
-        console.log('Product added:')
+        //console.log('Product added:')
+        req.logger.info('Product added: ')
         console.log(addedProduct)
+        req.logger.info(addedProduct)
         return res.status(201).send('Producto agregado')       
     }
     catch (error) {
+        req.logger.fatal('Error al agregar producto')
         return res.status(400).send('Error en el registro de producto\n' + error)
     }
 }

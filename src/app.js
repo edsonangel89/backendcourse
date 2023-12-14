@@ -18,6 +18,7 @@ import sessionRouter from './routes/sessions.routes.js'
 import initialize from './config/passport.js'
 import passport from 'passport'
 import errorHandler from './middleware/errors/index.js'
+import { addInfoLogger } from "./config/logger.js"
 
 const app = express()
 const httpS = app.listen(8080,() => console.log("Server on port 8080"))
@@ -30,6 +31,7 @@ app.engine('handlebars',handlebars.engine())
 app.set('views',__dirname + '/views')
 app.set('view engine','handlebars')
 
+app.use(addInfoLogger)
 app.use(express.static(__dirname + '/public'))
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))

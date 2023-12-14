@@ -28,6 +28,7 @@ const initialize = () => {
                     email: email,
                     password: criptPassword,
                 })
+                req.logger.info('User added')
                 return done(null, addedUser)
             }
             catch(error) {
@@ -107,7 +108,6 @@ const initialize = () => {
             const user = await userModel.findById(id)
             done(null, user)
         })
-
 }
 
 export default initialize

@@ -6,15 +6,18 @@ export const sessionLogin = async (req, res) => {
         maxAge: 40000000
     })
     if (req.user.role == 'user') {
-        console.log('User ' + req.user._id + ' logged in')
+        //console.log('User ' + req.user._id + ' logged in')
+        req.logger.info('User ' + req.user._id + ' logged in')
         return res.redirect('/',200,{})
     }
     else if (req.user.role == 'userPremium') {
-        console.log('User ' + req.user._id + ' logged in')
+        //console.log('User ' + req.user._id + ' logged in')
+        req.logger.info('User ' + req.user._id + ' logged in')
         return res.redirect('/',200,{})
     }
     else {
-        console.log('User ' + req.user._id + ' logged in')
+        //console.log('User ' + req.user._id + ' logged in')
+        req.logger.info('User ' + req.user._id + ' logged in')
         return res.redirect('/realtimeproducts',200,{})
     }
 }
