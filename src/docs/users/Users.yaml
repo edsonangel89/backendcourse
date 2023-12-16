@@ -1,0 +1,20 @@
+openapi: 3.0.1
+info:
+  title: 'Documentacion para ecommerce'
+  description: 'Descripcion de la API  de tienda en linea'
+  
+paths: 
+  /api/users:
+    get:
+      summary: 'Responde con una lista de todos los usuarios'
+      tags: 
+        - Users
+      responses: 
+        '200':
+          description: 'JSON con la lista de usuarios en un array'
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  type: string
