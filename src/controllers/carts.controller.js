@@ -31,13 +31,24 @@ export const addProduct = async (req, res) => {
         if (cart) {
             const product = await productModel.findById(pid)
             if (product) {
-                const prod = cart.products.find(p => p.id_product == pid)
+                const prod = cart.products.find(p => p.id_product._id == pid)
                 if (prod) {
-                    cart.products.quantity = quantity
+                    if (req.user.role == 'userPremium') {
+                        const pricePrem = prod.id_product.price - (prod.id_product.price * 0.1)
+                        prod.id_product.price = pricePrem
+                    }
+                    console.log('Into yes prod')
+                    prod.quantity = quantity
+                    console.log(cart.products)
+                    cart.products = cart.products
                     await cartModel.findByIdAndUpdate(cid, cart)
                     return res.redirect('/',200,{})
                 } 
                 else {
+                    /*if (req.user.role == 'userPremium') {
+                        prod.id_product.price = prod.id_product.price - (prod.id_product.price * 0.1)
+                    }*/
+                    console.log('Into no prod')
                     cart.products.push({id_product: pid, quantity: quantity})
                     await cartModel.findByIdAndUpdate(cid, cart)
                     return res.redirect('/',200,{})
@@ -65,9 +76,9 @@ export const deleteProduct = async (req, res) => {
             const products = cart.products
             const product = await productModel.findById(pid)
             if (product) {
-                const productInCart = products.find(p => p.id_product == pid) 
+                const productInCart = products.find(p => p.id_product._id == pid) 
                 if (productInCart) {
-                    const newProducts = products.filter(p => p.id_product != pid)
+                    const newProducts = products.filter(p => p.id_product._id != pid)
                     await cartModel.findByIdAndUpdate(cid, {products: newProducts})
                     return res.status(200).send(newProducts)
                 }

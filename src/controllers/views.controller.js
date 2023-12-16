@@ -125,7 +125,8 @@ export const getCart = async (req, res) => {
                         if (obj) {
                             obj.price = obj.price - (obj.price * 0.1)
                         }
-                    });
+                    })
+                    console.log(cart)
                     return res.status(200).render('cart', {
                         title: 'Cart',
                         productsListPremium: cart.products,
