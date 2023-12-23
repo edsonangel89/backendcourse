@@ -1,0 +1,12 @@
+paths:
+
+  /api/sessions/login/:
+    post:
+      summary: Realiza el logueo ingreando el correo electronico y contrasena
+      responses:
+        '200':
+          description: Loguea al usuario
+        '400':
+          description: Error interno del servidor
+          schema:
+            $type: String

@@ -1,0 +1,106 @@
+paths:
+
+  /api/products/:
+
+    get:
+      summary: Obtiene una lista de productos en un arreglo 
+      tags:
+        - Products
+      responses:
+        '200':
+          description: Se obtuvo la lista de productos satisfactoriamente
+        '400':
+          description: Error interno del servidor
+
+    post:
+      summary: Registra un nuevo producto en la base de datos
+      tags:
+        - Products
+      responses:
+        '200':
+          description: Se registro el producto satisfactoriamente
+        '400':
+          description: Error interno del servidor
+
+  /api/products/{pid}:
+
+    get:
+      summary: Obtiene un producto especificado por su identificador
+      tags:
+        - Products
+      parameters:
+      - name: pid
+        in: path
+        required: true
+        description: Parametro para indicar el identificador de producto
+        schema:
+          $type: String
+      responses:
+        '200':
+          description: Se obtuvo el producto satisfactoriamente
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Product'
+        '400':
+          description: Error interno del servidor
+
+    put:
+      summary: Actualiza el producto especificado por identificador
+      tags:
+        - Products
+      responses:
+        '200':
+          description: Se actualizo el producto satisfactoriamente
+        '400':
+          description: Error interno del servidor
+
+    delete:
+      summary: Borra el producto de la base de datos
+      tags:
+        - Products
+      responses:
+        '200':
+          description: El producto se borro satisfactoriamente
+        '400':
+          description: Error interno del servidor
+
+components:
+
+  schemas:
+    Product:
+      type: object
+      properties: 
+        _id:
+          type: ObjectId
+          description: Identificador autogenerado por MongoDB
+        title:
+          type: String
+          description: Nombre del producto
+        description:
+          type: String
+          description: Descripcion del producto
+        code:
+          type: String
+          description: Codigo identificador interno del producto
+        price:
+          type: Number
+          description: Precio del producto
+        stock:
+          type: Number
+          description: Cantidad de productos en almacen
+        category:
+          type: String
+          description: Define la categoria a la que pertenece el producto
+        thumbnail:
+          type: Array
+          description: Arreglo con las direcciones de las imagenes del producto
+      example:
+        _id: ObjectiId('j8e6fie3afx7pro4jbkf2')
+        title: Botella 500ml
+        description: Botella con capacidad de 500ml
+        code: BOT500
+        price:  7
+        stock:  45 
+        category: Botella
+        thumbnail: ['bot5001','bot5002','bot5003']
