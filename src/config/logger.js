@@ -35,7 +35,6 @@ const logger = winston.createLogger({
         new winston.transports.File( {
             filename: './info.log',
             level: 'info',
-            method: 'post',
             format: winston.format.combine(
                 winston.format.colorize({ colors: loggerOptions.colors }),
                 winston.format.simple()

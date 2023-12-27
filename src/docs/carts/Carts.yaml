@@ -2,7 +2,7 @@ paths:
 
   /api/carts/{cid}/product/{pid}:
     post:
-      summary: 
+      summary: Agrega un producto en el carrito especificado 
       tags:
       - Carts
       parameters:
@@ -32,7 +32,6 @@ paths:
                   payload:
                     type: object
                     $ref: '#components/schemas/Cart'
-  
         '400':
           description: Error al agregar producto al carrito
           content:
@@ -49,7 +48,9 @@ paths:
                 example: Producto y/o carrito no encontrado
 
 components:
+
   schemas:
+
     Cart:
       type: object
       properties:

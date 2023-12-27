@@ -70,8 +70,8 @@ export const getProductId = async (req, res) => {
 }
 
 export const addProduct = async (req, res) => {
-    const { title, description, code, price, stock, category, thumbnail } = req.body
-
+    let { title, description, code, price, stock, category, thumbnail } = req.body
+    const pricePrecision = price
     if ( !title || !code || !price || !stock ) {
         CustomError.createError({
             name: 'Add product error',
@@ -82,16 +82,14 @@ export const addProduct = async (req, res) => {
     }
 
     try {
-        const pricePrecision = float(price).toPrecision(3)
-        const addedProduct = await productModel.create({ title, description, code, pricePrecision, stock, category, thumbnail})
-        //console.log('Product added:')
+        const price = parseFloat(pricePrecision).toPrecision(3)
+        console.log(price)
+        const addedProduct = await productModel.create({ title, description, code, price, stock, category, thumbnail})
         req.logger.info('Product added: ')
-        console.log(addedProduct)
         req.logger.info(addedProduct)
         return res.status(201).send('Producto agregado')       
     }
     catch (error) {
-        req.logger.fatal('Error al agregar producto')
         return res.status(400).send('Error en el registro de producto\n' + error)
     }
 }

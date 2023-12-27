@@ -39,12 +39,17 @@ export const getSessionSign = async (req, res) => {
 }
 
 export const sessionLogout = async (req, res) => {
-    if (req.session) {
-        console.log('User ' + req.session.passport.user + ' logged out')
-        req.session.destroy()
+    try {
+        if (req.session) {
+            console.log('User ' + req.session.passport.user + ' logged out')
+            req.session.destroy()
+        }
+        res.clearCookie('jwtCookie')
+        return res.redirect('/',200,{})
     }
-    res.clearCookie('jwtCookie')
-    return res.redirect('/',200,{})
+    catch (error) {
+        res.status(400).send('Error al cerrar sesion')
+    }
 }
 
 export const currentSession = async (req, res) => {
