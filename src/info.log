@@ -35,3 +35,6 @@
 [32minfo[39m: POST en /api/sessions/login - 11:42:35
 [32minfo[39m: User 654c1b1338bf654089e60350 logged in
 [32minfo[39m: GET en / - 11:43:12
+[32minfo[39m: GET en / - 15:41:00
+[32minfo[39m: POST en /api/products/ - 22:03:29
+[32minfo[39m: GET en / - 22:40:39

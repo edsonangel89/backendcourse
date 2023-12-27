@@ -61,7 +61,6 @@ export const addProduct = async (req, res) => {
         else {
             return res.status(404).send('Carrito no encontrado en la base de datos')
         }
-        return res.status(200).send(cart)
     }
     catch (error) {
         return res.status(400).send('Error al agregar producto al carrito\n' + error)

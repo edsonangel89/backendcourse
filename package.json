@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon /src/"
+    "start": "node app.js",
+    "dev": "nodemon -d app.js"
   },
   "repository": {
     "type": "git",

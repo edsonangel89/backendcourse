@@ -5,7 +5,12 @@
     <div class="form-container">
         <form class="form-close" action="http://localhost:8080/api/sessions/logout" method="get">
             <h6 class="mx-3 h6-nav">Hola <strong>{{name}}</strong></h6>
-            <a href="http://localhost:8080/cart" class="material-symbols-outlined">shopping_cart</a>
+            {{#if cid}}
+                <a href="http://localhost:8080/cart" class="material-symbols-outlined">shopping_cart<span>Test</span></a>
+            {{else}}
+                <a href="http://localhost:8080/cart" class="material-symbols-outlined">shopping_cart</a>
+            {{/if}}
+            
             <a href="#" class="material-symbols-outlined">notifications</a>
             <img class="user-default-image" src="http://localhost:8080/assets/images/user_def.png" role="button" data-bs-toggle="collapse" data-bs-target="#collapse_demo" />
             <div id="collapse_demo" class="collapse menu-collapse" >

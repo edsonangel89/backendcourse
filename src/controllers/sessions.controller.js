@@ -1,6 +1,6 @@
 import { makeToken } from "../utils/jwt.js"
 
-export const sessionLogin = async (req, res) => {
+export const sessionLogin = (req, res) => {
     const token = makeToken(req.user)
     res.cookie('jwtCookie', token, {
         maxAge: 40000000
@@ -8,29 +8,29 @@ export const sessionLogin = async (req, res) => {
     if (req.user.role == 'user') {
         //console.log('User ' + req.user._id + ' logged in')
         req.logger.info('User ' + req.user._id + ' logged in')
-        return res.redirect('/',200,{})
+        return res.redirect('/',200,{status: 'success', payload: 'User'})
     }
     else if (req.user.role == 'userPremium') {
         //console.log('User ' + req.user._id + ' logged in')
         req.logger.info('User ' + req.user._id + ' logged in')
-        return res.redirect('/',200,{})
+        return res.redirect('/',200,{status: 'success', payload: 'User Premium'})
     }
     else {
         //console.log('User ' + req.user._id + ' logged in')
         req.logger.info('User ' + req.user._id + ' logged in')
-        return res.redirect('/realtimeproducts',200,{})
+        return res.redirect('/realtimeproducts',200,{status: 'success', payload: 'User Admin'})
     }
 }
    
-export const sessionSign = async (req, res) => {
+export const sessionSign = (req, res) => {
     try {
         console.log('New user added:\n')
         console.log(req.user)
         req.session.destroy()
-        res.redirect('/login',200,{})
+        res.redirect('/login',200,{status: 'success'})
     }
     catch (error) {
-        res.status(400).send('Error al iniciar sesion\n' + error)
+        res.status(400).send('Error al registrar usuario\n' + error)
     }
 }
 

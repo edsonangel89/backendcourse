@@ -1,11 +1,12 @@
 import { Router } from 'express'
 import { authorize } from '../utils/msgsErrors.js'
 import { getRoot, getHome, getLogin, getSign, getProducts, deleteProductView, getDetails, getCart, getRtp, postRtp, delRtp } from '../controllers/views.controller.js'
+import { authToken } from '../utils/jwt.js'
 
 const viewsRouter = Router()
 
 viewsRouter.get('/', getRoot)
-viewsRouter.get('/home', getHome)
+viewsRouter.get('/home',authToken, getHome)
 viewsRouter.get('/login', getLogin)
 viewsRouter.get('/sign', getSign)
 viewsRouter.get('/products', getProducts)

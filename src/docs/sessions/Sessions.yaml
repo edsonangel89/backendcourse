@@ -3,10 +3,35 @@ paths:
   /api/sessions/login/:
     post:
       summary: Realiza el logueo ingreando el correo electronico y contrasena
+      tags:
+        - Sessions
       responses:
         '200':
-          description: Loguea al usuario
+          description: Login del usuario
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  payload:
+                    type: object
+                    properties:
+                      user:
+                        type: string
+                      token:
+                        type: string
+                example:
+                  status: Success
+                  payload: 
+                    user: User, User Premium, User Admin
+                    token: jskjfkjkfjoieoirohfd
+
         '400':
           description: Error interno del servidor
-          schema:
-            $type: String
+          content:
+            application/json:
+              schema:
+                $type: String
+                example: Unauthorized

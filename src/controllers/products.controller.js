@@ -118,6 +118,6 @@ export const deleteProduct = async (req, res) => {
         return res.status(200).send('Producto borrado')
     }
     catch (error) {
-        return res.status(400).send('Error al borrar producto\n' + error)
+        return res.status(400).send('Error al borrar el producto\n' + error)
     }
 }

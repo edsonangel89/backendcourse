@@ -10,7 +10,7 @@ export const getRoot = async (req, res) => {
                 res.status(200).render('homeLog', {
                     title: 'Home',
                     name: user.fname,
-                    cid: user.cart
+                    cart: user.cart
                 })
             }
         }
