@@ -15,10 +15,11 @@ paths:
         '200':
           description: Login del usuario
           content:
-            application/json:
+            text/html:
               schema:
-                $type: string
-                example: Usuario logueado
+                $type: html
+                $ref: '#components/schemas/homePage'
+
         '400':
           description: Error al iniciar sesion
           content:
@@ -35,6 +36,15 @@ paths:
                 example: Usuario no autorizado
 
 components:
+
+  schemas:
+    homePage:
+      type: string
+      example: 
+        <html>
+          <h1>Home Page</h1>
+        </html> 
+
   requestBodies:
     logUser:
       type: object
@@ -42,6 +52,8 @@ components:
         email:
           type: string
           description: User's email
+          example: admin@admin.com
         password:
           type: string
           description: User's password
+          example: adminSecret

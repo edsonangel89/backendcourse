@@ -6,7 +6,7 @@ import { authToken } from '../utils/jwt.js'
 const viewsRouter = Router()
 
 viewsRouter.get('/', getRoot)
-viewsRouter.get('/home',authToken, getHome)
+viewsRouter.get('/home', getHome)
 viewsRouter.get('/login', getLogin)
 viewsRouter.get('/sign', getSign)
 viewsRouter.get('/products', getProducts)
