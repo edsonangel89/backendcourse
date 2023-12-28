@@ -5,7 +5,10 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon -d app.js"
+    "dev": "nodemon -d app.js",
+    "products": "mocha test/Products.test.js",
+    "carts": "mocha test/Carts.test.js",
+    "sessions": "mocha test/Sessions.test.js"
   },
   "repository": {
     "type": "git",
@@ -41,6 +44,9 @@
   },
   "description": "",
   "devDependencies": {
-    "nodemon": "^3.0.1"
+    "chai": "^4.3.10",
+    "mocha": "^10.2.0",
+    "nodemon": "^3.0.1",
+    "supertest": "^6.3.3"
   }
 }
