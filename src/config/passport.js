@@ -49,6 +49,7 @@ const initialize = () => {
                 if (validatePass(password, user.password)) {
                     return done(null, user)
                 }
+                console.log('Error')
                 return done(null, false)
             }
             catch(error) {
@@ -67,7 +68,8 @@ const initialize = () => {
                 if (user) {
                     done(null, user)
                 }
-                else {
+                else 
+                {
                     const addedUser = await userModel.create({
                         fname: profile._json.login,
                         lname: ' ',

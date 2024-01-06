@@ -29,26 +29,36 @@ export const addProduct = async (req, res) => {
     try {
         const cart = await cartModel.findById(cid)
         if (cart) {
+            //console.log('Into cart')
             const product = await productModel.findById(pid)
             if (product) {
                 const prod = cart.products.find(p => p.id_product._id == pid)
+                //console.log(prod)
                 if (prod) {
-                    if (req.user.role == 'userPremium') {
-                        const pricePrem = prod.id_product.price - (prod.id_product.price * 0.1)
-                        prod.id_product.price = pricePrem
+                    if (req.user) {
+                        if (req.user.role == 'userPremium') {
+                            const pricePrem = prod.id_product.price - (prod.id_product.price * 0.1)
+                            prod.id_product.price = pricePrem
+                        }
+                        prod.quantity = quantity
+                        //console.log(cart.products)
+                        cart.products = cart.products
+                        await cartModel.findByIdAndUpdate(cid, cart)
+                        return res.redirect('/',200,{})
                     }
-                    console.log('Into yes prod')
-                    prod.quantity = quantity
-                    console.log(cart.products)
-                    cart.products = cart.products
-                    await cartModel.findByIdAndUpdate(cid, cart)
-                    return res.redirect('/',200,{})
+                    else {
+                        prod.quantity = quantity
+                        //console.log(cart.products)
+                        cart.products = cart.products
+                        await cartModel.findByIdAndUpdate(cid, cart)
+                        return res.redirect('/',200,{})
+                    }
                 } 
                 else {
                     /*if (req.user.role == 'userPremium') {
                         prod.id_product.price = prod.id_product.price - (prod.id_product.price * 0.1)
                     }*/
-                    console.log('Into no prod')
+                    //console.log('Into no prod')
                     cart.products.push({id_product: pid, quantity: quantity})
                     await cartModel.findByIdAndUpdate(cid, cart)
                     return res.redirect('/',200,{})

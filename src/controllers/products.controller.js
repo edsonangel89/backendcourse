@@ -83,7 +83,6 @@ export const addProduct = async (req, res) => {
 
     try {
         const price = parseFloat(pricePrecision).toPrecision(3)
-        console.log(price)
         const addedProduct = await productModel.create({ title, description, code, price, stock, category, thumbnail})
         req.logger.info('Product added: ')
         req.logger.info(addedProduct)

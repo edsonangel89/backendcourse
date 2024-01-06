@@ -7,18 +7,3 @@
     const j = await response.json()
     console.log(j)
 }*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -5,20 +5,18 @@ export const sessionLogin = (req, res) => {
     res.cookie('jwtCookie', token, {
         maxAge: 40000000
     })
-    if (req.user.role == 'user') {
-        //console.log('User ' + req.user._id + ' logged in')
-        req.logger.info('User ' + req.user._id + ' logged in')
-        return res.redirect('/',200,{status: 'success', payload: 'User'})
-    }
-    else if (req.user.role == 'userPremium') {
-        //console.log('User ' + req.user._id + ' logged in')
-        req.logger.info('User ' + req.user._id + ' logged in')
-        return res.redirect('/',200,{status: 'success', payload: 'User Premium'})
-    }
-    else {
-        //console.log('User ' + req.user._id + ' logged in')
-        req.logger.info('User ' + req.user._id + ' logged in')
-        return res.redirect('/realtimeproducts',200,{status: 'success', payload: 'User Admin'})
+    const userRole = req.user.role
+
+    switch(userRole) {
+        case 'user':
+            req.logger.info('User ' + req.user._id + ' logged in')
+            return res.redirect('/',200,{status: 'success', payload: 'User'})
+        case 'userPremium':
+            req.logger.info('User ' + req.user._id + ' logged in')
+            return res.redirect('/',200,{status: 'success', payload: 'User Premium'})
+        case 'admin':
+            req.logger.info('User ' + req.user._id + ' logged in')
+            return res.redirect('/realtimeproducts',200,{status: 'success', payload: 'User Admin'})
     }
 }
    
@@ -53,8 +51,6 @@ export const sessionLogout = async (req, res) => {
 }
 
 export const currentSession = async (req, res) => {
-    console.log('Current user: ')
-    console.log(req.user)
     return res.status(200).send(req.user)
 }
 

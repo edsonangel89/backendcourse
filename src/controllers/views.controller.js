@@ -1,6 +1,7 @@
 import { productModel } from "../models/products.models.js"
 import { userModel } from "../models/users.models.js"
 import { cartModel } from "../models/carts.models.js"
+import { getProducts } from "./products.controller.js"
 
 export const getRoot = async (req, res) => {
     try {
@@ -36,7 +37,7 @@ export const getLogin = async (req, res) => {
     }
 }
 
-export const getProducts = async (req, res) => {
+export const getProds = async (req, res) => {
     try {
         const products = await productModel.find()
         if (req.user) {

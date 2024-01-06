@@ -6,7 +6,7 @@ const productsRouter = Router()
 
 productsRouter.get('/', getProducts)
 productsRouter.get('/:pid', getProductId)
-productsRouter.post('/', authorize('admin'), addProduct)
+productsRouter.post('/', addProduct)
 productsRouter.put('/:pid', authorize('admin'), updateProduct)
 productsRouter.delete('/:pid', authorize('admin'), deleteProduct)
 

@@ -7,9 +7,9 @@ export const passportErr = (strat) => {
                 return next(error)
             }
             if (!user) {
-                return res.status(401).send(error)
+                return res.status(404).send('No hay usuario logueado')
             }
-            req.user = user
+            req.user = user.user
             next()
         })(req, res, next)
     }
