@@ -8,7 +8,7 @@ describe('',function() {
         console.log('Test de productos')
     })
     it('Metodo GET en /api/products', async () => {
-        const { statusCode, ok, _body} = await request.get('/api/products')
+        const { statusCode, ok, _body} = await request.get('/api/products/')
         expect(statusCode).to.equal(200)
         expect(_body).to.be.a('object')
     })

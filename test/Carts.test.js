@@ -8,8 +8,8 @@ describe('',function() {
         console.log('Test de carritos')
     })
     it('Metodo GET en /api/carts/{Identificador del carrito}', async () => {
-        const pid = '64fc9445ffe84f6b56cf34f3'
-        const { statusCode, ok, _body} = await request.get('/api/products/'+ pid)
+        const pid = '653ff65ed6164c28a6ffcc17'
+        const { statusCode, ok, _body} = await request.get('/api/carts/'+ pid)
         expect(statusCode).to.equal(200)
         expect(_body).to.be.a('object')
         expect(_body.docs).to.be.a('array')
