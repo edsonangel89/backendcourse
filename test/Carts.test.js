@@ -12,7 +12,7 @@ describe('',function() {
         const { statusCode, ok, _body} = await request.get('/api/carts/'+ pid)
         expect(statusCode).to.equal(200)
         expect(_body).to.be.a('object')
-        expect(_body.docs).to.be.a('array')
+        expect(_body.products).to.be.a('array')
     }) 
     it('Metodo POST en /api/carts/{cart id}/product/{product id}', async () => {
         const cid = '653ff65ed6164c28a6ffcc17'

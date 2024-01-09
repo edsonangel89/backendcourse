@@ -15,12 +15,8 @@ describe('', function() {
         const response = await request
             .post('api/sessions/login')
             .send(user)
-            .expect('set-cookie','jwtCookie')
-        //expect(response.headers)
-        //console.log(response.body)
-        //console.log(response.status)
-        //console.log(response.headers)
-        //done()
+        expect(response.status).to.be.equal(302)
+        expect(response.headers['set-cookie'].length).to.be.equal(2)
     })
     it('Resgistra al usuario ingresando sus datos', async () => {
         const newUser = {
@@ -34,14 +30,18 @@ describe('', function() {
             .post('api/sessions/sign')
             .send(newUser)
 
-        //console.log(response.body)
-        console.log(response.status)
-        //console.log(response.header)
+        if (response.status != 302) {
+            expect(response.status).to.be.equal(401)
+            expect(response.text).to.be.equal('Unauthorized')
+            console.log('El usuario ya se encuentra registrado')
+        }
+        else {
+            expect(response.status).to.be.equal(302)
+        }  
     })
     it('Finaliza sesion del usuario actual', async () => {
-        const response = await request.get('api/sessions/logout')
-        //console.log(response.body)
-        console.log(response.status)
-        //console.log(response.header)
+        const response = await request
+            .get('api/sessions/github') 
+        expect(response.status).to.be.equal(302)
     })
 })

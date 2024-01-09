@@ -38,6 +38,7 @@ export const getSessionSign = async (req, res) => {
 
 export const sessionLogout = async (req, res) => {
     try {
+        console.log(req.session)
         if (req.session) {
             console.log('User ' + req.session.passport.user + ' logged out')
             req.session.destroy()
@@ -57,7 +58,7 @@ export const currentSession = async (req, res) => {
 export const githubCallback = async (req, res) => {
     req.session.user = req.user
     if (req.session.user) {
-        return res.redirect('/home',200,{})
+        return res.redirect('/',200,{})
     }
     else {
         return res.status(400).send('Error de login')
