@@ -280,3 +280,26 @@ export const deleteProductView = async (req, res) => {
         res.status(400).send('Error al eliminar producto en Views\n' + error)
     }
 }
+
+export const getNewPassword = async (req, res) => {
+    try {
+        res.status(200).render('restorePassword', {
+            title: 'Restore Password'
+        })
+    }
+    catch (error) {
+        res.status(400).send('Error al restaurar la contrasena\n' + error)
+    }
+}
+
+export const setNewPassword = async (req, res) => {
+    const { token } = req.params
+    try {
+        res.status(200).render('newpasswords', {
+            title: 'New password'
+        })
+    }
+    catch (error) {
+
+    }
+}

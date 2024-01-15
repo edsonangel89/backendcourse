@@ -17,6 +17,18 @@ import swaggerUiExpress from 'swagger-ui-express'
 const app = express()
 const httpS = app.listen(8080,() => console.log("Server on port 8080"))
 
+/*const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+        user: 'puntoaquaoficial@gmail.com',
+        pass: process.env.MAIL_PASSWORD,
+        authMethod: 'LOGIN'
+    }
+})*/
+
+
 mongoose.connect(process.env.MONGO_URL)
 .then(async () => {console.log('BDD Conectada')})
 .catch()

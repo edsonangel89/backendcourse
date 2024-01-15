@@ -95,6 +95,13 @@ button {
 .button-account:hover {
     color: var(--darkBlue);
 }
+#restorePass {
+    color: white;
+}
+#restorePass:hover {
+    color: var(--purple);
+}
+
 
 /******************DESKTOP*****************************/
 

@@ -1,4 +1,5 @@
 import { userModel } from "../models/users.models.js"
+import { send } from "../utils/mailer.js"
 
 export const getUsers = async (req, res) => {
     const { limit } = req.query
@@ -56,3 +57,37 @@ export const deleteUser = async (req, res) => {
         return res.status(400).send('Error al eliminar usuario\n' + error)
     }
 }
+
+export const verifyUser = async (req, res) => {
+    const { email } = req.body
+    try {
+        const user = await userModel.findOne({ email: email })
+        if (user) {
+            if (send(user.fname, user.email)) {
+                res.status(200).send('Correo enviado')
+            }
+            else {
+                res.status(400).send('Error al enviar correo de restauracion')
+            }
+        }
+        else {
+            res.status(404).send('Usuario no existe')
+        }
+    }
+    catch (error) {
+        res.status(400).send('Error al reestablecer contrasena\n' + error)
+    }
+}
+
+export const updatePassword = async (req, res) => {
+    const { email, fPassword, sPassword } = req.body
+    try {
+        const updatePassword = await userModel.findOne({email: email})
+        console.log(updatePassword)
+        res.status(200).send('Mail sent')
+    }
+    catch (error) {
+        res.status(400).send('Error al restaurar contrasena')
+    }
+}
+

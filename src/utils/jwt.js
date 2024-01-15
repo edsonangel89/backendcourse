@@ -6,6 +6,11 @@ export const makeToken = (user) => {
     return token
 }
 
+export const passToken = (user) => {
+    const token = jwt.sign({user}, process.env.JWT_SECRET, { expiresIn: 300})
+    return token
+}
+
 export const authToken = (req, res, next) => {
     const auth = req.headers.Authorization
 
