@@ -1,5 +1,6 @@
 import { userModel } from "../models/users.models.js"
 import { send } from "../utils/mailer.js"
+import { createHash, validatePass } from "../utils/bcrypt.js"
 
 export const getUsers = async (req, res) => {
     const { limit } = req.query
@@ -80,11 +81,28 @@ export const verifyUser = async (req, res) => {
 }
 
 export const updatePassword = async (req, res) => {
-    const { email, fPassword, sPassword } = req.body
+    const { fpassword, spassword } = req.body
+    const { email } = req.params
+    if (fpassword != spassword) {
+        res.status(404).send('Passwords dont match')
+    }
     try {
-        const updatePassword = await userModel.findOne({email: email})
-        console.log(updatePassword)
-        res.status(200).send('Mail sent')
+        const user = await userModel.findOne({email: email})
+        if (user) {
+            const { _id, fname, lname, age, email, password, role, cart } = user
+            const newPassword = createHash(fpassword)
+            const newUser = {
+                fname: fname,
+                lname: lname,
+                age: age,
+                email: email,
+                password: newPassword,
+                role: role,
+                cart: cart
+            }
+            const modifiedUser = await userModel.findByIdAndUpdate(_id, newUser)
+            res.redirect('/login',200,{})
+        }
     }
     catch (error) {
         res.status(400).send('Error al restaurar contrasena')

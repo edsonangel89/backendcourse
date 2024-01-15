@@ -2,6 +2,8 @@ import { productModel } from "../models/products.models.js"
 import { userModel } from "../models/users.models.js"
 import { cartModel } from "../models/carts.models.js"
 import { getProducts } from "./products.controller.js"
+import 'dotenv/config'
+import jwt from 'jsonwebtoken'
 
 export const getRoot = async (req, res) => {
     try {
@@ -294,12 +296,17 @@ export const getNewPassword = async (req, res) => {
 
 export const setNewPassword = async (req, res) => {
     const { token } = req.params
+    const { user } = jwt.verify(token,process.env.JWT_SECRET)
+    //console.log(jwt.verify(token,process.env.JWT_SECRET))
     try {
-        res.status(200).render('newpasswords', {
-            title: 'New password'
-        })
+        if (jwt.verify(token, process.env.JWT_SECRET)) {
+            res.status(200).render('newpasswords', {
+                title: 'New password',
+                email: user
+            })
+        }
     }
     catch (error) {
-
+        res.status(400).send('Error en la restauracion de contrasena')
     }
 }
