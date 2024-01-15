@@ -500,6 +500,62 @@ button {
     .button-sign {
         width: 60%;
     }
+
+    /********************** Home */
+    nav {
+        height: 4.8rem;
+    }
+    .h5-nav {
+        width: 40%;
+    }
+    .cards {
+        width: 98%;
+        margin-top: 5rem;
+    }
+    .form-container {
+        width: 60%;
+    }
+
+    /********************** Login */
+
+    .form-login {
+        width: 95%;
+    }
+    .form-input {
+        margin: 0.8rem auto;
+        font-size: 1.5rem;
+    }
+    .register-link {
+        font-size: 1rem;
+    }
+    .cards-container {
+        width: 100%;
+        border: solid black 1px;
+    }
+
+    /********************  Sign */
+
+    .form-sign {
+        width: 95%;
+    }
+
+    .admin-form {
+        width: 100%;
+    }
+    input {
+        height: 3.5rem;
+    }
+    button {
+        height: 3rem;
+    }
+    .button-sign {
+        width: 95%;
+    }
+    
+    
+    .admin-container {
+        margin-top: 6rem;
+    }
 }
 
 /********************  LOWER THAN 576PX    ************************/
