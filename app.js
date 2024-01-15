@@ -15,7 +15,8 @@ import swaggerJsdoc from 'swagger-jsdoc'
 import swaggerUiExpress from 'swagger-ui-express'
 
 const app = express()
-const httpS = app.listen(process.env.PORT,() => console.log("Server on port 8080"))
+const port = process.env.PORT
+const httpS = app.listen(port,() => console.log(`Server on port ${port}`))
 
 /*const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
