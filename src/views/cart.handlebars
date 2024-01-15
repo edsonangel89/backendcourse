@@ -1,15 +1,15 @@
 <nav class="navbar navbar-expand container-fluid shadow position-fixed z-2">
     <div class="logo-container">
-        <a href="http://localhost:8080/"><img class="brand-logo" src="http://localhost:8080/assets/logo__svg.svg"/></a>
+        <a href="/"><img class="brand-logo" src="/assets/logo__svg.svg"/></a>
     </div>
     <div class="form-container">
-        <form class="form-close" action="http://localhost:8080/api/sessions/logout" method="get">
+        <form class="form-close" action="/api/sessions/logout" method="get">
             <a href="#" class="material-symbols-outlined">notifications</a>
             <img class="user-default-image" src="http://localhost:8080/assets/images/user_def.png" role="button" data-bs-toggle="collapse" data-bs-target="#collapse_demo" />
             <div id="collapse_demo" class="collapse menu-collapse" >
-                <a href="http://localhost:8080/products">Productos</a>
+                <a href="/products">Productos</a>
                 <a href="#">Soporte</a>
-                <a href="http://localhost:8080/api/sessions/logout">Cerrar sesion</a>
+                <a href="/api/sessions/logout">Cerrar sesion</a>
             </div>
         </form>
     </div>
@@ -29,7 +29,7 @@
                             <p>$ {{_doc.price}}</p>
                         </div>
                         <div class="delete-button-container">
-                            <a type="button" href="http://localhost:8080/cart/{{_doc._id}}"><span style="font-size: 2rem; color: red" class="material-symbols-outlined">delete</span></a>
+                            <a type="button" href="/cart/{{_doc._id}}"><span style="font-size: 2rem; color: red" class="material-symbols-outlined">delete</span></a>
                         </div>
                     </div>
                     <hr>
@@ -50,7 +50,7 @@
                                 <p style="font-weight:500; color: green">-10 %</p>
                             </div>
                             <div class="delete-button-container">
-                                <a type="button" href="http://localhost:8080/cart/{{_doc._id}}"><span style="font-size: 2rem; color: red" class="material-symbols-outlined">delete</span></a>
+                                <a type="button" href="/cart/{{_doc._id}}"><span style="font-size: 2rem; color: red" class="material-symbols-outlined">delete</span></a>
                             </div>
                         </div>
                         <hr>
