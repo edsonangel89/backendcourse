@@ -10,6 +10,6 @@ usersRouter.put('/:uid', )
 usersRouter.put('/:uid', authorize('admin'), updateUser)
 usersRouter.delete('/:uid', authorize('admin'), deleteUser)
 usersRouter.post('/restorePassword', verifyUser)
-usersRouter.post('/newPasswords/:email', updatePassword)
+usersRouter.get('/newPasswords/:email', updatePassword)
 
 export default usersRouter
