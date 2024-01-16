@@ -25,7 +25,7 @@ export const send = async (fname, email) => {
             <div>
                 <h1>Hola ${fname}</h1>
                 <p>Haz click en el siguiente link para restaurar tu contrasena</p>
-                <a href='http://localhost:8080/updatePassword/${tokMail}'>Link para restaurar la contrasena</a>
+                <a href='https://ecommerce-example-enor.onrender.com/api/users/restorePassword/${tokMail}'>Link para restaurar la contrasena</a>
                 <p>El link tiene una vigencia de 5 minutos</p>
             </div>
         `
