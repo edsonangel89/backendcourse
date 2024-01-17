@@ -105,7 +105,7 @@ button {
 
 /******************DESKTOP*****************************/
 
-@media (min-width: 1400px) {
+/*@media (min-width: 1400px) {
 
     nav {
         height: 4rem;
@@ -127,14 +127,14 @@ button {
     .btn-logout-desktop {
         font-size: 1rem;
     }
-}
+}*/
 
-@media (min-width: 1200px) and (max-width: 1400px){
+@media (min-width: 1200px) {
     
-    /*************************  Home */
+    /*************************  Home and (max-width: 1400px)*/
 
     nav {
-        height: 3rem;
+        height: 3.5rem;
     }
     .logo-container {
         width: 70%;
@@ -158,6 +158,7 @@ button {
         display: flex;
     }
     .form-close {
+        margin: auto 0.5rem;
         display: flex;
         flex-direction: row;
         justify-content: end;
@@ -170,19 +171,21 @@ button {
     }
     .menu-collapse {
         width: 200px;
-        padding: 0.2rem;
+        padding: 0rem;
         display: flex;
         flex-direction: column;
         position: absolute;
-        top: 2.3rem;
+        top: 3rem;
         right: 0;
         background-color: white;
         z-index: 3;
+        border-radius: 0 0 0 0.5rem;
     }
     .menu-collapse a {
         color: var(--darkBlue);
         padding: 0.5rem;
         text-decoration: none;
+        font-weight: 500;
     }
     .menu-collapse a:hover {
         color: var(--purple);
@@ -190,15 +193,24 @@ button {
     .slide__image {
         width: 100%;
     }
+    .carousel__set {
+        /*border: solid 1px black;*/
+        width: 80%;
+        margin: 5rem 0;
+        
+    }
+    .carousel-inner__set {
+        border-radius: 8px;
+    }
     .user-default-image {
-        width: 1.5rem;
+        width: 2rem;
         border-radius: 50%;
     }
     .articles {
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin: 2rem auto;
+        margin: 1rem auto;
          }
       
       .articles h2 {
