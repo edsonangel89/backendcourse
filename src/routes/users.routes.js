@@ -1,6 +1,12 @@
 import { Router } from "express"
 import { authorize } from "../utils/msgsErrors.js" 
-import { getUsers, getUserById, updateUser, deleteUser, verifyUser, updatePassword } from "../controllers/users.controller.js"
+import { getUsers, 
+        getUserById, 
+        updateUser, 
+        deleteUser, 
+        verifyUser, 
+        updatePassword 
+    } from "../controllers/users.controller.js"
 
 const usersRouter = Router()
 

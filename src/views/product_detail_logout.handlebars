@@ -10,7 +10,7 @@
                 <img id="test" class="user-default-image" src="/assets/user_def.svg" role="button"/>
                 <div id="collapse_menu" class="dropdown-menu" >
                     <a href="/products">Productos</a>
-                    <a href="#">Soporte</a>
+                    <a href="/support">Soporte</a>
                 </div>
             </form>
         </div>
@@ -26,6 +26,7 @@
         <p class="product-price">$ {{product._doc.price}}</p>
         <form class="product-detail-form" action="/api/carts/{{cin}}/product/{{product._doc._id}}" method="post">
             <a type="button" href="/login" class="btn" style="border-radius: 8px;">Agregar al carrito</a>
+            <a type="button" href="/login" class="btn" style="border-radius: 8px;">Comprar ahora</a>
         </form>
     </div>
 </div>

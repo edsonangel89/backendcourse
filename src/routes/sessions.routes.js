@@ -1,7 +1,13 @@
 import { Router } from "express"
 import passport from "passport"
 import { authorize, passportErr } from "../utils/msgsErrors.js"
-import { sessionLogin, sessionSign, getSessionSign, sessionLogout, githubCallback, currentSession } from "../controllers/sessions.controller.js"
+import { sessionLogin, 
+        sessionSign, 
+        getSessionSign, 
+        sessionLogout, 
+        githubCallback, 
+        currentSession 
+    } from "../controllers/sessions.controller.js"
 
 const sessionRouter = Router()
 

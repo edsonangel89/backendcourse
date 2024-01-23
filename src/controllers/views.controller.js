@@ -10,7 +10,7 @@ export const getRoot = async (req, res) => {
         if (req.user) {
             const user = await userModel.findOne({_id: req.user._id})
             if (user) {
-                res.status(200).render('homeLog', {
+                res.status(200).render('home_user', {
                     title: 'Home',
                     name: user.fname,
                     cart: user.cart
@@ -18,7 +18,7 @@ export const getRoot = async (req, res) => {
             }
         }
         else {
-            res.status(200).render('home', { 
+            res.status(200).render('home_logout', { 
                 title: 'Home'
                 })
         }
@@ -30,7 +30,7 @@ export const getRoot = async (req, res) => {
 
 export const getLogin = async (req, res) => {
     try {
-        res.status(200).render('loginlogout', {
+        res.status(200).render('login', {
             title: 'Login'
         })
     }
@@ -44,7 +44,7 @@ export const getProds = async (req, res) => {
         const products = await productModel.find()
         if (req.user) {
             if (req.user.role == 'user') {
-                res.status(200).render('productsLog', {
+                res.status(200).render('products_user', {
                     title: 'Products',
                     productsList: products,
                 })
@@ -56,14 +56,14 @@ export const getProds = async (req, res) => {
                         element.price = element.price - (element.price * 0.1)
                     }
                 })
-                return res.status(200).render('productsLogPre', {
+                return res.status(200).render('products_premium', {
                     title: 'Products',
                     productsList: productsPrem,
                 })
             }
         }
         else {
-            res.status(200).render('products', {
+            res.status(200).render('products_logout', {
                 title: 'Products',
                 productsList: products,
             })
@@ -82,14 +82,14 @@ export const getDetails = async (req, res) => {
             const user = await userModel.findById(req.user._id)
             if (req.user.role == 'userPremium') {
                 prodDetail.price = prodDetail.price - (prodDetail.price * 0.1)
-                res.status(200).render('productdetailPre', {
+                res.status(200).render('product_detail_premium', {
                     title: 'Product',
                     product: prodDetail,
                     cin: user.cart
                 })
             }
             else {
-                res.status(200).render('productdetail', {
+                res.status(200).render('product_detail_user', {
                     title: 'Product',
                     product: prodDetail,
                     cin: user.cart
@@ -97,7 +97,7 @@ export const getDetails = async (req, res) => {
             }
         }
         else {
-            return res.status(200).render('productdetail', {
+            return res.status(200).render('product_detail_logout', {
                 title: 'Product',
                 product: prodDetail
             })
@@ -154,7 +154,7 @@ export const getCart = async (req, res) => {
 
 export const getSign = async (req, res) => {
     try {
-        res.status(200).render('sign', {
+        res.status(200).render('signup', {
             title: 'Sign up'
         })
     }
@@ -168,7 +168,7 @@ export const getHome = async (req, res) => {
         const products = await productModel.find()
         const user = await userModel.findOne({_id: req.session.passport.user})
         if (user) {
-            res.status(200).render('homeLog', {
+            res.status(200).render('home_user', {
                 title: 'Home',
                 productsList: products,
                 name: user.fname
@@ -187,7 +187,7 @@ export const getRtp = async (req, res) => {
     try {
         const user = await userModel.findOne({_id: req.session.passport.user})
         const productsList = await productModel.find()
-        res.status(200).render('realTimeProducts', {
+        res.status(200).render('home_admin', {
             productsList,
             title: 'Real Time',
             name: user.fname
@@ -204,7 +204,7 @@ export const postRtp = async (req, res) => {
         const user = await userModel.findOne({email: req.user.email})
         await productModel.create({ title, description, code, price, stock, category })
         const productsList = await productModel.find()
-        res.status(200).render('realTimeProducts', {
+        res.status(200).render('home_admin', {
             productsList,
             title: 'Real Time',
             name: user.fname
@@ -221,7 +221,7 @@ export const delRtp = async (req, res) => {
         const user = await userModel.findOne({email: req.user.email})
         await productModel.findByIdAndDelete(pid)
         const productsList = await productModel.find()
-        res.status(200).render('realTimeProducts', {
+        res.status(200).render('home_admin', {
             productsList,
             title: 'Real Time',
             name: user.fname
@@ -285,7 +285,7 @@ export const deleteProductView = async (req, res) => {
 
 export const getNewPassword = async (req, res) => {
     try {
-        res.status(200).render('restorePassword', {
+        res.status(200).render('confirm_email', {
             title: 'Restore Password'
         })
     }
@@ -300,7 +300,7 @@ export const setNewPassword = async (req, res) => {
     //console.log(jwt.verify(token,process.env.JWT_SECRET))
     try {
         if (jwt.verify(token, process.env.JWT_SECRET)) {
-            res.status(200).render('newpasswords', {
+            res.status(200).render('new_passwords', {
                 title: 'New password',
                 email: user
             })
@@ -308,5 +308,50 @@ export const setNewPassword = async (req, res) => {
     }
     catch (error) {
         res.status(400).send('Error en la restauracion de contrasena')
+    }
+}
+
+export const getSupport = async (req, res) => {
+    try {
+        res.status(200).render('support',{})
+    }
+    catch (error) {
+        res.status(400).send('Error en la vista de soporte\n' + error)
+    }
+}
+
+export const getInfo = async (req, res) => {
+    try {
+        res.status(200).render('info',{})
+    }
+    catch (error) {
+        res.status(400).send('Error en la vista de soporte\n' + error)
+    }
+}
+
+export const getTerms = async (req, res) => {
+    try {
+        res.status(200).render('terms',{})
+    }
+    catch (error) {
+        res.status(400).send('Error en la vista de soporte\n' + error)
+    }
+}
+
+export const getPrivacy = async (req, res) => {
+    try {
+        res.status(200).render('privacy',{})
+    }
+    catch (error) {
+        res.status(400).send('Error en la vista de soporte\n' + error)
+    }
+}
+
+export const getThank = async (req, res) => {
+    try {
+        res.status(200).render('thank',{})
+    }
+    catch (error) {
+        res.status(400).send('Error en la vista de soporte\n' + error)
     }
 }
