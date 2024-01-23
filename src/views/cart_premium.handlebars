@@ -2,16 +2,18 @@
     <div class="logo-container">
         <a href="/"><img class="brand-logo" src="/assets/logo__svg.svg"/></a>
     </div>
+    <div class="links-container">
     <div class="form-container">
         <form class="form-close" action="/api/sessions/logout" method="get">
             <a href="#" class="material-symbols-outlined">notifications</a>
-            <img class="user-default-image" src="/assets/user_def.svg" role="button" data-bs-toggle="collapse" data-bs-target="#collapse_demo" />
-            <div id="collapse_demo" class="collapse menu-collapse" >
+            <img id="test" class="user-default-image" src="/assets/user_def.svg" role="button" />
+            <div id="collapse_menu" class="dropdown-menu" >
                 <a href="/products">Productos</a>
                 <a href="#">Soporte</a>
                 <a href="/api/sessions/logout">Cerrar sesion</a>
             </div>
         </form>
+    </div>
     </div>
 </nav>
 <section class="cart-section">
@@ -59,6 +61,9 @@
             {{else}}
                 <div class="emptycart-container">
                     <h2>Tu carrito esta vacio</h2>
+                </div>
+                <div class="rtnHome">
+                    <a href="/">Seguir comprando</a>
                 </div>
             {{/if}}
         {{/if}}

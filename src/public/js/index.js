@@ -1,16 +1,9 @@
-//const socket = io()
+/*Restore passwords page */
 
-/*async function test () {
-    const response = await fetch('http://192.168.100.24:8080/api/products',{
-        method: 'GET'
-    })
-    const j = await response.json()
-    console.log(j)
-}*/
 const resbtn = document.getElementById('restorebutton')
 const fpass = document.getElementById('fpassword')
 const spass = document.getElementById('spassword')
-
+/*
 fpass.addEventListener('input', function (event) {
     if (fpass.value != spass.value) {
         fpass.style.borderColor = 'red'
@@ -36,3 +29,37 @@ spass.addEventListener('input', function (event) {
         resbtn.disabled = false
     }
 })
+*/
+/*Home page */
+const doc = document
+const profileButton = document.getElementById('test')
+const dropMenu = document.getElementById('collapse_menu')
+
+profileButton.addEventListener('click', function (event) {
+    //console.log(event.target)
+    if (dropMenu.style.display == 'none' || dropMenu.style.display == false) {
+        dropMenu.style.visibility = 'visible'
+        dropMenu.style.display = 'flex'
+    }
+})
+
+doc.addEventListener('click', function (event) {
+    //console.log(event.target.id)
+    if (dropMenu.style.display == 'flex' && event.target.id != 'test') {
+        dropMenu.style.visibility = 'hidden'
+        dropMenu.style.display = 'none'
+    }
+})
+
+/*doc.addEvent0Listener('click', function(event) {
+    
+    const obj = JSON.stringify('e')
+    console.log(obj)
+    const response = fetch('http://localhost:8080/test', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: obj
+    })
+})*/

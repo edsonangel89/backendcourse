@@ -19,5 +19,10 @@ viewsRouter.post('/realtimeproducts', authorize('admin'), postRtp)
 viewsRouter.post('/realtimeproducts/:pid', authorize('admin'), delRtp)
 viewsRouter.get('/updatePassword/:token', setNewPassword)
 viewsRouter.get('/reset', getNewPassword)
+viewsRouter.post('/test', async (req, res) => {
+    const obj = req.body
+    console.log(req.headers) 
+    res.status(200).send('ok')
+})
 
 export default viewsRouter

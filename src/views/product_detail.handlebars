@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand container-fluid shadow position-fixed z-2">
+    <div class="logo-container">
+        <a href="/"><img class="brand-logo" src="/assets/logo__svg.svg"/></a>
+    </div>
+    <div class="links-container">
+        <div class="form-container">
+            <form class="form-close" action="/api/sessions/logout" method="get">
+                <a href="/cart/" class="material-symbols-outlined">shopping_cart</a>
+                <a href="#" class="material-symbols-outlined">notifications</a>
+                <img id="test" class="user-default-image" src="/assets/user_def.svg" role="button"/>
+                <div id="collapse_menu" class="dropdown-menu" >
+                    <a href="/products">Productos</a>
+                    <a href="#">Soporte</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="detail-container" style="margin-top: 5rem;">
+    <div class="prod-img-detail-container">
+        <img src="/assets/images/termo.jpg" style="width: 100%;"/>
+    </div>
+    <div class="prod-description-detail-container">
+        <h3 class="product-title">{{product._doc.title}}</h3>
+        <p class="product-description">{{product._doc.description}}</p>
+        <p class="product-price">$ {{product._doc.price}}</p>
+        <form class="product-detail-form" action="/api/carts/{{cin}}/product/{{product._doc._id}}" method="post">
+            <a type="button" href="/login" class="btn" style="border-radius: 8px;">Agregar al carrito</a>
+        </form>
+    </div>
+</div>

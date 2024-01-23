@@ -22,14 +22,25 @@ form {
 }
 .form-login, .form-sign {
     margin: 4rem auto;
+    background-color: solid black 1px;
 }
 .form-input {
     width: 98%;
     margin: 2rem auto;
 }
+.form-input input{
+    padding: 0.7rem;
+}
 .form-buttons {
     width: 98%;
     margin: 2rem auto;
+}
+.form-buttons button{
+    padding: 0.7rem;
+}
+.form-buttons button:hover{
+    background-color: white;
+    color: var(--purple);
 }
 .form-body {
     display: flex;
@@ -37,7 +48,7 @@ form {
     justify-content: center;
 }
 .form-close {
-    padding: 0 0.5rem;
+    /*padding: 0 0.5rem;*/
     background-color: white;    
     width: 100%;
     display: flex;
@@ -46,10 +57,19 @@ form {
 }
 .form-sign {
     height: 100%;
+    padding: 0.7rem;
+    border-radius: 8px;
+}
+.form-sign input, .form-sign button{
+    padding: 0.7rem;
+}
+.form-sign button:hover {
+    background-color: white;
+    color: var(--purple);
 }
 .register-link {
     width: 98%;
-    margin: auto auto;
+    
     display: flex;
     align-items: end;
     justify-content: end;
@@ -78,6 +98,8 @@ button {
     background-color: var(--purple);
     color: white;
     font-weight: bold;
+    padding: 0.5rem;
+    border-radius: 8px;
 }
 .btn:hover {
     background-color: var(--darkBlue);
@@ -97,6 +119,7 @@ button {
 }
 #restorePass {
     color: white;
+    margin-top: 0.3rem;
 }
 #restorePass:hover {
     color: var(--purple);
@@ -131,13 +154,16 @@ button {
 
 @media (min-width: 1200px) {
     
-    /*************************  Home and (max-width: 1400px)*/
+    /*************************  Home and (min-width: 1200px)*/
 
     nav {
-        height: 3.5rem;
+        height: 4rem;
     }
     .logo-container {
-        width: 70%;
+        width: 20%;
+    }
+    .logo-container-login {
+        background-color: solid black 1px;
     }
     .brand-logo {
         margin-left: 1rem;
@@ -147,48 +173,98 @@ button {
         margin: auto;
         color: var(--darkBlue);
     }
+    .links-container {
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        
+    }
     .search-container {
-        width: 50%;
+        width: 40%;
+       
     }
     .search-form {
         background-color: white;
     }
+    .search-form::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+    .search-form input[type=search] {
+        background-color: white;
+        float: left;
+        border-radius: 8px 0 0 8px;
+    }
+    .search-form input[type=search]:focus {
+        outline: none;
+        border: none;
+    }
+    .search-form button{
+        background-color: var(--darkBlue);
+        float: left;
+        border-radius: 0 8px 8px 0;
+    }
     .form-container {
-        width: 30%;
+        width: auto;
         display: flex;
     }
     .form-close {
-        margin: auto 0.5rem;
+       /* margin: auto 0.5rem;*/
         display: flex;
         flex-direction: row;
         justify-content: end;
         align-items: center;
     }
     .form-close a {
-        margin: auto 0.5rem;
+        margin: auto 1rem;
         color: var(--darkBlue);
         text-decoration: none;
     }
-    .menu-collapse {
-        width: 200px;
-        padding: 0rem;
-        display: flex;
+    
+    .dropdown-menu {
+        /*width: 16rem;*/
+        display: none;
         flex-direction: column;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
         position: absolute;
-        top: 3rem;
+        top: 3.5rem;
         right: 0;
         background-color: white;
         z-index: 3;
-        border-radius: 0 0 0 0.5rem;
+        /*border-radius: 0 0 0 0.5rem;*/
+        border: none;
+        /*animation: moveon 1s;
+        animation-fill-mode: forwards;*/
     }
-    .menu-collapse a {
+    /*@keyframes moveon {
+        from {display: none;}
+        to {display: flex;}
+    }*/
+    #test:hover .dropdown-menu {
+        display: flex;
+    }
+    .dropdown-menu li {
         color: var(--darkBlue);
-        padding: 0.5rem;
-        text-decoration: none;
+        /*padding: 0.7rem;*/
+        /*text-decoration: none;*/
         font-weight: 500;
+        font-size: 1.2rem;
+        /*border-radius: 8px;*/
+        
     }
-    .menu-collapse a:hover {
-        color: var(--purple);
+    .dropdown-menu li:hover{
+        color: white;
+        background: var(--purple)
+    }
+    .dropdown-menu li a{
+        width: 10rem;
+        display: block;
+        border: solid black 1px;
+        font-weight: 500;
+        font-size: 1.2rem;
     }
     .slide__image {
         width: 100%;
@@ -196,7 +272,7 @@ button {
     .carousel__set {
         /*border: solid 1px black;*/
         width: 80%;
-        margin: 5rem 0;
+        margin: 5.2rem 0 3.5rem 0;
         
     }
     .carousel-inner__set {
@@ -205,12 +281,14 @@ button {
     .user-default-image {
         width: 2rem;
         border-radius: 50%;
+        margin: auto 1rem;
+        background-color: solid black 1px;
     }
     .articles {
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin: 1rem auto;
+        
          }
       
       .articles h2 {
@@ -222,9 +300,10 @@ button {
         align-items: center; }
       
       .text__description p {
-        margin-top: 16px;
+        margin: 0.8rem auto;
         text-align: center;
-        width: 50%; }
+        width: 60%; 
+        font-size: 1.3rem;}
       
     .cards {
         margin-top: 3.8rem;
@@ -235,7 +314,7 @@ button {
     }
     footer {
         width: 100%;
-        height: 282px;
+        height: 280px;
         display: flex;
         flex-direction: column;
         color: white; }
@@ -304,6 +383,8 @@ button {
     /*************************  Login */
     .form-login {
         width: 40%;
+        border-radius: 8px;
+        background-color: solid black 1px;
     }
     .register-link {
         font-size: 0.8rem;
@@ -388,6 +469,16 @@ button {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+    }
+    .rtnHome {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .rtnHome a {
+        text-decoration: none;
+        font-weight: 400;
     }
 }
 
@@ -529,7 +620,7 @@ button {
         width: 100%;
     }
     .form-close {
-        padding: 0 0.5rem;
+        /*padding: 0 0.5rem;*/
         background-color: white;    
         width: 100%;
         display: flex;
@@ -605,7 +696,7 @@ button {
         width: 60%;
     }
     .form-close {
-        padding: 0 0.5rem;
+        /*padding: 0 0.5rem;*/
         background-color: white;    
         width: 100%;
         display: flex;

@@ -2,23 +2,31 @@
     <div class="logo-container">
         <img class="brand-logo" src="/assets/logo__svg.svg"/>
     </div>
-    <div class="form-container">
-        <form class="form-close" action="/api/sessions/logout" method="get">
-            <h6 class="mx-3 h6-nav">Hola <strong>{{name}}</strong></h6>
-            {{#if cid}}
-                <a href="/cart" class="material-symbols-outlined">shopping_cart<span>Test</span></a>
-            {{else}}
-                <a href="/cart" class="material-symbols-outlined">shopping_cart</a>
-            {{/if}}
-            
-            <a href="#" class="material-symbols-outlined">notifications</a>
-            <img class="user-default-image" src="/assets/user_def.svg" role="button" data-bs-toggle="collapse" data-bs-target="#collapse_demo" />
-            <div id="collapse_demo" class="collapse menu-collapse" >
-                <a href="/products">Productos</a>
-                <a href="#">Soporte</a>
-                <a href="/api/sessions/logout">Cerrar sesion</a>
-            </div>
-        </form>
+    <div class="links-container">
+        <div class="search-container">
+            <form class="d-flex search-form" role="search">
+                <input class="form-control" type="search" placeholder="Busqueda ..." aria-label="Search">
+                <button class="btn" >Search</button>
+            </form>
+        </div>
+        <div class="form-container">
+            <form class="form-close" action="/api/sessions/logout" method="get">
+                <h6 class="mx-3 h6-nav">Hola <strong>{{name}}</strong></h6>
+                {{#if cid}}
+                    <a href="/cart" class="material-symbols-outlined">shopping_cart<span>Test</span></a>
+                {{else}}
+                    <a href="/cart" class="material-symbols-outlined">shopping_cart</a>
+                {{/if}}
+                
+                <a href="#" class="material-symbols-outlined">notifications</a>
+                <img class="user-default-image dropdown-toggle" src="/assets/user_def.svg" role="button" data-bs-toggle="dropdown"  aria-expanded="false"/><!--data-bs-target="#collapse_demo" collapse menu-collapse-->
+                <div id="collapse_demo" class="dropdown-menu" >
+                    <a class="dropdown-item" href="/products">Productos</a>
+                    <a class="dropdown-item" href="#">Soporte</a>
+                    <a class="dropdown-item" href="/api/sessions/logout">Cerrar sesion</a>
+                </div>
+            </form>
+        </div>
     </div>
 </nav>
 <section class="carousel carousel__set">

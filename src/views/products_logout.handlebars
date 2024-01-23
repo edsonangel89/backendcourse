@@ -2,25 +2,27 @@
     <div class="logo-container">
         <a href="/"><img class="brand-logo" src="/assets/logo__svg.svg"/></a>
     </div>
-    <div class="search-container">
-        <form class="d-flex search-form" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-    </div>
-    <div class="form-container">
-        <form class="form-close" action="/api/sessions/logout" method="get">
-            <img class="user-default-image" src="/assets/user_def.svg" role="button" data-bs-toggle="collapse" data-bs-target="#collapse_demo" />
-            <div id="collapse_demo" class="collapse menu-collapse" >
-                <a href="/login">Iniciar sesion</a>
-                <a href="#">Soporte</a>
-            </div>
-        </form>
+    <div class="links-container">
+        <div class="search-container">
+            <form class="d-flex search-form" role="search">
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn " type="submit">Search</button>
+            </form>
+        </div>
+        <div class="form-container">
+            <form class="form-close" action="/api/sessions/logout" method="get">
+                <img id="test"class="user-default-image" src="/assets/user_def.svg" role="button" />
+                <div id="collapse_menu" class="dropdown-menu" >
+                    <a href="/login">Iniciar sesion</a>
+                    <a href="#">Soporte</a>
+                </div>
+            </form>
+        </div>
     </div>
 </nav>
 <div class="z-0 cards" >  
     {{#each productsList}}
-        <div class="card m-3" style="width: auto;">
+        <div class="card m-4" style="width: auto;">
             <a href="/details/{{_doc._id}}"><img src='/assets/images/termo.jpg' class="card-img-top" alt="Item image"></a>
             <div class="card-body">
                 <div class="row">

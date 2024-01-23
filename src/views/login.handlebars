@@ -1,17 +1,20 @@
+<div class="logo-container-login" style="margin: 2rem auto auto auto;">
+    <a href="/"><img class="brand-logo" src="/assets/logo__svg.svg"/></a>
+</div>
 <form class="form-login p-4" id="login" action="/api/sessions/login" method="post">
     <div class="h-100 form-body">
         <div class="form-input">
-            <input type="email" id="email" name="email" class="form-control rounded-3 shadow-sm" placeholder="Correo electrónico" required />
+            <input type="email" id="email" name="email" class="form-control shadow-sm" placeholder="Correo electrónico" required />
         </div>
         <div id="register" class="form-input">
-            <input type="password" id="password" name="password" class="form-control rounded-3 shadow-sm" placeholder="Contraseña" required/>
+            <input type="password" id="password" name="password" class="form-control shadow-sm" placeholder="Contraseña" required/>
         </div>
         <div class="register-link">
             <span style="margin-right: 0.5rem;">No tienes cuenta?</span>
             <a href="/sign">Regístrate</a>
         </div>
         <div class="form-buttons d-flex flex-column flex-center justify-content-center">
-            <button type="submit" class="btn w-100 rounded-3">Iniciar sesión</button>
+            <button type="submit" class="btn w-100 ">Iniciar sesión</button>
             <a id="restorePass" href="/reset">Olvide mi contraseña</a>
         </div>
     </div>
