@@ -355,3 +355,21 @@ export const getThank = async (req, res) => {
         res.status(400).send('Error en la vista de soporte\n' + error)
     }
 }
+
+export const getAdd = async (req, res) => {
+    try {
+        res.status(200).render('add_product',{})
+    }
+    catch (error) {
+        res.status(400).send('Error en la vista de soporte\n' + error)
+    }
+}
+
+export const getDelete = async (req, res) => {
+    try {
+        res.status(200).render('del_product',{})
+    }
+    catch (error) {
+        res.status(400).send('Error en la vista de soporte\n' + error)
+    }
+}

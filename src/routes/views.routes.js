@@ -17,7 +17,9 @@ import { getRoot,
         getInfo,
         getTerms,
         getPrivacy,
-        getThank 
+        getThank,
+        getAdd,
+        getDelete 
     } from '../controllers/views.controller.js'
 
 const viewsRouter = Router()
@@ -40,6 +42,8 @@ viewsRouter.get('/info', getInfo)
 viewsRouter.get('/terms', getTerms)
 viewsRouter.get('/privacy', getPrivacy)
 viewsRouter.get('/thank', getThank)
+viewsRouter.get('/add', authorize('admin'), getAdd)
+viewsRouter.get('/delete', authorize('admin'), getDelete)
 
 viewsRouter.post('/test', async (req, res) => {
     const obj = req.body
