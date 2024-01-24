@@ -10,11 +10,22 @@ export const getRoot = async (req, res) => {
         if (req.user) {
             const user = await userModel.findOne({_id: req.user._id})
             if (user) {
-                res.status(200).render('home_user', {
-                    title: 'Home',
-                    name: user.fname,
-                    cart: user.cart
-                })
+                console.log(user)
+                if (user.role == 'admin') {
+                    const productsList = await productModel.find()
+                    res.status(200).render('home_admin', {
+                        title: 'Admin',
+                        name: user.fname,
+                        productsList
+                    })
+                }
+                else {
+                    res.status(200).render('home_user', {
+                        title: 'Home',
+                        name: user.fname,
+                        cart: user.cart
+                    })
+                }
             }
         }
         else {
@@ -189,7 +200,7 @@ export const getRtp = async (req, res) => {
         const productsList = await productModel.find()
         res.status(200).render('home_admin', {
             productsList,
-            title: 'Real Time',
+            title: 'Admin',
             name: user.fname
         })
     }

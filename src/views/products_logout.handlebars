@@ -2,7 +2,6 @@
     <div class="logo-container">
         <a href="/"><img class="brand-logo" src="/assets/logo__svg.svg"/></a>
     </div>
-    <div class="links-container">
         <div class="search-container">
             <form class="d-flex search-form" role="search">
                 <input class="form-control" type="search" placeholder="Search" aria-label="Search">
@@ -12,13 +11,12 @@
         <div class="form-container">
             <form class="form-close" action="/api/sessions/logout" method="get">
                 <img id="test"class="user-default-image" src="/assets/user_def.svg" role="button" />
-                <div id="collapse_menu" class="dropdown-menu" >
-                    <a href="/login">Iniciar sesion</a>
-                    <a href="/support">Soporte</a>
-                </div>
+                <ul id="collapse_menu" class="dropdown-menu" >
+                    <li><a href="/login">Iniciar sesion</a></li>
+                    <li><a href="/support">Soporte</a></li>
+                </ul>
             </form>
         </div>
-    </div>
 </nav>
 <div class="z-0 cards" >  
     {{#each productsList}}

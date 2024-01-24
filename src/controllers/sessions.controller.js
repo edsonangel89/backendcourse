@@ -16,7 +16,7 @@ export const sessionLogin = (req, res) => {
             return res.redirect('/',200,{status: 'success', payload: 'User Premium'})
         case 'admin':
             req.logger.info('User ' + req.user._id + ' logged in')
-            return res.redirect('/admin',200,{status: 'success', payload: 'User Admin'})
+            return res.redirect('/',200,{status: 'success', payload: 'User Admin'})
     }
 }
    
@@ -44,7 +44,7 @@ export const sessionLogout = async (req, res) => {
             req.session.destroy()
         }
         res.clearCookie('jwtCookie')
-        return res.redirect('/',200,{})
+        return res.redirect('/login',200,{})
     }
     catch (error) {
         res.status(400).send('Error al cerrar sesion')

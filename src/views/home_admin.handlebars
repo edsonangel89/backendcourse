@@ -1,27 +1,23 @@
 <nav class="navbar navbar-expand container-fluid shadow position-fixed z-2">
-    <div class="logo-container">
+    <div class="logo-container-admin">
         <img class="brand-logo" src="/assets/logo__svg.svg"/>
     </div>
-    <div class="links-container">
-        <div class="form-container">
-            <form class="form-close" action="/api/sessions/logout" method="get">
-                <h6 class="mx-3 h6-nav">Hola <strong>{{name}}</strong></h6>
-                <a href="#" class="material-symbols-outlined">notifications</a>
-                <img class="user-default-image dropdown-toggle" src="/assets/user_def.svg" role="button" data-bs-toggle="dropdown"  aria-expanded="false"/><!--data-bs-target="#collapse_demo" collapse menu-collapse-->
-                <div id="collapse_demo" class="dropdown-menu" >
-                    <a class="dropdown-item" href="/add">Agregar producto</a>
-                    <a class="dropdown-item" href="/delete">Borrar producto</a>
-                    <a class="dropdown-item" href="/support">Soporte</a>
-                    <a class="dropdown-item" href="/api/sessions/logout">Cerrar sesion</a>
-                </div>
-            </form>
-        </div>
+    <div class="form-container-admin">
+        <form class="form-close" action="/api/sessions/logout" method="get">
+            <h6 class="mx-3 h6-nav">Hola <strong>{{name}}</strong></h6>
+            <a href="#" class="material-symbols-outlined">notifications</a>
+            <img id="test" class="user-default-image" src="/assets/user_def.svg" role="button" /><!--data-bs-target="#collapse_demo" collapse menu-collapse-->
+            <ul id="collapse_menu" class="dropdown-menu" >
+                <li><a href="/add">Agregar producto</a></li>
+                <li><a href="/delete">Borrar producto</a></li>
+                <li><a href="/support">Soporte</a></li>
+                <li><a href="/api/sessions/logout">Cerrar sesion</a></li>
+            </ul>
+        </form>
     </div>
 </nav>
 <div class="admin-container">
-    <!--<div class="admin-forms">
-    </div>-->
-    <div class="cards-container p-3 justify-content-around">
+    <div class="cards-container justify-content-around">
         {{#each productsList}}
             <div class="card my-2 rounded-1">
                 <img src='' class="card-img-top" alt="Thumbnail">
