@@ -30,7 +30,7 @@
         <p class="product-description">{{product._doc.description}}</p>
         <p class="product-price">$ {{product._doc.price}}</p>
         <form class="product-detail-form" action="/api/carts/{{cin}}/product/{{product._doc._id}}" method="post">
-            <button type="submit" class="btn" style="border-radius: 5rem;">Agregar al carrito</button>
+            <button type="submit" class="btn">Agregar al carrito</button>
             <a type="button" href="/thank" class="btn" style="border-radius: 8px;">Comprar ahora</a>
         </form>
     </div>
