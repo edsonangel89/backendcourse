@@ -9,23 +9,21 @@
         </form>
     </div>
     <div class="form-container">
-        <form class="form-close" action="/api/sessions/logout" method="get">
-            <a href="#" class="material-symbols-outlined">notifications</a>
-            <img id="test" class="user-default-image" src="/assets/user_def.svg" role="button" />
-            <ul id="collapse_menu" class="dropdown-menu" >
-                <li><a href="/products">Productos</a></li>
-                <li><a href="/support">Soporte</a></li>
-                <li><a href="/api/sessions/logout">Cerrar sesión</a></li>
-            </ul>
-        </form>
+        <a href="#" class="material-symbols-outlined">notifications</a>
+        <img id="test" class="user-default-image" src="/assets/user_def.svg" role="button" />
+        <ul id="collapse_menu" class="dropdown-menu" >
+            <li><a href="/products">Productos</a></li>
+            <li><a href="/support">Soporte</a></li>
+            <li><a href="/api/sessions/logout">Cerrar sesión</a></li>
+        </ul>
     </div>
 </nav>
 <section class="cart-section">
-    <div class="cart-container" style="margin: 5rem auto;">
+    <div class="cart-container">
         {{#if productsList}}
             {{#each productsList}}
-                {{#with _doc.id_product}}
-                    <div class="product-container">
+                <div class="product-container">
+                    {{#with _doc.id_product}}
                         <div class="product-image-container">
                             <img src="" alt="Image not available"/>
                         </div>
@@ -37,37 +35,41 @@
                         <div class="delete-button-container">
                             <a type="button" href="/cart/{{_doc._id}}"><span style="font-size: 2rem; color: red" class="material-symbols-outlined">delete</span></a>
                         </div>
-                    </div>
-                    <hr>
-                {{/with}}  
+                    {{/with}}  
+                        <div class="product-counter-container">
+                            <input type="number" min="1" value='{{_doc.quantity}}'/>
+                        </div>
+                </div>
             {{/each}}
         {{else}}
             {{#if productsListPremium}}
                 {{#each productsListPremium}}
-                    {{#with _doc.id_product}}
-                        <div class="product-container">
+                    <div class="product-container">
+                        {{#with _doc.id_product}}
                             <div class="product-image-container">
                                 <img src="" alt="Image not available"/>
                             </div>
                             <div class="product-info-container">
                                 <h5>{{_doc.title}}</h5>
                                 <p>$ {{_doc.price}}</p>
-                                <span style="color: red;">Descuento Premium</span>
-                                <p style="font-weight:500; color: green">-10 %</p>
+                                <span style="color: green; font-weight: 500">Descuento Premium</span>
+                                <p style="font-weight:500; color: red">-10 %</p>
                             </div>
                             <div class="delete-button-container">
                                 <a type="button" href="/cart/{{_doc._id}}"><span style="font-size: 2rem; color: red" class="material-symbols-outlined">delete</span></a>
                             </div>
-                        </div>
-                        <hr>
-                    {{/with}}  
+                        {{/with}}  
+                            <div class="product-counter-container">
+                                <input type="number" min="1" value='{{_doc.quantity}}'/>
+                            </div>
+                    </div>
                 {{/each}}
             {{else}}
                 <div class="emptycart-container">
                     <h2>Tu carrito esta vacio</h2>
                 </div>
                 <div class="rtnHome">
-                    <a href="/">Seguir comprando</a>
+                    <a href="/products">Seguir comprando</a>
                 </div>
             {{/if}}
         {{/if}}

@@ -60,7 +60,7 @@ export const getProds = async (req, res) => {
                     productsList: products,
                 })
             }
-            else if (req.user.role == 'userPremium') {
+            else if (req.user.role == 'premium') {
                 const productsPrem = await productModel.find()
                 productsPrem.forEach(element => {
                     if (element) {
@@ -91,7 +91,7 @@ export const getDetails = async (req, res) => {
         const prodDetail = await productModel.findOne({_id: pid})
         if (req.user) {
             const user = await userModel.findById(req.user._id)
-            if (req.user.role == 'userPremium') {
+            if (req.user.role == 'premium') {
                 prodDetail.price = prodDetail.price - (prodDetail.price * 0.1)
                 res.status(200).render('product_detail_premium', {
                     title: 'Product',
@@ -133,14 +133,13 @@ export const getCart = async (req, res) => {
                         cid: user.cart
                     })
                 }
-                else if (req.user.role == 'userPremium') {
+                else if (req.user.role == 'premium') {
                     cart.products.forEach(element => {
                         const obj = element.id_product
                         if (obj) {
                             obj.price = obj.price - (obj.price * 0.1)
                         }
                     })
-                    console.log(cart)
                     return res.status(200).render('cart', {
                         title: 'Cart',
                         productsListPremium: cart.products,
@@ -245,9 +244,9 @@ export const delRtp = async (req, res) => {
 
 export const deleteProductView = async (req, res) => {
     const { pid } = req.params
-    const cid = req.user.cart
     try {
         const user = await userModel.findOne({_id: req.user._id})
+        const cid = user.cart
         if (user) {
             const cart = await cartModel.findOne({_id: cid})
             if (cart) {
@@ -263,7 +262,7 @@ export const deleteProductView = async (req, res) => {
                             cid: user.cart
                         })
                     }
-                    else if (req.user.role == 'userPremium') {
+                    else if (req.user.role == 'premium') {
                         cart.products.forEach(element => {
                             const obj = element.id_product
                             if (obj) {
@@ -308,7 +307,6 @@ export const getNewPassword = async (req, res) => {
 export const setNewPassword = async (req, res) => {
     const { token } = req.params
     const { user } = jwt.verify(token,process.env.JWT_SECRET)
-    //console.log(jwt.verify(token,process.env.JWT_SECRET))
     try {
         if (jwt.verify(token, process.env.JWT_SECRET)) {
             res.status(200).render('new_passwords', {

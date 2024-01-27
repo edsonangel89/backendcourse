@@ -11,7 +11,7 @@ export const sessionLogin = (req, res) => {
         case 'user':
             req.logger.info('User ' + req.user._id + ' logged in')
             return res.redirect('/',200,{status: 'success', payload: 'User'})
-        case 'userPremium':
+        case 'premium':
             req.logger.info('User ' + req.user._id + ' logged in')
             return res.redirect('/',200,{status: 'success', payload: 'User Premium'})
         case 'admin':

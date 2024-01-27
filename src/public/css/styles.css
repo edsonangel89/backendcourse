@@ -2,7 +2,8 @@
     --aqua: #72ffff;
     --lightBlue: #00d7ff;
     --darkBlue: #0096ff;
-    --purple: #5800ff
+    --purple: #5800ff;
+    --darkPurple: #4706be;
 }
 body {
     margin: 0;
@@ -124,6 +125,29 @@ button {
 #restorePass:hover {
     color: var(--purple);
 }
+.admin-form .success-btn {
+    background-color: #009929;
+    color: white;
+}
+.admin-form .success-btn:hover {
+    color: #009929;
+    background-color: white;
+}
+.admin-form .fail-btn {
+    background-color: #ff0000;
+    color: white;
+}
+.admin-form .fail-btn:hover {
+    color: #ff0000;
+    background-color: white;
+}
+.form-container-admin a {
+    text-decoration: none;
+    color: var(--darkBlue);
+}
+.form-container-admin a:hover {
+    color: var(--purple);
+}
 
 
 /******************DESKTOP*****************************/
@@ -154,17 +178,23 @@ button {
 
 @media (min-width: 1200px) {
     
-    /*************************  Home and (min-width: 1200px)*/
+    /*******************************************************************************************  Home and (min-width: 1200px)*/
 
     nav {
-        height: 4rem;
+        height: 5.5rem;
         width: 100%;
     }
     .logo-container {
         width: 30%;
+        margin-left: 1.2rem;
         /*border: solid black 1px;*/
     }
     .logo-container-admin {
+        width: 50%;
+        display: flex;
+        justify-content: start;
+    }
+    .logo-container-admin-addel {
         width: 50%;
         display: flex;
         justify-content: end;
@@ -187,16 +217,13 @@ button {
         margin: auto;
         color: var(--darkBlue);
     }
-    .search-container {
-        width: 50%;
-        /*border: solid black 1px;*/
-    }
+    
     /*.form-container {
         width: 20rem;
         display: flex;
         justify-content: end;*/
         /*border: solid black 1px;*/
-    }
+    
     /*.links-container {
         width: 80%;
         display: flex;
@@ -205,7 +232,6 @@ button {
     }*/
     .search-container {
         width: 40%;
-       
     }
     .search-form {
         background-color: white;
@@ -228,10 +254,32 @@ button {
     }
     .form-container {
         width: 30%;
+        margin-right: 1rem;
         display: flex;
+        justify-content: end;
+        align-items: center;
+        /*border: solid black 1px;*/
+    }
+    .form-container a {
+        text-decoration: none;
+        color: var(--darkBlue);
+    }
+    .form-container a:hover {
+        color: var(--purple);
     }
     .form-container-admin {
         width: 50%;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        /*border: solid black 1px;*/
+    }
+    .form-container-admin a {
+        text-decoration: none;
+        color: var(--darkBlue);
+    }
+    .form-container-admin a:hover {
+        color: var(--purple);
     }
     .form-close {
        /* margin: auto 0.5rem;*/
@@ -255,12 +303,13 @@ button {
         margin: 0;
         padding: 0;
         position: absolute;
-        top: 4rem;
+        top: 5.5rem;
         right: 0;
         background-color: white;
         z-index: 3;
         /*border-radius: 0 0 0 0.5rem;*/
         border: none;
+        /*border-radius: 0 0 0 8px;*/
         /*animation: moveon 1s;
         animation-fill-mode: forwards;*/
     }
@@ -305,7 +354,7 @@ button {
     .carousel__set {
         /*border: solid 1px black;*/
         width: 80%;
-        margin: 5.2rem 0 3.5rem 0;
+        margin: 6.5rem 0 3.5rem 0;
         
     }
     .carousel-inner__set {
@@ -435,6 +484,7 @@ button {
 
     .detail-container {
         width: 90%;
+        margin-top: 6.8rem;
         padding: 1rem;
         display: flex;
         background-color: var(--darkBlue);
@@ -461,22 +511,39 @@ button {
     .product-detail-form {
         background-color: white;
     }
+    .product-detail-form .btn:hover{
+        background-color: var(--darkPurple);
+        /*color: var(--purple);*/
+        /*border-color: var(--purple);*/
+    }
 
     /**********************************  cart */
     .cart-section {
         width: 100%;
+        margin-top: 3rem;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
     .cart-container {
         width: 80%;
+        margin: 5rem auto;
         border-radius: 1rem;
         border: solid darkgray 1px;
     }
     .product-container {
         padding: 1.5rem;
-        display: flex;
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        border-bottom: solid gray 1px;
+        /*align-items: center;*/
+        /*border: solid black 1px;*/
+    }
+    .product-container:last-child {
+        border-bottom: none;
+    }
+    .product-container > div {
+        width: 100%;
     }
     .product-image-container {
         width: 25%;
@@ -485,10 +552,12 @@ button {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        /*border: solid black 1px;*/
     }
     .product-info-container {
         width: 50%;
         padding: 2rem;
+        /*border: solid black 1px;*/
     }
     .delete-button-container {
         width: 25%;
@@ -496,6 +565,17 @@ button {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        /*border: solid black 1px;*/
+    }
+    .product-counter-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        grid-area: 1 / 3 / 1 / 4;
+        /*border: solid black 1px;*/
+    }
+    .product-counter-container input{
+        width: 30%;
     }
     .emptycart-container {
         display: flex;
@@ -517,17 +597,16 @@ button {
     /*****************************  admin */
 
     .admin-container {
-        margin-top: 4.5rem;
+        width: 100%;
+        margin-top: 7rem;
         display: grid;
         grid-template-columns: auto auto auto;
     }
     .card {
-        /*
-        You can define card features here
-        */
+        border:  none;
     }
     .cards {
-        margin-top: 4.5rem;
+        margin-top: 7rem;
         display: grid;
         grid-template-columns: auto auto auto auto;
     }
@@ -538,7 +617,7 @@ button {
     }
     .admin-form {
         width: 35%;
-        margin-top: 4.8rem;
+        margin-top: 7rem;
     }
     .admin-form .btn:hover{
         background-color: white;
@@ -571,9 +650,9 @@ button {
     .arrow_back:hover {
         color: var(--purple);
     }
-/*}
+}
 
-/********************  BETWEEN 992PX AND 1200PX   ************************/
+/********************************************************************************************************************  BETWEEN 992PX AND 1200PX   ************************/
 
 @media (min-width: 992px) and (max-width: 1200px){
     nav {
@@ -625,7 +704,7 @@ button {
     }
 }
 
-/********************  BETWEEN 768PX AND 992PX   ************************/
+/********************************************************************************************************************  BETWEEN 768PX AND 992PX   ************************/
 
 @media (min-width: 768px) and (max-width: 992px) {
     nav {
@@ -661,20 +740,51 @@ button {
     }
 }
 
-/********************  BETWEEN 576PX AND 768PX    ************************/
+/********************************************************************************************************************  BETWEEN 576PX AND 768PX    ************************/
 
 @media (max-width: 768px) {
 
+    /********************** Home admin */
+    .cards {
+        width: 98%;
+        grid-template-columns: auto;
+        margin-top: 5rem;
+    }
+    .cards-container {
+        width: 95%;
+        
+        margin: 0 auto;
+        /*border: solid black 1px;*/
+    }
+    .admin-container {
+        width: 100%;
+        margin-top: 6rem;
+        display: grid;
+        grid-template-columns: auto;
+        /*border: solid black 1px;*/
+    }
+    .logo-container-admin {
+        width: 50%;
+        display: flex;
+        justify-content: start;
+    }
+    .form-container-admin {
+        width: 50%;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+    }
+
     /********************** Home */
     nav {
-        height: 4.8rem;
+        height: 4.5rem;
         width: 100%;
     }
     .h5-nav {
         width: 40%;
     }
     .brand-logo {
-        width: 6.5rem;
+        width: 10.5rem;
         margin-left: 0.8rem;
     }
     .logo-container {
@@ -686,11 +796,6 @@ button {
     }
     .search-container button {
         height: 2.5rem;
-    }
-    .cards {
-        width: 98%;
-        grid-template-columns: auto;
-        margin-top: 5rem;
     }
     .user-default-image {
         width: 2rem;
@@ -707,12 +812,19 @@ button {
         width: 50%;
         display: flex;
         justify-content: end;
+        align-items: center;
+        margin-right: 1rem;
         background-color: white;
         /*border: black 1px solid;*/
     }
-    /*.form-container a{
-        width: 20%;
-    }*/
+    .form-container a{
+        padding: 0.7rem;
+        text-decoration: none;
+        color: var(--darkBlue);
+    }
+    .form-container a:hover{
+        color: var(--purple);
+    }
     .dropdown-menu {
         /*width: 16rem;*/
         display: none;
@@ -721,7 +833,7 @@ button {
         margin: 0;
         padding: 0;
         position: absolute;
-        top: 4.7rem;
+        top: 4.5rem;
         right: 0;
         background-color: white;
         z-index: 3;
@@ -898,7 +1010,7 @@ button {
 
     .detail-container {
         width: 100%;
-        height: 610px;
+        margin-top: 4.5rem;
         padding: 1rem;
         display: flex;
         flex-direction: column;
@@ -940,6 +1052,10 @@ button {
         background-color: white;
         /*border: solid black 1px;*/
     }
+    .product-detail-form .btn:hover {
+        background-color: white;
+        color: var(--purple);
+    }
 
     /**********************  Cart */
 
@@ -953,14 +1069,21 @@ button {
     .cart-container {
         width: 95%;
         border-radius: 1rem;
+        margin-top: 4.5rem;
         border: solid darkgray 1px;
     }
     .product-container {
         padding: 0.6rem;
         display: flex;
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        border-bottom: solid black 1px;
         /*border: black solid 1px;*/
         /*flex-direction: column;*/
     }
+    /*.product-container:last-child {
+        border-bottom: none;
+    }*/
     .product-image-container {
         width: 30%;
         padding: 2rem;
@@ -982,6 +1105,16 @@ button {
         align-items: center;
         justify-content: center;
         /*border: solid black 1px;*/
+    }
+    .product-counter-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        grid-area: 1 / 3 / 1 / 4;
+        /*border: solid black 1px;*/
+    }
+    .product-counter-container input{
+        width: 50%;
     }
     .emptycart-container {
         display: flex;
@@ -1012,10 +1145,6 @@ button {
     .register-link {
         font-size: 1rem;
     }
-    .cards-container {
-        width: 100%;
-        border: solid black 1px;
-    }
 
     /********************  Sign */
 
@@ -1024,7 +1153,8 @@ button {
     }
 
     .admin-form {
-        width: 100%;
+        width: 98%;
+        margin-top: 5rem;
     }
     /*input {
         height: 2.5rem;
@@ -1035,84 +1165,26 @@ button {
     .button-sign {
         width: 95%;
     }
-    
-    
-    .admin-container {
-        margin-top: 6rem;
+
+    /******************************  Support, Info, Terms and Privacy  */
+    .logo-container-admin-addel {
+        width: 50%;
+        display: flex;
+        justify-content: end;
+    }
+    .arrow-container-admin {
+        width: 50%;
+    }
+    .arrow-container-admin a{
+        text-decoration: none;
+        color: var(--darkBlue);
+        padding-left: 1rem;
+    }
+    .arrow-container-admin a:hover{
+        color: var(--purple);
+    }
+    .brand-logo-admin {
+        margin-right: 1rem;
+        width: 10rem;
     }
 }
-
-/********************  LOWER THAN 576PX    ************************/
-
-/*@media (max-width: 576px) {*/
-
-    /********************** General */
-    
-    /********************** Home */
-    /*nav {
-        height: 4.8rem;
-    }
-    .user-default-image {
-        width: 3rem;
-        border-radius: 50%;
-    }
-    .h5-nav {
-        width: 40%;
-    }
-    .cards {
-        width: 98%;
-        margin-top: 5rem;
-    }
-    .form-container {
-        width: 60%;
-    }
-    .form-close {
-        /*padding: 0 0.5rem;
-        background-color: white;    
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: end;   
-    }
-    
-    /********************** Login 
-
-    .form-login {
-        width: 95%;
-    }
-    .form-input {
-        margin: 0.8rem auto;
-        font-size: 1.5rem;
-    }
-    .register-link {
-        font-size: 1rem;
-    }
-    .cards-container {
-        width: 100%;
-        border: solid black 1px;
-    }
-    
-    /********************  Sign 
-
-    .form-sign {
-        width: 95%;
-    }
-
-    .admin-form {
-        width: 100%;
-    }
-    input {
-        height: 3.5rem;
-    }
-    button {
-        height: 3rem;
-    }
-    .button-sign {
-        width: 95%;
-    }
-    
-    
-    .admin-container {
-        margin-top: 6rem;
-    }
-}*/

@@ -9,19 +9,15 @@
         </form>
     </div>
     <div class="form-container">
-        <form class="form-close" action="/api/sessions/logout" method="get">
-            <a href="/cart/" class="material-symbols-outlined">shopping_cart</a>
-            <a href="#" class="material-symbols-outlined">notifications</a>
-            <img id="test" class="user-default-image" src="/assets/user_def.svg" role="button"/>
-            <ul id="collapse_menu" class="dropdown-menu" >
-                <li><a href="/login"> Iniciar sesion</a></li>
-                <li><a href="/products">Productos</a></li>
-                <li><a href="/support">Soporte</a></li>
-            </ul>
-        </form>
+        <img id="test" class="user-default-image" src="/assets/user_def.svg" role="button"/>
+        <ul id="collapse_menu" class="dropdown-menu" >
+            <li><a href="/login"> Iniciar sesion</a></li>
+            <li><a href="/products">Productos</a></li>
+            <li><a href="/support">Soporte</a></li>
+        </ul>
     </div>
 </nav>
-<div class="detail-container" style="margin-top: 5rem;">
+<div class="detail-container">
     <div class="prod-img-detail-container">
         <img src="/assets/images/termo.jpg" style="width: 100%;"/>
     </div>
@@ -30,8 +26,26 @@
         <p class="product-description">{{product._doc.description}}</p>
         <p class="product-price">$ {{product._doc.price}}</p>
         <form class="product-detail-form" action="/api/carts/{{cin}}/product/{{product._doc._id}}" method="post">
-            <a type="button" href="/login" class="btn" style="border-radius: 8px;">Agregar al carrito</a>
-            <a type="button" href="/login" class="btn" style="border-radius: 8px;">Comprar ahora</a>
+            <a type="button" href="/login" class="btn">Agregar al carrito</a>
         </form>
     </div>
 </div>
+<footer>
+    <div class="footer__info">
+        <div class="footer__about">
+            <h2>Acerca de</h2>
+            <a href="/info">Punto Aqua</a>
+        </div>
+    </div>
+    <div class="footer__links">
+        <div class="social__media">
+            <a href="https://www.facebook.com/profile.php?id=100087263527212" target="_blank"><i class="fa-brands fa-facebook fa-3x"></i></a>
+            <a href="https://www.google.com/maps/place/Punto+Aqua/@20.6552023,-103.2944247,17z/data=!3m1!4b1!4m6!3m5!1s0x8428b3f170b144a7:0xd3d21c426e3cd34d!8m2!3d20.6551973!4d-103.292236!16s%2Fg%2F11jt5d7d45" target="_blank"><i class="fa-solid fa-location-dot fa-3x"></i></a>
+        </div>
+        <div class="footer__copyright">
+            <a href="/privacy">Aviso de privacidad</a>
+            <a href="/terms">Términos y condiciones</a>
+            <p>&copy;Derechos reservados</p>
+        </div>
+    </div>
+</footer>
