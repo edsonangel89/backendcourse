@@ -312,6 +312,7 @@ export const setNewPassword = async (req, res) => {
             res.status(200).render('new_passwords', {
                 title: 'New password',
                 email: user
+                //,check: 'checkPassword'
             })
         }
     }
