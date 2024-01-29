@@ -19,6 +19,15 @@ export const sessionLogin = (req, res) => {
             return res.redirect('/',200,{status: 'success', payload: 'User Admin'})
     }
 }
+
+export const errorUser = (req, res) => {
+    try {
+        res.status(200).render('error_user', {})
+    }
+    catch (error) {
+        res.status(400).render('error', {})
+    }
+}
    
 export const sessionSign = (req, res) => {
     try {

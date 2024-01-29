@@ -6,12 +6,12 @@ import { sessionLogin,
         getSessionSign, 
         sessionLogout, 
         githubCallback, 
-        currentSession 
+        currentSession,
     } from "../controllers/sessions.controller.js"
 
 const sessionRouter = Router()
 
-sessionRouter.post('/login', passport.authenticate('login'), sessionLogin)
+sessionRouter.post('/login', passport.authenticate('login', { failureRedirect: '/erroruser'}), sessionLogin)
 sessionRouter.post('/sign', passport.authenticate('sign'), sessionSign)
 sessionRouter.get('/sign', getSessionSign)
 sessionRouter.get('/logout', sessionLogout)

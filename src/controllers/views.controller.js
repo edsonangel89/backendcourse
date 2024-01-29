@@ -4,6 +4,7 @@ import { cartModel } from "../models/carts.models.js"
 import { getProducts } from "./products.controller.js"
 import 'dotenv/config'
 import jwt from 'jsonwebtoken'
+import { tr } from "@faker-js/faker"
 
 export const getRoot = async (req, res) => {
     try {
@@ -221,7 +222,7 @@ export const postRtp = async (req, res) => {
         })
     }
     catch (error) {
-        res.status(400).send('Error al agregar articulos\n' + error)
+        res.status(400).render('error_products', {})
     }
 }
 
@@ -238,7 +239,7 @@ export const delRtp = async (req, res) => {
         })
     }
     catch (error) {
-        res.status(400).send('Error al borrar el producto por medio de las vistas\n' + error)
+        res.status(400).render('error_products', {})
     }
 }
 
@@ -312,12 +313,20 @@ export const setNewPassword = async (req, res) => {
             res.status(200).render('new_passwords', {
                 title: 'New password',
                 email: user
-                //,check: 'checkPassword'
             })
         }
     }
     catch (error) {
         res.status(400).send('Error en la restauracion de contrasena')
+    }
+}
+
+export const errorUser = (req, res) => {
+    try {
+        res.status(200).render('error_user', {})
+    }
+    catch (error) {
+        res.status(400).send('Error')
     }
 }
 

@@ -72,7 +72,7 @@ export const verifyUser = async (req, res) => {
             }
         }
         else {
-            res.status(404).send('Usuario no existe')
+            res.status(404).render('non_exist_user',{})
         }
     }
     catch (error) {

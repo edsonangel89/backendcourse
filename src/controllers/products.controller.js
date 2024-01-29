@@ -80,7 +80,6 @@ export const addProduct = async (req, res) => {
             code: EErrors.INVALID_TYPES_ERROR
         })
     }
-
     try {
         const price = parseFloat(pricePrecision).toPrecision(3)
         const addedProduct = await productModel.create({ title, description, code, price, stock, category, thumbnail})
