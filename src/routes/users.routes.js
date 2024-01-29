@@ -16,6 +16,6 @@ usersRouter.put('/:uid', )
 usersRouter.put('/:uid', authorize('admin'), updateUser)
 usersRouter.delete('/:uid', authorize('admin'), deleteUser)
 usersRouter.post('/restorePassword', verifyUser)
-usersRouter.get('/newPasswords/:email', updatePassword)
+usersRouter.post('/newPasswords/:email', updatePassword)
 
 export default usersRouter
