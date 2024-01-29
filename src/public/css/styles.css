@@ -43,6 +43,11 @@ form {
     background-color: white;
     color: var(--purple);
 }
+.finish .btn:hover{
+    background-color: white;
+    color: var(--purple);
+    border: solid 1px var(--purple);
+}
 .form-body {
     display: flex;
     flex-direction: column;
@@ -255,8 +260,10 @@ button {
         /*border: solid black 1px;*/
     }
     .form-container a {
+        margin: auto 0.5rem;
         text-decoration: none;
         color: var(--darkBlue);
+        /*border: solid black 1px;*/
     }
     .form-container a:hover {
         color: var(--purple);
@@ -657,6 +664,37 @@ button {
     .arrow_back:hover {
         color: var(--purple);
     }
+
+    /************************************************************  thank page */
+
+    .thank__page {
+        margin: 5rem auto;
+        /*padding: 2rem;*/
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /*border: solid black 1px;*/
+    }
+    .finish .btn{
+        width: 100%;
+        background-color: var(--purple);
+        color: white;
+    }
+    .thank_icon {
+        width: 5rem;
+    }
+    .success__icon {
+        width: 60%;
+    }
+    .finish {
+        width: 100%;
+        margin: 1rem auto;
+        /*border: solid black 1px;*/
+    }
+    .thanks {
+        color: #009929;
+    }
 }
 
 /****************************************************  BETWEEN 992PX AND 1200PX   ************************/
@@ -774,9 +812,9 @@ button {
         display: flex;
         justify-content: end;
         align-items: center;
-        /*border: solid black 1px;*/
     }
     .form-container a {
+        margin: auto 0.4rem;
         text-decoration: none;
         color: var(--darkBlue);
     }
@@ -1114,6 +1152,37 @@ button {
         background-color: var(--darkPurple);
         /*color: var(--purple);*/
         /*border-color: var(--purple);*/
+    }
+
+    /************************************************************  thank page */
+
+    .thank__page {
+        margin: 5rem auto;
+        /*padding: 2rem;*/
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /*border: solid black 1px;*/
+    }
+    .finish .btn{
+        width: 100%;
+        background-color: var(--purple);
+        color: white;
+    }
+    .thank_icon {
+        width: 5rem;
+    }
+    .success__icon {
+        width: 80%;
+    }
+    .finish {
+        width: 100%;
+        margin: 1rem auto;
+        /*border: solid black 1px;*/
+    }
+    .thanks {
+        color: #009929;
     }
 }
 
@@ -1522,6 +1591,37 @@ button {
     }
     .product-detail-form .btn:hover{
         background-color: var(--darkPurple);
+    }
+
+    /************************************************************  thank page */
+
+    .thank__page {
+        margin: 5rem auto;
+        /*padding: 2rem;*/
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /*border: solid black 1px;*/
+    }
+    .finish .btn{
+        width: 100%;
+        background-color: var(--purple);
+        color: white;
+    }
+    .thank_icon {
+        width: 5rem;
+    }
+    .success__icon {
+        width: 80%;
+    }
+    .finish {
+        width: 100%;
+        margin: 1rem auto;
+        /*border: solid black 1px;*/
+    }
+    .thanks {
+        color: #009929;
     }
 }
 
@@ -1988,5 +2088,41 @@ button {
     .brand-logo-admin {
         margin-right: 1rem;
         width: 10rem;
+    }
+
+    /************************************************************  thank page */
+
+    .thank__page {
+        margin: 5rem auto;
+        width: 100%;
+        /*padding: 2rem;*/
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /*border: solid black 1px;*/
+    }
+    .finish .btn{
+        width: 95%;
+        background-color: var(--purple);
+        color: white;
+    }
+    .thank_icon {
+        width: 5rem;
+        /*border: solid black 1px;*/
+    }
+    .success__icon {
+        width: 50%;
+        /*border: solid black 1px;*/
+    }
+    .finish {
+        width: 100%;
+        margin: 1rem auto;
+        display: flex;
+        justify-content: center;
+        /*border: solid black 1px;*/
+    }
+    .thanks {
+        color: #009929;
     }
 }
