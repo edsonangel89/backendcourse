@@ -65,7 +65,7 @@ export const verifyUser = async (req, res) => {
         const user = await userModel.findOne({ email: email })
         if (user) {
             if (send(user.fname, user.email)) {
-                res.status(200).send('Correo enviado')
+                res.status(200).render('mail_sent', {})
             }
             else {
                 res.status(400).send('Error al enviar correo de restauracion')
