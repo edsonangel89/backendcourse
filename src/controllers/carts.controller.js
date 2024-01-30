@@ -179,3 +179,24 @@ export const updateCart = async (req, res) => {
         return res.status(400).send('Error de actualizacion de carrito\n' + error)
     }
 }
+
+export const buy = async (req, res) => {
+    const { cid } = req.params
+    try {
+        const cart = await cartModel.findById(cid)
+        const products = cart.products
+        if (products) {
+            products.map(() => {
+                products.pop()
+            })
+            await cartModel.findByIdAndUpdate(cid, cart)
+            res.redirect('/thank',200, {})
+        }
+        else {
+            res.status(404).send('No existe el producto')
+        }
+    }
+    catch (error) {
+        res.status(400).send('Error en la compra')
+    }
+}

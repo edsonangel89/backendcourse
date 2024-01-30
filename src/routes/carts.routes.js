@@ -5,7 +5,8 @@ import { createCart,
         deleteProduct, 
         deleteCart, 
         updateProductInCart, 
-        updateCart 
+        updateCart,
+        buy 
     } from '../controllers/carts.controller.js'
 
 const cartsRouter = Router()
@@ -14,6 +15,7 @@ cartsRouter.post('/', createCart)
 cartsRouter.get('/:cid', getCartById)
 cartsRouter.post('/:cid/product/:pid', addProduct)
 cartsRouter.get('/:cid/product/:pid', deleteProduct)
+cartsRouter.get('/:cid/buy', buy)
 cartsRouter.delete('/:cid/product/:pid', deleteProduct)
 cartsRouter.delete('/:cid', deleteCart)
 cartsRouter.put('/:cid/product/:pid', updateProductInCart)

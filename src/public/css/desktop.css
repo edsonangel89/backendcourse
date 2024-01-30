@@ -375,7 +375,7 @@
         justify-content: center;
     }
     .buy .btn{
-        width: 50%;
+        width: 15rem;
         height: 3rem;
     }
     .rtnHome {
@@ -840,7 +840,7 @@
         justify-content: center;
     }
     .buy .btn{
-        width: 70%;
+        width: 12rem;
     }
     .emptycart-container {
         display: flex;

@@ -42,7 +42,9 @@
                 </div>
             {{/each}}
             <div class="buy">
-                <a type="button" href="/thank" class="btn">Comprar</a>
+                <form action="/api/carts/{{cid}}/buy">
+                    <button type="submit" href="/thank" class="btn" style="border-radius: 8px;">Comprar ahora</button>
+                </form>
             </div>
         {{else}}
             {{#if productsListPremium}}
@@ -68,7 +70,9 @@
                     </div>
                 {{/each}}
                 <div class="buy">
-                    <a type="button" href="/thank" class="btn" style="border-radius: 8px;">Comprar ahora</a>
+                    <form class="buy_form" action="/api/carts/{{cid}}/buy">
+                        <button type="submit" href="/thank" class="btn" style="border-radius: 8px;">Comprar ahora</button>
+                    </form>
                 </div>
             {{else}}
                 <div class="emptycart-container">

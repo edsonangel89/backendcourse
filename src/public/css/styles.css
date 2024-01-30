@@ -175,3 +175,8 @@ button {
     margin-right: 1rem;
     width: 10rem;
 }
+.buy .btn:hover {
+    background-color: white;
+    border: solid var(--darkPurple) 1px;
+    color: var(--darkPurple);
+}
