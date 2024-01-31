@@ -81,13 +81,19 @@ export const addProduct = async (req, res) => {
         })
     }
     try {
+        if (price >= 1000 || stock >= 199) {
+            throw new Error('Verifique los datos')
+        }
+        else {
         const price = parseFloat(pricePrecision).toPrecision(3)
         const addedProduct = await productModel.create({ title, description, code, price, stock, category, thumbnail})
-        req.logger.info('Product added: ')
+        req.logger.info(`Product added: - ${ new Date().toLocaleTimeString() } : ${ new Date().toLocaleDateString() }`)
         req.logger.info(addedProduct)
-        return res.status(201).send('Producto agregado')       
+        return res.status(201).send('Producto agregado')  
+    }     
     }
     catch (error) {
+        req.logger.error(`Error al agregar producto - ${ new Date().toLocaleTimeString() } : ${ new Date().toLocaleDateString() } \n` + error)
         return res.status(400).send('Error en el registro de producto\n' + error)
     }
 }
@@ -97,8 +103,8 @@ export const updateProduct = async (req, res) => {
     const { title, description, code, price, stock, category, thumbnail } = req.body
     try {
         const updatedProduct = await productModel.findByIdAndUpdate( pid, { title, description, code, price, stock, category, thumbnail })
-        console.log('Product updated:')
-        console.log(updatedProduct)
+        req.logger.info(`Product updated: ` + updatedProduct._id + ` - ${ new Date().toLocaleTimeString() } : ${ new Date().toLocaleDateString() }`)
+        req.logger.info(updatedProduct)
         return res.status(200).send(updatedProduct)
     }
     catch (error) {

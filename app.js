@@ -10,25 +10,13 @@ import MongoStore from 'connect-mongo'
 import initialize from './src/config/passport.js'
 import passport from 'passport'
 import errorHandler from './src/middleware/errors/index.js'
-import { addInfoLogger } from "./src/config/logger.js"
+import { addLogger } from "./src/config/logger.js"
 import swaggerJsdoc from 'swagger-jsdoc'
 import swaggerUiExpress from 'swagger-ui-express'
 
 const app = express()
 const port = process.env.PORT
 const httpS = app.listen(port,() => console.log(`Server on port ${port}`))
-
-/*const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
-    auth: {
-        user: 'puntoaquaoficial@gmail.com',
-        pass: process.env.MAIL_PASSWORD,
-        authMethod: 'LOGIN'
-    }
-})*/
-
 
 mongoose.connect(process.env.MONGO_URL)
 .then(async () => {console.log('BDD Conectada')})
@@ -52,7 +40,7 @@ app.engine('handlebars',handlebars.engine())
 app.set('views',__dirname + '/views')
 app.set('view engine','handlebars')
 
-app.use(addInfoLogger)
+app.use(addLogger)
 app.use(express.static(__dirname + '/public'))
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))

@@ -2,49 +2,57 @@ import winston from "winston"
 
 const loggerOptions = {
     levels: {
-        fatal: 0,
-        error: 1,
-        warning: 2,
-        info: 3,
-        debug: 4
+        error: 0,
+        warn: 1,
+        info: 2,
+        http: 3,
+        verbose: 4,
+        debug: 5,
+        silly: 6
     },
     colors: {
-        fatal: 'red',
-        error: 'gray',
-        warning: 'yellow',
+        error: 'red',
+        warn: 'yellow',
         info: 'green',
-        debug: 'blue'
+        http: 'gray',
+        verbose: 'gray',
+        debug: 'gray',
+        silly: 'gray'
     }
 }
 
 const logger = winston.createLogger({
     transports: [
-        new winston.transports.Console({ 
-            level: 'info',
-            format: winston.format.combine(
-                winston.format.colorize({ colors: loggerOptions.colors }),
-                winston.format.simple()
-            ) }),
         new winston.transports.File({
-            filename: './errors.log', 
-            level: 'fatal',
-            format: winston.format.combine(
-                winston.format.colorize({ colors: loggerOptions.colors }),
-                winston.format.simple()
-            )}),
-        new winston.transports.File( {
-            filename: './info.log',
+            filename: './info.log', 
             level: 'info',
             format: winston.format.combine(
                 winston.format.colorize({ colors: loggerOptions.colors }),
                 winston.format.simple()
-            )
-        })
+        )}),
+        new winston.transports.File({
+            filename: './error.log', 
+            level: 'error',
+            format: winston.format.combine(
+                winston.format.colorize({ colors: loggerOptions.colors }),
+                winston.format.simple()
+        )}),
+        new winston.transports.Console({ 
+            level: 'error',
+            format: winston.format.combine(
+                winston.format.colorize({ colors: loggerOptions.colors }),
+                winston.format.simple()
+        )})
     ]
 })
 
-export const addInfoLogger = (req,res,next) => {
+export const addLogger = (req, res, next) => {
     req.logger = logger
-    req.logger.info(`${req.method} en ${req.url} - ${ new Date().toLocaleTimeString() }`)
+    
+    //console.log(logger.level == 'info')
+    /*if (logger.level == 'error') {
+        logger.error(`${req.method} en ${req.url} - ${ new Date().toLocaleTimeString() }`)
+        next()
+    }*/
     next()
 }

@@ -116,6 +116,9 @@ button {
 .cards {
     display: grid;
 }
+.card {
+    background-color: whitesmoke;
+}
 .button-account {
     color: var(--purple);
 }
@@ -179,4 +182,15 @@ button {
     background-color: white;
     border: solid var(--darkPurple) 1px;
     color: var(--darkPurple);
+}
+
+
+/********************************************  admin home */
+
+.admin_text {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-wrap: wrap;
 }

@@ -11,28 +11,30 @@ export const getRoot = async (req, res) => {
         if (req.user) {
             const user = await userModel.findOne({_id: req.user._id})
             if (user) {
-                console.log(user)
                 if (user.role == 'admin') {
                     const productsList = await productModel.find()
                     res.status(200).render('home_admin', {
                         title: 'Admin',
                         name: user.fname,
-                        productsList
+                        productsList,
+                        script: '/js/index.js'
                     })
                 }
                 else {
                     res.status(200).render('home_user', {
                         title: 'Home',
                         name: user.fname,
-                        cart: user.cart
+                        cart: user.cart,
+                        script: '/js/index.js'
                     })
                 }
             }
         }
         else {
             res.status(200).render('home_logout', { 
-                title: 'Home'
-                })
+                title: 'Home',
+                script: '/js/index.js'
+            })
         }
     }
     catch (error) {
@@ -59,6 +61,7 @@ export const getProds = async (req, res) => {
                 res.status(200).render('products_user', {
                     title: 'Products',
                     productsList: products,
+                    script: '/js/index.js'
                 })
             }
             else if (req.user.role == 'premium') {
@@ -71,6 +74,7 @@ export const getProds = async (req, res) => {
                 return res.status(200).render('products_premium', {
                     title: 'Products',
                     productsList: productsPrem,
+                    script: '/js/index.js'
                 })
             }
         }
@@ -78,6 +82,7 @@ export const getProds = async (req, res) => {
             res.status(200).render('products_logout', {
                 title: 'Products',
                 productsList: products,
+                script: '/js/index.js'
             })
         }
     }
@@ -97,21 +102,24 @@ export const getDetails = async (req, res) => {
                 res.status(200).render('product_detail_premium', {
                     title: 'Product',
                     product: prodDetail,
-                    cin: user.cart
+                    cin: user.cart,
+                    script: '/js/index.js'
                 })
             }
             else {
                 res.status(200).render('product_detail_user', {
                     title: 'Product',
                     product: prodDetail,
-                    cin: user.cart
+                    cin: user.cart,
+                    script: '/js/index.js'
                 })
             }
         }
         else {
             return res.status(200).render('product_detail_logout', {
                 title: 'Product',
-                product: prodDetail
+                product: prodDetail,
+                script: '/js/index.js'
             })
         }
     }
@@ -131,7 +139,8 @@ export const getCart = async (req, res) => {
                     return res.status(200).render('cart', {
                         title: 'Cart',
                         productsList: cart.products,
-                        cid: user.cart
+                        cid: user.cart,
+                        script: '/js/index.js'
                     })
                 }
                 else if (req.user.role == 'premium') {
@@ -144,7 +153,8 @@ export const getCart = async (req, res) => {
                     return res.status(200).render('cart', {
                         title: 'Cart',
                         productsListPremium: cart.products,
-                        cid: user.cart
+                        cid: user.cart,
+                        script: '/js/index.js'
                     })
                 }
             }
@@ -154,7 +164,8 @@ export const getCart = async (req, res) => {
         }
         else {
             return res.status(200).render('cart', {
-                title: 'Cart'
+                title: 'Cart',
+                script: '/js/index.js'
             })
         }
     }
@@ -166,7 +177,8 @@ export const getCart = async (req, res) => {
 export const getSign = async (req, res) => {
     try {
         res.status(200).render('signup', {
-            title: 'Sign up'
+            title: 'Sign up',
+            script: '/js/signcheck.js'
         })
     }
     catch (error) {
@@ -182,7 +194,8 @@ export const getHome = async (req, res) => {
             res.status(200).render('home_user', {
                 title: 'Home',
                 productsList: products,
-                name: user.fname
+                name: user.fname,
+                script: '/js/index.js'
             })
         }
         else {
@@ -201,7 +214,8 @@ export const getRtp = async (req, res) => {
         res.status(200).render('home_admin', {
             productsList,
             title: 'Admin',
-            name: user.fname
+            name: user.fname,
+            script: '/js/index.js'
         })
     }
     catch (error) {
@@ -212,16 +226,25 @@ export const getRtp = async (req, res) => {
 export const postRtp = async (req, res) => {
     const { title, description, code, price, stock, category } = req.body
     try {
-        const user = await userModel.findOne({email: req.user.email})
-        await productModel.create({ title, description, code, price, stock, category })
-        const productsList = await productModel.find()
-        res.status(200).render('home_admin', {
-            productsList,
-            title: 'Real Time',
-            name: user.fname
-        })
+        if (price >= 1000 || stock >= 199) {
+            throw new Error('Verifique los datos')
+        }
+        else {
+            const user = await userModel.findOne({email: req.user.email})
+            const newProduct = await productModel.create({ title, description, code, price, stock, category })
+            const productsList = await productModel.find()
+            req.logger.info(`Product added: - ${ new Date().toLocaleTimeString() } : ${ new Date().toLocaleDateString() }`)
+            req.logger.info(newProduct)
+            res.status(200).render('home_admin', {
+                productsList,
+                title: 'Admin',
+                name: user.fname,
+                script: '/js/index.js'
+            })
+        }
     }
     catch (error) {
+        req.logger.error(`Error al agregar producto - ${ new Date().toLocaleTimeString() } : ${ new Date().toLocaleDateString() }\n` + error)
         res.status(400).render('error_products', {})
     }
 }
@@ -230,12 +253,14 @@ export const delRtp = async (req, res) => {
     const { pid } = req.body
     try {
         const user = await userModel.findOne({email: req.user.email})
-        await productModel.findByIdAndDelete(pid)
+        const deletedProduct = await productModel.findByIdAndDelete(pid)
         const productsList = await productModel.find()
+        req.logger.info(`Product  ` + deletedProduct._id + ` removed - ${ new Date().toLocaleTimeString() } : ${ new Date().toLocaleDateString() }`)
         res.status(200).render('home_admin', {
             productsList,
-            title: 'Real Time',
-            name: user.fname
+            title: 'Admin',
+            name: user.fname,
+            script: '/js/index.js'
         })
     }
     catch (error) {
@@ -260,7 +285,8 @@ export const deleteProductView = async (req, res) => {
                         return res.status(200).render('cart', {
                             title: 'Cart',
                             productsList: newProducts,
-                            cid: user.cart
+                            cid: user.cart,
+                            script: '/js/index.js'
                         })
                     }
                     else if (req.user.role == 'premium') {
@@ -273,23 +299,28 @@ export const deleteProductView = async (req, res) => {
                         return res.status(200).render('cart', {
                             title: 'Cart',
                             productsListPremium: newProducts,
-                            cid: user.cart
+                            cid: user.cart,
+                            script: '/js/index.js'
                         })
                     }
                 }
                 else {
+                    req.logger.error('Producto no encontrado')
                     res.status(404).send('Producto no encontrado')
                 }
             }
             else {
+                req.logger.error('Carrito no encontrado')
                 res.status(404).send('Carrito no encontrado')
             }
         }
         else {
+            req.logger.error('Usuario no encontrado')
             res.status(404).send('Usuario no encontrado')
         }
     }
     catch (error) {
+        req.logger.error(error)
         res.status(400).send('Error al eliminar producto en Views\n' + error)
     }
 }
@@ -312,7 +343,8 @@ export const setNewPassword = async (req, res) => {
         if (jwt.verify(token, process.env.JWT_SECRET)) {
             res.status(200).render('new_passwords', {
                 title: 'New password',
-                email: user
+                email: user,
+                script: '/js/checkPasswords.js'
             })
         }
     }
@@ -323,6 +355,7 @@ export const setNewPassword = async (req, res) => {
 
 export const errorUser = (req, res) => {
     try {
+        req.logger.error(`Fail login or signup - ${ new Date().toLocaleDateString() } : ${new Date().toLocaleTimeString()}`)
         res.status(200).render('error_user', {})
     }
     catch (error) {

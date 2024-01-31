@@ -1,22 +1,28 @@
 import { makeToken } from "../utils/jwt.js"
 
 export const sessionLogin = (req, res) => {
-    const token = makeToken(req.user)
-    res.cookie('jwtCookie', token, {
-        maxAge: 40000000
-    })
-    const userRole = req.user.role
+    try {
+        const token = makeToken(req.user)
+        res.cookie('jwtCookie', token, {
+            maxAge: 40000000
+        })
+        const userRole = req.user.role
 
-    switch(userRole) {
-        case 'user':
-            req.logger.info('User ' + req.user._id + ' logged in')
-            return res.redirect('/',200,{status: 'success', payload: 'User'})
-        case 'premium':
-            req.logger.info('User ' + req.user._id + ' logged in')
-            return res.redirect('/',200,{status: 'success', payload: 'User Premium'})
-        case 'admin':
-            req.logger.info('User ' + req.user._id + ' logged in')
-            return res.redirect('/',200,{status: 'success', payload: 'User Admin'})
+        switch(userRole) {
+            case 'user':
+                req.logger.info('User ' + req.session.passport.user + ` logged in - ${new Date().toLocaleTimeString()} : ${ new Date().toLocaleDateString() }`)
+                return res.redirect('/',200,{status: 'success', payload: 'User'})
+            case 'premium':
+                req.logger.info('User ' + req.session.passport.user + ` logged in - ${new Date().toLocaleTimeString()} : ${ new Date().toLocaleDateString() }`)
+                return res.redirect('/',200,{status: 'success', payload: 'User Premium'})
+            case 'admin':
+                req.logger.info('User ' + req.session.passport.user + ` logged in - ${new Date().toLocaleTimeString()} : ${ new Date().toLocaleDateString() }`)
+                return res.redirect('/',200,{status: 'success', payload: 'User Admin'})
+            }
+    }
+    catch (error) {
+        req.logger.error(`Fail login - ${ new Date().toLocaleDateString() } : ${new Date().toLocaleTimeString()}`)
+        res.status(400).redirect('/', {})
     }
 }
 
@@ -31,8 +37,7 @@ export const errorUser = (req, res) => {
    
 export const sessionSign = (req, res) => {
     try {
-        console.log('New user added:\n')
-        console.log(req.user)
+        req.logger.info(`New user added with ID: ` + req.user._id + ` - ${new Date().toLocaleTimeString()} : ${new Date().toLocaleDateString()}`)
         req.session.destroy()
         res.redirect('/login',200,{status: 'success'})
     }
@@ -47,9 +52,8 @@ export const getSessionSign = async (req, res) => {
 
 export const sessionLogout = async (req, res) => {
     try {
-        console.log(req.session)
         if (req.session) {
-            console.log('User ' + req.session.passport.user + ' logged out')
+            req.logger.info('User ' + req.session.passport.user + ` logged out - ${new Date().toLocaleTimeString()} : ${ new Date().toLocaleDateString() }`)
             req.session.destroy()
         }
         res.clearCookie('jwtCookie')
@@ -67,6 +71,7 @@ export const currentSession = async (req, res) => {
 export const githubCallback = async (req, res) => {
     req.session.user = req.user
     if (req.session.user) {
+        req.logger.info('User ' + req.session.user._id + ` logged in - ${new Date().toLocaleTimeString()} : ${ new Date().toLocaleDateString() }`)
         return res.redirect('/',200,{})
     }
     else {

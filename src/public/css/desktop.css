@@ -409,6 +409,10 @@
         grid-template-columns: auto auto auto auto;
         gap: 2rem;
     }
+    
+
+    /***********************************************************************  add_product */
+
     .admin-form {
         width: 35%;
         margin-top: 7rem;
@@ -417,9 +421,6 @@
         background-color: white;
         color: var(--purple);
     }
-
-    /***********************************************************************  add_product */
-
     .admin-form .success-btn {
         background-color: #009929;
         color: white;

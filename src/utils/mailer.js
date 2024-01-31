@@ -32,3 +32,22 @@ export const send = async (fname, email) => {
     })
     return true
 }
+
+export const thanks = async (fname, email) => {
+    const tokMail = passToken(email)
+    const resultado = await transporter.sendMail({
+    from: 'Punto Aqua puntoaquaoficial@gmail.com',
+    to: email,
+    subject: 'Muchas gracias!!!',
+    html: 
+        `
+            <div>
+                <h1>Hola ${fname}</h1>
+                <h3>Muchas gracias por tu compra</h3>
+                <p>Agradecemos tu preferencia, esperamos seguir sirviendote</p>
+            </div>
+        `
+    })
+    return true
+}
+

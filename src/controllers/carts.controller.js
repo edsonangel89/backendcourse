@@ -1,5 +1,6 @@
 import { cartModel } from "../models/carts.models.js"
 import { productModel } from "../models/products.models.js"
+import { thanks } from "../utils/mailer.js"
 
 export const createCart = async (req, res) => {
     try {
@@ -182,6 +183,8 @@ export const updateCart = async (req, res) => {
 
 export const buy = async (req, res) => {
     const { cid } = req.params
+    const name = req.user.fname
+    const email = req.user.email
     try {
         const cart = await cartModel.findById(cid)
         const products = cart.products
@@ -190,6 +193,7 @@ export const buy = async (req, res) => {
                 products.pop()
             })
             await cartModel.findByIdAndUpdate(cid, cart)
+            thanks(name, email)
             res.redirect('/thank',200, {})
         }
         else {

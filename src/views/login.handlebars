@@ -4,10 +4,10 @@
 <form class="form-login p-4" id="login" action="/api/sessions/login" method="post">
     <div class="h-100 form-body">
         <div class="form-input">
-            <input type="email" id="email" name="email" class="form-control shadow-sm" placeholder="Correo electrónico" required />
+            <input type="email" id="email" name="email" class="form-control shadow-sm" placeholder="Correo electrónico" required maxlength="50"/>
         </div>
         <div id="register" class="form-input">
-            <input type="password" id="password" name="password" class="form-control shadow-sm" placeholder="Contraseña" required/>
+            <input type="password" id="password" name="password" class="form-control shadow-sm" placeholder="Contraseña" required maxlength="40"/>
         </div>
         <div class="register-link">
             <span style="margin-right: 0.5rem;">No tienes cuenta?</span>
@@ -15,7 +15,7 @@
         </div>
         <div class="form-buttons d-flex flex-column flex-center justify-content-center">
             <button type="submit" class="btn">Iniciar sesión</button>
-            <a id="restorePass" href="/reset">Olvide mi contraseña</a>
+            <a id="restorePass" href="/reset">Olvidé mi contraseña...</a>
         </div>
     </div>
 </form>

@@ -4,27 +4,27 @@
 <form class="m-3 form-sign" id="sign" action="/api/sessions/sign" method="post">
     <div class="m-3">
         <label for="fname" class="form-label">Nombre</label>
-        <input type="text" id="fname" name="fname" required class="form-control"/>
+        <input type="text" id="fname" name="fname" required class="form-control" maxlength="40"/>
     </div>
     <div class="m-3">
         <label for="lname" class="form-label">Apellido</label>
-        <input type="text" id="lname" name="lname" required class="form-control"/>
+        <input type="text" id="lname" name="lname" required class="form-control" maxlength="40"/>
     </div>
     <div class="m-3">
         <label for="age" class="form-label">Edad</label>
-        <input type="number" min="1" placeholder="0" id="age" name="age" required class="form-control" />
+        <input type="number" min="1" max="150" placeholder="0" id="age" name="age" required class="form-control" />
     </div>
     <div class="m-3">
         <label for="email" class="form-label">Correo electrónico</label>
-        <input type="email" id="email" name="email" required class="form-control"/>
+        <input type="email" id="email" name="email" required class="form-control" maxlength="50"/>
     </div>
     <div class="m-3">
         <label for="password" class="form-label">Contraseña</label>
-        <input type="password" id="password" name="password" required class="form-control"/>
+        <input type="password" id="password" name="password" required class="form-control" maxlength="40"/>
     </div>
     <div class="m-3">
         <label for="repassword" class="form-label">Confirme contraseña</label>
-        <input type="password" id="repassword" name="repassword" required class="form-control"/>
+        <input type="password" id="repassword" name="repassword" required class="form-control" maxlength="40"/>
     </div>
     <div class="d-flex justify-content-center">
         <button id="signbtn" type="submit" class="button-sign btn m-3" disabled >Registrar</button>

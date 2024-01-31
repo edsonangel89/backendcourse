@@ -17,38 +17,37 @@
 <div class="admin-container">
     <div class="cards-container">
         {{#each productsList}}
-            <div class="card rounded-1">
-                <img src='' class="card-img-top" alt="Thumbnail">
-                <div class="card-body">
-                    <div class="row">
+            <div class="card p-1 rounded-1 border">
+                <div class="card-body d-flex flex-column ">
+                    <div class="">
                         <h5 class="card-title col">{{_doc.title}}</h5>
                     </div>
-                    <div class="row border text-center" style="height: 3.5rem;">
-                        <h6 class="col border h-100 d-flex align-items-center justify-content-center">ID</h6>
-                        <p class="col border h-100 d-flex align-items-center justify-content-center">{{_doc._id}}</p>
+                    <div class=" border text-center d-flex flex-column" >
+                        <h6 class="p-3 admin_text"><strong>Identificador</strong></h6>
+                        <p class="ps-3 admin_text">{{_doc._id}}</p>
                     </div>
-                    <div class="row border" style="height: 3.8rem;">
-                        <p class="card-text col border h-100 d-flex align-items-center justify-content-center">{{_doc.description}}</p>
+                    <div class=" border d-grid " style="min-height: 10rem;" >
+                        <p class="admin_text" style="word-break: break-all;">{{_doc.description}}</p>
                     </div>
-                    <div class="row border text-center" style="height: 3.5rem;">
-                        <h6 class="col border h-100 d-flex align-items-center justify-content-center">Code</h6>
-                        <p class="col border h-100 d-flex align-items-center justify-content-center">{{_doc.code}}</p>
+                    <div class=" border text-center d-flex" >
+                        <h6 class=" border  h-100 w-50 admin_text"><strong>Código</strong></h6>
+                        <p class=" border h-100 w-50 admin_text">{{_doc.code}}</p>
                     </div>
-                    <div class="row border text-center" style="height: 3.5rem;">
-                        <h6 class="col border h-100 d-flex align-items-center justify-content-center">Price</h6>
-                        <p class="col border h-100 d-flex align-items-center justify-content-center">{{_doc.price}}</p>
+                    <div class=" border text-center d-flex">
+                        <h6 class=" h-100 w-50 admin_text"><strong>Precio</strong></h6>
+                        <p class=" h-100 w-50 admin_text">{{_doc.price}}</p>
                     </div>
-                    <div class="row border text-center" style="height: 3.5rem;">
-                        <h6 class="col border h-100 d-flex align-items-center justify-content-center">Stock</h6>
-                        <p class="col border h-100 d-flex align-items-center justify-content-center">{{_doc.stock}}</p>
+                    <div class=" border text-center d-flex" >
+                        <h6 class=" h-100 w-50 admin_text"><strong>Existencias</strong></h6>
+                        <p class=" h-100 w-50  admin_text">{{_doc.stock}}</p>
                     </div>
-                    <div class="row border text-center" style="height: 3.5rem;"> 
-                        <h6 class="col border h-100 d-flex align-items-center justify-content-center">Category</h6>
-                        <p class="col border h-100 d-flex align-items-center justify-content-center">{{_doc.category}}</p>
+                    <div class=" border text-center d-flex" > 
+                        <h6 class=" h-100 w-50 admin_text"><strong>Categoría</strong></h6>
+                        <p class="h-100 w-50  admin_text">{{_doc.category}}</p>
                     </div>
-                    <div class="row border text-center" style="height: 3.5rem;">
-                        <h6 class="col border h-100 d-flex align-items-center justify-content-center">__v</h6>
-                        <p class="col border h-100 d-flex align-items-center justify-content-center">{{_doc.__v}}</p>
+                    <div class="border text-center d-flex" >
+                        <h6 class=" h-100 w-50 d-flex align-items-center justify-content-center"><strong>v</strong></h6>
+                        <p class=" h-100 w-50 d-flex align-items-center justify-content-center admin_text">{{_doc.__v}}</p>
                     </div>
                 </div>
             </div>

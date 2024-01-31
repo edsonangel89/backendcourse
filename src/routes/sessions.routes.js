@@ -12,7 +12,7 @@ import { sessionLogin,
 const sessionRouter = Router()
 
 sessionRouter.post('/login', passport.authenticate('login', { failureRedirect: '/erroruser'}), sessionLogin)
-sessionRouter.post('/sign', passport.authenticate('sign'), sessionSign)
+sessionRouter.post('/sign', passport.authenticate('sign', { failureRedirect: '/erroruser'}), sessionSign)
 sessionRouter.get('/sign', getSessionSign)
 sessionRouter.get('/logout', sessionLogout)
 sessionRouter.get('/github', passport.authenticate('github', {scope: ['user:email']}), async (req, res) => {})

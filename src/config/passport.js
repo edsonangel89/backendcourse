@@ -9,7 +9,7 @@ const LocalStrategy = local.Strategy
 const JWTStrategy = jwt.Strategy
 const ExtractJWT =jwt.ExtractJwt
 
-const initialize = () => {
+export const initialize = () => {
 
     passport.use('sign', new LocalStrategy(
         {passReqToCallback: true, usernameField: 'email'},
@@ -28,7 +28,6 @@ const initialize = () => {
                     email: email,
                     password: criptPassword,
                 })
-                req.logger.info('User added')
                 return done(null, addedUser)
             }
             catch(error) {
@@ -45,14 +44,15 @@ const initialize = () => {
                 if (!user) {
                     return done(null, false)
                 }
-
                 if (validatePass(password, user.password)) {
                     return done(null, user)
                 }
-                console.log('Error')
+                req.logger.error(`Error de login: Usuario o contrasena incorrectos: - ${new Date().toLocaleTimeString()} : ${ new Date().toLocaleTimeString() }`)
                 return done(null, false)
             }
             catch(error) {
+                req.logger.error(`Error de login: - ${ new Date().toLocaleTimeString() }`)
+                req.logger.error(error)
                 return done(error)
             }
         }
