@@ -11,8 +11,8 @@ export const getRoot = async (req, res) => {
         if (req.user) {
             const user = await userModel.findOne({_id: req.user._id})
             if (user) {
+                const productsList = await productModel.find()
                 if (user.role == 'admin') {
-                    const productsList = await productModel.find()
                     res.status(200).render('home_admin', {
                         title: 'Admin',
                         name: user.fname,
@@ -20,11 +20,20 @@ export const getRoot = async (req, res) => {
                         script: '/js/index.js'
                     })
                 }
+                else if (user.role == 'premium') {
+                    res.status(200).render('products_premium', {
+                        title: 'Products',
+                        name: user.fname,
+                        productsList,
+                        script: '/js/index.js'
+                    })
+                }
                 else {
-                    res.status(200).render('home_user', {
-                        title: 'Home',
+                    res.status(200).render('products_user', {
+                        title: 'Products',
                         name: user.fname,
                         cart: user.cart,
+                        productsList,
                         script: '/js/index.js'
                     })
                 }

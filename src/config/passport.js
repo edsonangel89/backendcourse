@@ -47,12 +47,9 @@ export const initialize = () => {
                 if (validatePass(password, user.password)) {
                     return done(null, user)
                 }
-                req.logger.error(`Error de login: Usuario o contrasena incorrectos: - ${new Date().toLocaleTimeString()} : ${ new Date().toLocaleTimeString() }`)
                 return done(null, false)
             }
             catch(error) {
-                req.logger.error(`Error de login: - ${ new Date().toLocaleTimeString() }`)
-                req.logger.error(error)
                 return done(error)
             }
         }

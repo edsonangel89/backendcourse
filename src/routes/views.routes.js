@@ -8,7 +8,6 @@ import { getRoot,
         deleteProductView, 
         getDetails, 
         getCart, 
-        //getRtp, 
         postRtp, 
         delRtp, 
         getNewPassword, 
@@ -33,7 +32,6 @@ viewsRouter.get('/products', getProds)
 viewsRouter.get('/cart', getCart)
 viewsRouter.get('/cart/:pid', deleteProductView)
 viewsRouter.get('/details/:pid', getDetails)
-//viewsRouter.get('/admin', getRtp)
 viewsRouter.post('/admin', authorize('admin'), postRtp)
 viewsRouter.post('/admin/:pid', authorize('admin'), delRtp)
 viewsRouter.get('/updatePassword/:token', setNewPassword)
