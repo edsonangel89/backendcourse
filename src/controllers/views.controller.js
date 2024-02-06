@@ -61,7 +61,8 @@ export const getProds = async (req, res) => {
                 res.status(200).render('products_user', {
                     title: 'Products',
                     productsList: products,
-                    script: '/js/index.js'
+                    script: '/js/index.js',
+                    name: req.user.fname
                 })
             }
             else if (req.user.role == 'premium') {
@@ -74,7 +75,8 @@ export const getProds = async (req, res) => {
                 return res.status(200).render('products_premium', {
                     title: 'Products',
                     productsList: productsPrem,
-                    script: '/js/index.js'
+                    script: '/js/index.js',
+                    name: req.user.fname
                 })
             }
         }

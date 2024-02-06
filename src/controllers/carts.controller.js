@@ -39,10 +39,9 @@ export const addProduct = async (req, res) => {
                             prod.id_product.price = pricePrem
                         }
                         prod.quantity = prod.quantity + 1
-                        console.log('Test')
                         cart.products = cart.products
                         await cartModel.findByIdAndUpdate(cid, cart)
-                        return res.redirect('/',200,{})
+                        return res.redirect('/products',200,{})
                     }
                     else {
                         prod.quantity = prod.quantity + 1
@@ -54,7 +53,7 @@ export const addProduct = async (req, res) => {
                 else {
                     cart.products.push({id_product: pid, quantity: 1})
                     await cartModel.findByIdAndUpdate(cid, cart)
-                    return res.redirect('/',200,{})
+                    return res.redirect('/products',200,{})
                 }
             }
             else {  

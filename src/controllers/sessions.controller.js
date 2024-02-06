@@ -11,10 +11,10 @@ export const sessionLogin = (req, res) => {
         switch(userRole) {
             case 'user':
                 req.logger.info('User ' + req.session.passport.user + ` logged in - ${new Date().toLocaleTimeString()} : ${ new Date().toLocaleDateString() }`)
-                return res.redirect('/',200,{status: 'success', payload: 'User'})
+                return res.redirect('/products',200,{ name: req.user.fname })
             case 'premium':
                 req.logger.info('User ' + req.session.passport.user + ` logged in - ${new Date().toLocaleTimeString()} : ${ new Date().toLocaleDateString() }`)
-                return res.redirect('/',200,{status: 'success', payload: 'User Premium'})
+                return res.redirect('/products',200,{ name: req.user.fname })
             case 'admin':
                 req.logger.info('User ' + req.session.passport.user + ` logged in - ${new Date().toLocaleTimeString()} : ${ new Date().toLocaleDateString() }`)
                 return res.redirect('/',200,{status: 'success', payload: 'User Admin'})
